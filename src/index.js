@@ -25,7 +25,7 @@ Object.entries(Components).forEach(([name, component]) => {
 function navigate(page) {
   const [source, args] = pages[page];
   const handlebarsFunct = Handlebars.compile(source);
-  document.body.innerHTML = handlebarsFunct(args);
+  document.getElementById('app').innerHTML = handlebarsFunct(args);
   window.location.hash = page;
 }
 

@@ -10,13 +10,15 @@
   justify-content: center;
 
   &__title {
-    @include mixins.font(30rem, 0.8);
+    @include mixins.font(25rem, 0.8);
+
+    color: vars.$gray;
   }
 
   &__text {
-    @include mixins.font(4rem);
+    @include mixins.font(3rem);
 
-    margin: 4rem 0 0;
+    margin: 2rem 0 0;
   }
 
   &__link {
