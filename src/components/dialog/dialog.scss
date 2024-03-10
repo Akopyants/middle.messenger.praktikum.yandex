@@ -1,0 +1,9 @@
+@use '@/assets/variables' as vars;
+@use '@styles/mixins' as mixins;
+
+.dialog {
+  padding: 30px;
+  background: vars.$dialog-bgcolor;
+  border-radius: 12px;
+  box-shadow: vars.$dialog-shadow;
+}

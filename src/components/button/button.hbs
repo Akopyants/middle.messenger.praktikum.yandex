@@ -1,0 +1,9 @@
+<button class="button{{#if className}} {{className}}{{/if}} {{#if square}} button--square{{/if}}{{#if transparent}} button--transparent{{/if}}" page="{{ page }}">
+  {{#if text}}
+    {{ text }}
+  {{/if}}
+
+  {{#if icon}}
+    <img src={{icon}} alt="">
+  {{/if}}
+</button>

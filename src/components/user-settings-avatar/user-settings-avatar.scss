@@ -1,0 +1,34 @@
+@use '@/assets/variables' as vars;
+@use '@styles/mixins' as mixins;
+
+.user-settings-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__preview {
+    @include mixins.size(13rem);
+
+    position: relative;
+    background-color: vars.$gray-light;
+    border-radius: 50%;
+
+    input {
+      display: none;
+    }
+  }
+
+  &__img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__name {
+    @include mixins.font(1.6rem);
+
+    margin-top: 2rem;
+    font-weight: vars.$fontWeightMedium;
+  }
+}

@@ -1,0 +1,53 @@
+@use '@/assets/variables' as vars;
+@use '@styles/mixins' as mixins;
+
+.chat-page {
+  display: flex;
+  overflow: hidden;
+  height: 100vh;
+
+  &__sidebar {
+    width: calc(31rem);
+    border-right: 1px solid vars.$gray;
+  }
+
+  &__profile-link {
+    @include mixins.font(1.2rem);
+
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__header {
+    padding: 2rem 1rem;
+    border-bottom: 1px solid vars.$gray;
+    text-align: right;
+  }
+
+  &__input-row {
+    position: relative;
+    margin-top: 2.3rem;
+
+    &::after {
+      @include mixins.size(2rem);
+
+      position: absolute;
+      top: 50%;
+      left: 1rem;
+      background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M11.5924 11.4138C10.1605 12.8458 7.83889 12.8458 6.40697 11.4138C4.97505 9.98192 4.97505 7.66031 6.40697 6.22839C7.83889 4.79647 10.1605 4.79647 11.5924 6.22839C13.0243 7.66031 13.0243 9.98192 11.5924 11.4138ZM12.0328 12.7968C10.0726 14.2962 7.25699 14.1495 5.46416 12.3566C3.51154 10.404 3.51154 7.2382 5.46416 5.28558C7.41678 3.33296 10.5826 3.33296 12.5352 5.28558C14.328 7.07833 14.4748 9.89375 12.9756 11.854L16.5423 15.4207L15.5995 16.3635L12.0328 12.7968Z' fill='%23999999'/%3E%3C/svg%3E%0A");
+      background-repeat: no-repeat;
+      background-size: contain;
+      content: '';
+      transform: translateY(-50%);
+    }
+
+    input {
+      display: block;
+      height: 3.2rem;
+      padding-left: 3.5rem;
+      border: 1px solid vars.$gray;
+
+      @include mixins.font(1rem);
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "messenger",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "engines": {
+    "node": "v20.10.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "start": "npm run build && node server.js",
+    "preview": "vite preview",
+    "lint:css": "stylelint \"**/*.{css,scss,sass}\"",
+    "fix:css": "stylelint \"**/*.{css,scss,sass}\" --fix"
+  },
+  "devDependencies": {
+    "prettier": "3.2.5",
+    "sass": "^1.71.1",
+    "stylelint": "^16.2.1",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-config-standard-scss": "^13.0.0",
+    "stylelint-scss": "^6.2.1",
+    "vite": "^5.1.4"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.8",
+    "scss": "^0.2.4"
+  }
+}

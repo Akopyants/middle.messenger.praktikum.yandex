@@ -1,0 +1,25 @@
+@use '@/assets/variables' as vars;
+@use '@styles/mixins' as mixins;
+
+.error-item {
+  @include mixins.size(100vw, 100vh);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__title {
+    @include mixins.font(30rem, 0.8);
+  }
+
+  &__text {
+    @include mixins.font(4rem);
+
+    margin: 4rem 0 0;
+  }
+
+  &__link {
+    margin-top: 2rem;
+  }
+}

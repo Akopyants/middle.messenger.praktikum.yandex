@@ -1,0 +1,18 @@
+@use '@/assets/variables' as vars;
+
+@mixin font($fontSize, $lineHeight: 1) {
+  font-size: $fontSize;
+  line-height: $lineHeight;
+}
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin webkitAutofillReset($bgColor: vars.$bgColorInput, $textColor: vars.$colorBase) {
+  &:-webkit-autofill {
+    box-shadow: 0 0 0 1000px $bgColor inset !important;
+    -webkit-text-fill-color: $textColor !important;
+  }
+}

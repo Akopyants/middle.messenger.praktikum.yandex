@@ -1,0 +1,18 @@
+<div class="{{#if className}} {{ className }}{{/if}}">
+  {{#if chatSelected}} 
+      <header class="chat__header">
+        {{> ChatItem name='Вадим' }}
+        {{> Button className="chat__user-settings-btn" square="true" transparent="true" icon=(icons 'dotsVertical')}}
+      </header>
+      <div class="chat__body">
+        {{> Title level="3" text="Yo"}}
+      </div>
+      <footer class="chat__footer">
+        {{> Button className="" square="true" transparent="true" icon=(icons 'clip') }}
+        {{> Input className="chat__input" type="text" name="message" placeholder="Сообщение"}}
+        {{> Button className="" square="true" icon=(icons 'arrowBtn') }}
+      </footer>
+  {{else}}
+    {{> Title className="chat__choose-title" level="4" text="Выберите чат чтобы отправить сообщение" }}
+  {{/if}}
+</div>
