@@ -3,31 +3,31 @@
 @use '@styles/mixins' as mixins;
 
 .sign-in-section {
-    padding: 6rem 0;
+  padding: 6rem 0;
 }
 
 .sign-in-form {
-    @include mixins.size(35rem, auto);
+  @include mixins.size(35rem, auto);
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 3rem 4rem;
-    border: 1px solid vars.$gray;
-    margin: 0 auto;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3rem 4rem;
+  border: 1px solid vars.$gray;
+  margin: 0 auto;
+  text-align: center;
 
-    &__input-row {
-        margin-top: 2rem;
-    }
+  &__input-row {
+    margin-top: 2rem;
+  }
 
-    &__footer {
-        margin-top: 4rem;
-    }
+  &__footer {
+    margin-top: 4rem;
+  }
 
-    &__link {
-        display: block;
-        padding: 1rem;
-        margin-top: 1rem;
-    }
+  &__link {
+    display: block;
+    padding: 1rem;
+    margin-top: 1rem;
+  }
 }

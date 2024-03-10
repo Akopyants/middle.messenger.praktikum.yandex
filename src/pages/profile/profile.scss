@@ -2,43 +2,43 @@
 @use '@styles/mixins' as mixins;
 
 .profile {
-    position: relative;
-    min-height: 100vh;
+  position: relative;
+  min-height: 100vh;
 
-    &__container {
-        max-width: 51rem;
-        padding: 6rem 0;
-        margin: 0 auto;
+  &__container {
+    max-width: 51rem;
+    padding: 6rem 0;
+    margin: 0 auto;
+  }
+
+  &__links {
+    padding: 0;
+    margin-top: 6rem;
+    list-style: none;
+
+    li {
+      padding: 1rem 0;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid vars.$gray;
+      }
     }
+  }
 
-    &__links {
-        padding: 0;
-        margin-top: 6rem;
-        list-style: none;
+  &__back-btn {
+    @include mixins.size(6.4rem, 100%);
+    @include mixins.font(1.4rem);
 
-        li {
-            padding: 1rem 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: unset;
+    border-right: 1px solid vars.$gray;
+    background: transparent;
+    background-color: vars.$gray-light;
+  }
 
-            &:not(:last-child) {
-                border-bottom: 1px solid vars.$gray;
-            }
-        }
-    }
-
-    &__back-btn {
-        @include mixins.size(6.4rem, 100%);
-        @include mixins.font(1.4rem);
-
-        position: absolute;
-        top: 0;
-        left: 0;
-        border: unset;
-        border-right: 1px solid vars.$gray;
-        background: transparent;
-        background-color: vars.$gray-light;
-    }
-
-    &__save-btn {
-        margin-top: 6rem;
-    }
+  &__save-btn {
+    margin-top: 6rem;
+  }
 }

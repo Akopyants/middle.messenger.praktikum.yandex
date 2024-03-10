@@ -1,4 +1,4 @@
-export { chooseChatPage } from './choose-chat-page'
+export { chooseChatPage } from './choose-chat-page';
 export { ChatPage } from './chat-page';
 export { LoginPage } from './login-page';
 export { SignIn } from './sign-in';
