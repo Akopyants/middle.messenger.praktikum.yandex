@@ -7,4 +7,4 @@ app.use(express.static('./dist/'));
 
 app.listen(PORT, function () {
   console.log(`Yo ${PORT}!`);
-}); 
+});
