@@ -8,9 +8,11 @@
         {{> Title level="3" text="Yo"}}
       </div>
       <footer class="chat__footer">
-        {{> Button className="" square="true" transparent="true" icon=(icons 'clip') }}
-        {{> Input className="chat__input" type="text" name="message" placeholder="Сообщение"}}
-        {{> Button className="" square="true" icon=(icons 'arrowBtn') }}
+        <form>
+          {{> Button className="" square="true" transparent="true" icon=(icons 'clip') }}
+          {{> Input className="chat__input" type="text" name="message" placeholder="Сообщение"}}
+          {{> Button className="" square="true" icon=(icons 'arrowBtn') }}
+        </form>
       </footer>
   {{else}}
     {{> Title className="chat__choose-title" level="4" text="Выберите чат чтобы отправить сообщение" }}

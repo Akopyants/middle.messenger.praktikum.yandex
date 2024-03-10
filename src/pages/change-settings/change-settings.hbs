@@ -1,7 +1,8 @@
 <section class="profile">
-    <div class="profile__container">
-      {{> UserSettingsAvatar }}
+  <div class="profile__container">
+    {{> UserSettingsAvatar }}
 
+    <form>
       {{#> UserSettingsList className="" }}
         {{#each (profile-user-data)}}
           {{> UserSettingsItem }}
@@ -9,7 +10,8 @@
       {{/ UserSettingsList }}
 
       {{> Button page="profile" text="Сохранить" className="profile__save-btn"}}
-    </div>
+    </form>
+  </div>
 
-    {{> Button page="profile" className="profile__back-btn" text="Назад" }}
+  {{> Button page="profile" className="profile__back-btn" text="Назад" }}
 </section>
