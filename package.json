@@ -11,7 +11,7 @@
     "build": "vite build",
     "start": "npm run build && node server.js",
     "preview": "vite preview",
-    "lint:css": "stylelint \"**/*.{css,scss,sass}\"",
+    "stylelint": "stylelint \"**/*.{css,scss,sass}\"",
     "fix:css": "stylelint \"**/*.{css,scss,sass}\" --fix"
   },
   "devDependencies": {
