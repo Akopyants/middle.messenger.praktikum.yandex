@@ -4,7 +4,7 @@
 
 <code>npm run build</code> - сборка
 
-<code>npm run start</code> - установка зависимостей
+<code>npm run start</code> - запуск проекта
 
 # Домен
 
