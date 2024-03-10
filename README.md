@@ -8,7 +8,7 @@
 
 # Домен
 
-(https://akopyants-chat.netlify.app/)
+[Сайт: ](https://akopyants-chat.netlify.app/)
 
 # Ссылки на страницы 
 [Авторизация](https://akopyants-chat.netlify.app/#login)
