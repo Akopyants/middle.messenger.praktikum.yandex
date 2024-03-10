@@ -17,11 +17,13 @@
   "devDependencies": {
     "prettier": "3.2.5",
     "sass": "^1.71.1",
-    "stylelint": "^16.2.1",
-    "stylelint-config-idiomatic-order": "^10.0.0",
-    "stylelint-config-standard": "^36.0.0",
-    "stylelint-config-standard-scss": "^13.0.0",
-    "stylelint-scss": "^6.2.1",
+    "stylelint": "^13.13.1",
+    "stylelint-config-idiomatic-order": "^8.1.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-standard": "^22.0.0",
+    "stylelint-order": "^4.1.0",
+    "stylelint-scss": "^3.20.1",
+    "stylelint-webpack-plugin": "^3.0.1",
     "vite": "^5.1.4"
   },
   "dependencies": {

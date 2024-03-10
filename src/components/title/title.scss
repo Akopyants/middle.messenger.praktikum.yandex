@@ -2,23 +2,23 @@
 @use '@styles/mixins' as mixins;
 
 .title {
-    &--left {
-        text-align: left;
-    }
+  &--left {
+    text-align: left;
+  }
 
-    &--right {
-        text-align: right;
-    }
+  &--right {
+    text-align: right;
+  }
 
-    &--center {
-        text-align: center
-    }
+  &--center {
+    text-align: center;
+  }
 }
 
 h1 {
-    @include mixins.font(6rem, 1.2);
+  @include mixins.font(6rem, 1.2);
 
-    font-weight: vars.$fontWeightSolid;
+  font-weight: vars.$fontWeightSolid;
 }
 
 h3 {
@@ -28,7 +28,5 @@ h3 {
 }
 
 h4 {
-    @include mixins.font(2.6rem, 1.2);
+  @include mixins.font(2.6rem, 1.2);
 }
-
-

@@ -1,10 +1,9 @@
 {
-  "extends": ["stylelint-config-standard", "stylelint-config-idiomatic-order"],
+  "extends": ["stylelint-config-standard", "stylelint-config-prettier", "stylelint-config-idiomatic-order"],
 
   "plugins": ["stylelint-order", "stylelint-scss"],
 
   "rules": {
-    "linebreaks": "unix",
     "at-rule-no-unknown": [
       true,
       {
