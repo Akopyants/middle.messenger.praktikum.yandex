@@ -1,0 +1,13 @@
+<section class="login-section">
+  <form class="login-form">
+    <div class="login-form__content">
+      {{> Title level="3" text="Вход" textAlign="center" }}
+      {{> Input rowClassName="login-form__input-row" name="login" type="text" placeholder="Логин" }}
+      {{> Input rowClassName="login-form__input-row" name="password" type="password" placeholder="Пароль" }}
+    </div>
+    <div class="login-form__footer">
+      {{> Button text="Авторизоваться" page="choose-chat" }}
+      {{> Link className="login-form__link" page="sign-in" text="Нет аккаунта?"}}
+    </div>
+  </form>
+</section>

@@ -1,0 +1,18 @@
+<section class="sign-in-section">
+  <form class="sign-in-form">
+    <div class="sign-in-form__content">
+      {{> Title level="3" text="Регистрация" textAlign="center" }}
+      {{> Input rowClassName="sign-in-form__input-row" name="email" type="email" placeholder="Почта" }}
+      {{> Input rowClassName="sign-in-form__input-row" name="login" type="text" placeholder="Логин" }}
+      {{> Input rowClassName="sign-in-form__input-row" name="first_name" type="text" placeholder="Имя" }}
+      {{> Input rowClassName="sign-in-form__input-row" name="second_name" type="text" placeholder="Фамилия" }}
+      {{> Input rowClassName="sign-in-form__input-row" name="phone" type="tel" placeholder="Телефон" }}
+      {{> Input rowClassName="sign-in-form__input-row" name="password" type="password" placeholder="Пароль" }}
+      {{> Input rowClassName="sign-in-form__input-row" name="password" type="password" placeholder="Пароль" }}
+    </div>
+    <div class="sign-in-form__footer">
+      {{> Button text="Зарегистрироваться" page="choose-chat" }}
+      {{> Link className="sign-in-form__link" page="sign-in" text="Войти"}}
+    </div>
+  </form>
+</section>

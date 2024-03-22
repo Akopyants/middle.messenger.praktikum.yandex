@@ -1,0 +1,32 @@
+@use '@/assets/variables' as vars;
+@use '@styles/mixins' as mixins;
+
+.title {
+  &--left {
+    text-align: left;
+  }
+
+  &--right {
+    text-align: right;
+  }
+
+  &--center {
+    text-align: center;
+  }
+}
+
+h1 {
+  @include mixins.font(6rem, 1.2);
+
+  font-weight: vars.$fontWeightSolid;
+}
+
+h3 {
+  @include mixins.font(3.2rem, 1.2);
+
+  font-weight: vars.$fontWeightBase;
+}
+
+h4 {
+  @include mixins.font(2.6rem, 1.2);
+}

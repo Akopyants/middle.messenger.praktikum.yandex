@@ -1,0 +1,7 @@
+@use '@/assets/variables' as vars;
+@use '@styles/mixins' as mixins;
+
+.chat-list {
+  overflow: auto;
+  height: 100%;
+}

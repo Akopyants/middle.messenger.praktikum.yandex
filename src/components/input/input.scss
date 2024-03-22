@@ -1,0 +1,31 @@
+@use '@/assets/variables' as vars;
+@use '@styles/mixins' as mixins;
+
+.input-row {
+  display: flex;
+}
+
+.input {
+  @include mixins.webkitAutofillReset;
+  @include mixins.font(1.6rem);
+  @include mixins.size(100%, 4rem);
+
+  display: block;
+  padding: 0 2rem;
+  border: 1px solid vars.$gray;
+  outline: none;
+
+  &:focus,
+  &:active {
+    border: 1px solid vars.$colorBase;
+  }
+
+  &::placeholder {
+    color: vars.$colorPlaceholder;
+  }
+
+  &:disabled {
+    background-color: transparent;
+    color: vars.$gray;
+  }
+}
