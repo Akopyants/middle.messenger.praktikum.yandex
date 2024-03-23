@@ -22,14 +22,16 @@
   }
 
   &__footer {
-    display: flex;
-    justify-content: space-between;
-    padding: 2rem;
-    border-top: 1px solid vars.$gray;
-
     .input-row {
       flex-grow: 1;
       margin: 0 1rem;
+    }
+
+    form {
+      display: flex;
+      justify-content: space-between;
+      padding: 2rem;
+      border-top: 1px solid vars.$gray;
     }
   }
 

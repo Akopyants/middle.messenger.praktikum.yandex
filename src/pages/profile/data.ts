@@ -1,4 +1,11 @@
-export const profileUserData = {
+interface data {
+  [key: string] : {
+    name: string,
+    label: string,
+    value: string,
+  }
+}
+export const profileUserData : data = {
   email: {
     name: 'email',
     label: 'Почта',

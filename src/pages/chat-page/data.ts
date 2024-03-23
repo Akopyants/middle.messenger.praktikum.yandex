@@ -1,4 +1,13 @@
-export const chatsData = [
+interface data {
+   id: number,
+   avatar?: string,
+   name: string,
+   lastMessage: string,
+   unreadMessages: string,
+   time: string
+}
+
+export const chatsData : data[] = [
   { 
     id: 0,
     avatar: 'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',

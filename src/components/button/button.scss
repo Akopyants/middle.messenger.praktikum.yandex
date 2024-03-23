@@ -9,8 +9,10 @@
   background-color: vars.$bgColorBase;
   background-color: vars.$gray;
   cursor: pointer;
+  color: #fff;
   text-align: center;
   white-space: nowrap;
+  border-radius: 5px;
 
   &[type='button'] {
     cursor: pointer;

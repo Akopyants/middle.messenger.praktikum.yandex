@@ -1,10 +1,11 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import path from 'path';
+import checker from "vite-plugin-checker";
 
 export default defineConfig({
   server: {
-    port: 3000,
+    port: 4000,
   },
   root: resolve(__dirname, 'src'),
   build: {
@@ -18,4 +19,5 @@ export default defineConfig({
       '@scripts': path.resolve(__dirname, './src/scripts'),
     },
   },
+  plugins: [checker({ typescript: true /** or an object config */ })],
 });
