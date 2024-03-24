@@ -4,14 +4,14 @@ import * as Components from './components';
 import * as Pages from './pages';
 import icons from './assets/icons/index';
 import LoginPage from './pages/login-page';
-
+import SignIn from './pages/sign-in';
 // import LoginPage from './pages/login-page';
 
 
 const pages: { [key: string]: [any] } = {
   chat: [Pages.ChatPage],
   login: [new LoginPage({})],
-  'sign-in': [Pages.SignIn],
+  'sign-in': [new SignIn({})],
   'choose-chat': [Pages.chooseChatPage],
   profile: [Pages.Profile],
   'change-password': [Pages.ChangePassword],
@@ -33,7 +33,7 @@ function navigate(page: string): void {
 }
 
 function handleHashChange() {
-  const page = window.location.hash ? window.location.hash.replace(/^#/, '') : 'login';
+  const page = window.location.hash ? window.location.hash.replace(/^#/, '') : 'sign-in';
   navigate(page);
 }
 

@@ -11,6 +11,11 @@ interface ValidationRules {
   allowedPattern: RegExp;
   oneCapitalLetter: RegExp;
   requiresDigit: RegExp;
+  validEmail: RegExp;
+  noNumber: RegExp;
+  noSpace: RegExp;
+  noSpecialSymbols: RegExp;
+  phone: RegExp;
 }
 
 const validationRules: ValidationRules = {
@@ -24,8 +29,13 @@ const validationRules: ValidationRules = {
   },
   disallowedPattern: /^\d+$/,
   allowedPattern: /^[a-zA-Z\d_-]+$/,
-  oneCapitalLetter: /[A-Z]+/,
+  oneCapitalLetter: /^[A-ZА-Я]/,
   requiresDigit: /\d/,
+  validEmail: /^[^@\s]+@([^@\s]+\.)+[^@\s]{2,}$/i,
+  noNumber: /^[^\d]*$/,
+  noSpace: /^\S*$/,
+  noSpecialSymbols: /^[A-ZА-Яa-zа-я-]+$/,
+  phone: /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/
 };
 
 const validateLogin = (value: string): string => {
@@ -60,6 +70,43 @@ const validatePassword = (value: string): string => {
   return '';
 };
 
+const validationEmail = (value : string): string => {
+  console.log(value)
+  if (!validationRules.validEmail.test(value)) {
+    return 'Введите корректный email'
+  }
+
+  return '';
+}
+
+const validationName = (value : string) : string => {
+  if (!validationRules.oneCapitalLetter.test(value)) {
+    return 'Первая буква должна быть заглавной'
+  }
+
+  if (!validationRules.noNumber.test(value)) {
+    return 'Поле не может содержать число'
+  }
+
+  if(!validationRules.noSpace.test(value)) {
+    return 'Поле не может содержать пробел'
+  }
+
+  if(!validationRules.noSpecialSymbols.test(value)) {
+    return 'Поле не должно содержать спец символы'
+  }
+
+  return ''
+}
+
+const validationPhone = (value: string) : string => {
+    if (!validationRules.phone.test(value)) {
+      return 'Введите корре́ктный номер телефона'
+    } 
+
+    return ''
+}
+
 const validateInput = (event: Event): string => {
   const target = event.target as HTMLInputElement;
   const value = target.value;
@@ -73,6 +120,18 @@ const validateInput = (event: Event): string => {
     return validatePassword(value);
   }
 
+  if (name === 'email') {
+    return validationEmail(value)
+  }
+
+  if (name === 'first_name' || name === 'second_name') {
+    return validationName(value);
+  }
+
+  if (name === 'phone') {
+    return validationPhone(value);
+  }
+ 
   return '';
 };
 

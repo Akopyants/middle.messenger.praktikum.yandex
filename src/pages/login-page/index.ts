@@ -59,7 +59,7 @@ export default class LoginPage extends Block {
     this.children.regLink = new Link({
       url: '#',
       text: 'Нет аккаунта?',
-      className: 'login-form__link',
+      className: 'sign-in-form__link',
       page: 'sign-in',
     });
 

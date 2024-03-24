@@ -138,33 +138,37 @@ export default class Component {
 
     Object.entries(this.lists).forEach(([key]) => {
       propsAndStubs[key] = `<div data-id="__l_${_tmpId}"></div>`;
+      console.log(propsAndStubs[key])
     });
+
+    
 
     const fragment = this._createDocumentElement('template');
     fragment.innerHTML = Handlebars.compile(this.render())(propsAndStubs);
+
     Object.values(this.children).forEach((child) => {
+
       const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
       if (stub) {
         stub.replaceWith(child.getContent() as HTMLElement);
       }
     });
 
-    Object.entries(this.lists).forEach(([child]) => {
+    Object.entries(this.lists).forEach(([_, child]) => {
       const listCont = this._createDocumentElement('template');
-      if (Array.isArray(child)) {
-        child.forEach((item) => {
-          if (item instanceof Component) {
-            listCont.content.append(item.getContent() as HTMLElement);
-          } else {
+      child.forEach(item => {
+        if (item instanceof Component) {
+            listCont.content.append(item.getContent()  as HTMLElement);
+        } else {
             listCont.content.append(`${item}`);
-          }
-        });
-      }
-  
+        }
+      });
       const stub = fragment.content.querySelector(`[data-id="__l_${_tmpId}"]`);
-      stub?.replaceWith(listCont.content);
-    });
 
+      if (stub) {
+        stub.replaceWith(listCont.content);
+      }
+    });
     const newElement = fragment.content.firstElementChild as HTMLElement;
     if (this._element) {
       this._element.replaceWith(newElement);
