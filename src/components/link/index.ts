@@ -1,2 +1,21 @@
+import Component from '../../utils/Component';
+import template from './link.hbs?raw';
 import './link.scss';
-export { default as Link } from './link.hbs?raw';
+
+interface InterfaceLink {
+  url: string;
+  className?: string;
+  page?: string;
+  text?: string;
+  icon?: Boolean;
+}
+
+export default class Link extends Component {
+  constructor(props: InterfaceLink) {
+    super({...props});
+  }
+
+  render() {
+    return this.compile(template, { ...this.props });
+  }
+}

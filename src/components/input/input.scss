@@ -3,6 +3,7 @@
 
 .input-row {
   display: flex;
+  position: relative;
 }
 
 .input {
@@ -28,5 +29,19 @@
   &:disabled {
     background-color: transparent;
     color: vars.$gray;
+  }
+
+  &--error {
+    border: 1px solid #fc0000;
+  }
+
+  &__error {
+    @include mixins.font(1.3rem, 1);
+    color: #fc0000;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    bottom: -18px;
+    white-space: nowrap;
   }
 }

@@ -1,16 +1,13 @@
 <section class="login-section">
-  <form class="login-form">
+  <form class="login-form" novalidate="novalidate">
     <div class="login-form__content">
-     <!--
-      {{> Title level="3" text="Вход" textAlign="center" }}
-      {{> Input rowClassName="login-form__input-row" name="login" type="text" placeholder="Логин" }}
-      {{> Input rowClassName="login-form__input-row" name="password" type="password" placeholder="Пароль" }}
-     --> 
+      {{{ title }}}  
+      {{{ inputLogin }}}
+      {{{ inputPassword }}}
     </div>
     <div class="login-form__footer">
-    <!--  {{> Button text="Авторизоваться" page="choose-chat" }}
-      {{> Link className="login-form__link" page="sign-in" text="Нет аккаунта?"}}
-    -->
+      {{{ loginButton }}}
+      {{{ regLink}}}
     </div>
   </form>
 </section>

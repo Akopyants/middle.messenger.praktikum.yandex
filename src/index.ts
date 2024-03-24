@@ -26,7 +26,7 @@ Object.entries(Components).forEach(([name, component]) => {
 
 function navigate(page: string): void {
   const [source] = pages[page];
-
+  
   RenderDOM('#app', source)
 
   window.location.hash = page;
@@ -39,16 +39,16 @@ function handleHashChange() {
 
 document.addEventListener('DOMContentLoaded', () => handleHashChange());
 
-document.addEventListener('click', (e) => {
-  const target = e.target as HTMLElement;
-  const page = target.getAttribute('page');
-  if (page) {
-    navigate(page);
+// document.addEventListener('click', (e) => {
+//   // const target = e.target as HTMLElement;
+//   // const page = target.getAttribute('page');
+//   // if (page) {
+//   //   navigate(page);
 
-    e.preventDefault();
-    e.stopImmediatePropagation();
-  }
-});
+//   //   e.preventDefault();
+//   //   e.stopImmediatePropagation();
+//   // }
+// });
 
 Handlebars.registerHelper('icons', function (iconName) {
   return new Handlebars.SafeString(icons[iconName]);

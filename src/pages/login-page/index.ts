@@ -1,31 +1,99 @@
-// import './login-page.scss';
-// export { default as LoginPage } from './login-page.hbs?raw';
-
-import Component from '../../utils/Component';
+import Block from '../../utils/Component';
 import template from './login-page.hbs?raw';
 import './login-page.scss';
-// import data from './data';
-// import Form from '../../components/form/index';
+import Title from '../../components/title';
+import Input from '../../components/input';
+import Button from '../../components/button';
+import Link from '../../components/link';
+import validateInput from '../../utils/validation';
+import findEmptyField from '../../utils/findEmptyField';
+import getFormData from '../../utils/getFormData';
+import isValidForm from '../../utils/isValidForm';
 
-export default class LoginPage extends Component {
+export default class LoginPage extends Block {
   constructor(props: Record<string, any>) {
-    super('main', props);
-    console.log(template)
-    // const { image, form } = data;
-    // this.props.image = image;
-    this.props.attr = { class: 'login' };
-    
-    // this.children.form = new Form({
-    //   name: 'form-login',
-    //   title: 'Вход',
-    //   fields: form.fields,
-    //   buttons: form.buttons,
-    //   link: { url: '/registration', text: 'Нет аккаунта?' },
-    //   error: { text: '' },
-    // });
+    super({
+      ...props,
+    });
+
+    this.children.title = new Title({
+      text: 'Вход',
+      level: 3,
+    });
+
+    this.children.inputLogin = new Input({
+      rowClassName: '',
+      name: 'login',
+      type: 'text',
+      required: true,
+      placeholder: 'Логин',
+      errorMessages: '',
+      valid: 'false',
+      events: {
+        blur: this.handleInputBlur.bind(this, 'login')
+      },
+    });
+
+    this.children.inputPassword = new Input({
+      rowClassName: 'login-form__input-row',
+      name: 'password',
+      type: 'password',
+      placeholder: 'Пароль',
+      valid: 'false',
+      events: {
+        blur: this.handleInputBlur.bind(this, 'password')
+      },
+    });
+
+    this.children.loginButton = new Button({
+      text: 'Авторизоваться',
+      page: 'choose-chat',
+      type: 'submit',
+      events: {
+        click: (e : Event) => {
+          this.submitForm(e);
+        },
+      },
+    });
+
+    this.children.regLink = new Link({
+      url: '#',
+      text: 'Нет аккаунта?',
+      className: 'login-form__link',
+      page: 'sign-in',
+    });
+
   }
 
+  handleInputBlur(name: string, e: Event) {
+    const errorMessage = validateInput(e);
+    const target = e.target as HTMLInputElement;  
+
+    const input = name === 'login' ? this.children.inputLogin : this.children.inputPassword;
+
+    input.setProps({
+      value: target.value,
+      valid: !Boolean(errorMessage),
+      errorMessages: errorMessage,
+    });
+  }
+
+  submitForm(e : Event) {
+    e.preventDefault();
+    const form = this.element?.querySelector('form') as HTMLFormElement;
+
+    if (form) {
+      findEmptyField(form);
+      getFormData(form);
+    }
+
+    if (isValidForm(form)) {
+      alert()
+    }
+  } 
+
+
   render() {
-    return this.compile(template, { ...this.props });
+    return template;
   }
 }
