@@ -2,11 +2,11 @@ interface ValidationRules {
   login: {
     minLength: number;
     maxLength: number;
-  },
+  };
   password: {
     minLength: number;
     maxLength: number;
-  },
+  };
   disallowedPattern: RegExp;
   allowedPattern: RegExp;
   oneCapitalLetter: RegExp;
@@ -35,7 +35,7 @@ const validationRules: ValidationRules = {
   noNumber: /^[^\d]*$/,
   noSpace: /^\S*$/,
   noSpecialSymbols: /^[A-ZА-Яa-zа-я-]+$/,
-  phone: /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/
+  phone: /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/,
 };
 
 const validateLogin = (value: string): string => {
@@ -70,49 +70,47 @@ const validatePassword = (value: string): string => {
   return '';
 };
 
-const validationEmail = (value : string): string => {
-  console.log(value)
+const validationEmail = (value: string): string => {
   if (!validationRules.validEmail.test(value)) {
-    return 'Введите корректный email'
+    return 'Введите корректный email';
   }
 
   return '';
-}
+};
 
-const validationName = (value : string) : string => {
+const validationName = (value: string): string => {
   if (!validationRules.oneCapitalLetter.test(value)) {
-    return 'Первая буква должна быть заглавной'
+    return 'Первая буква должна быть заглавной';
   }
 
   if (!validationRules.noNumber.test(value)) {
-    return 'Поле не может содержать число'
+    return 'Поле не может содержать число';
   }
 
-  if(!validationRules.noSpace.test(value)) {
-    return 'Поле не может содержать пробел'
+  if (!validationRules.noSpace.test(value)) {
+    return 'Поле не может содержать пробел';
   }
 
-  if(!validationRules.noSpecialSymbols.test(value)) {
-    return 'Поле не должно содержать спец символы'
+  if (!validationRules.noSpecialSymbols.test(value)) {
+    return 'Поле не должно содержать спец символы';
   }
 
-  return ''
-}
+  return '';
+};
 
-const validationPhone = (value: string) : string => {
-    if (!validationRules.phone.test(value)) {
-      return 'Введите корре́ктный номер телефона'
-    } 
+const validationPhone = (value: string): string => {
+  if (!validationRules.phone.test(value)) {
+    return 'Введите корре́ктный номер телефона';
+  }
 
-    return ''
-}
+  return '';
+};
 
-const validateInput = (event: Event): string => {
-  const target = event.target as HTMLInputElement;
+const validateInput = (target: HTMLInputElement): string => {
   const value = target.value;
   const name = target.name;
 
-  if (name === 'login') {
+  if (name === 'login' || name === 'display_name') {
     return validateLogin(value);
   }
 
@@ -121,7 +119,7 @@ const validateInput = (event: Event): string => {
   }
 
   if (name === 'email') {
-    return validationEmail(value)
+    return validationEmail(value);
   }
 
   if (name === 'first_name' || name === 'second_name') {
@@ -131,7 +129,7 @@ const validateInput = (event: Event): string => {
   if (name === 'phone') {
     return validationPhone(value);
   }
- 
+
   return '';
 };
 

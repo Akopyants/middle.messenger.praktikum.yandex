@@ -7,6 +7,6 @@ export { Dialog } from './dialog';
 // export { Link } from './link';
 // export { Title } from './title';
 export { UserSettingsList } from './user-settings-list';
-export { UserSettingsItem } from './user-settings-item';
-export { UserSettingsAvatar } from './user-settings-avatar';
+// export { UserSettingsItem } from './user-settings-item';
+// export { UserSettingsAvatar } from './user-settings-avatar';
 export { ErrorItem } from './error-item';

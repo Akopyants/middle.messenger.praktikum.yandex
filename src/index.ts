@@ -5,6 +5,7 @@ import * as Pages from './pages';
 import icons from './assets/icons/index';
 import LoginPage from './pages/login-page';
 import SignIn from './pages/sign-in';
+import ChangeSettings from './pages/change-settings';
 // import LoginPage from './pages/login-page';
 
 
@@ -15,7 +16,7 @@ const pages: { [key: string]: [any] } = {
   'choose-chat': [Pages.chooseChatPage],
   profile: [Pages.Profile],
   'change-password': [Pages.ChangePassword],
-  'change-settings': [Pages.ChangeSettings],
+  'change-settings': [new ChangeSettings({})],
   'not-found': [Pages.NotFound],
   'error-page': [Pages.ErrorPage],
 };
@@ -33,7 +34,7 @@ function navigate(page: string): void {
 }
 
 function handleHashChange() {
-  const page = window.location.hash ? window.location.hash.replace(/^#/, '') : 'sign-in';
+  const page = window.location.hash ? window.location.hash.replace(/^#/, '') : 'change-settings';
   navigate(page);
 }
 

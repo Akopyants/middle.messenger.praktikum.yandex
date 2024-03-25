@@ -1,17 +1,27 @@
-const isValidForm = (form: HTMLFormElement) => {
-    const fields: NodeList = form.querySelectorAll('input');
-  
-    for (let i = 0; i < fields.length; i++) {
-      const field = fields[i] as HTMLInputElement;
-  
-      const isValid = field.dataset.valid === 'true';
-      if (!isValid) {
-        return false;
-      }
-    }
+import validateInput from './validation';
 
-    return true
-  };
-  
-  export default isValidForm;
-  
+const checkValidityForm = (form: HTMLFormElement): boolean[] => {
+  const fields: NodeListOf<HTMLInputElement> = form.querySelectorAll('input');
+  const isValidArray: boolean[] = [];
+
+  fields.forEach((field) => {
+    isValidArray.push(!validateInput(field));
+  });
+
+  return isValidArray;
+};
+
+const isValidForm = (form: HTMLFormElement): boolean => {
+  const isValidArray: boolean[] = checkValidityForm(form);
+
+  for (let i = 0; i < isValidArray.length; i++) {
+    if (!isValidArray[i]) {
+      form.querySelectorAll('input')[i].focus();
+      return false;
+    }
+  }
+
+  return true;
+};
+
+export default isValidForm;

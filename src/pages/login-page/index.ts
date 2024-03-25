@@ -8,7 +8,7 @@ import Link from '../../components/link';
 import validateInput from '../../utils/validation';
 import findEmptyField from '../../utils/findEmptyField';
 import getFormData from '../../utils/getFormData';
-import isValidForm from '../../utils/isValidForm';
+// import isValidForm from '../../utils/isValidForm';
 
 export default class LoginPage extends Block {
   constructor(props: Record<string, any>) {
@@ -66,7 +66,7 @@ export default class LoginPage extends Block {
   }
 
   handleInputBlur(name: string, e: Event) {
-    const errorMessage = validateInput(e);
+    const errorMessage = validateInput(e.target as HTMLInputElement);
     const target = e.target as HTMLInputElement;  
 
     const input = name === 'login' ? this.children.inputLogin : this.children.inputPassword;
@@ -87,9 +87,9 @@ export default class LoginPage extends Block {
       getFormData(form);
     }
 
-    if (isValidForm(form)) {
-      alert()
-    }
+    // if (isValidForm(form)) {
+    //   alert()
+    // } 
   } 
 
 

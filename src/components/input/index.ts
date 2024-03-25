@@ -13,7 +13,7 @@ interface InterfaceInput {
   disabled?: Boolean,
   required?: Boolean,
   errorMessages?: string,
-  valid: string,
+  valid?: string,
   events?: {
     blur: (e: Event) => void; 
   };

@@ -34,11 +34,11 @@ export default class Component {
   private _addEvents(): void {
     const { events = {} } = this.props;
     Object.keys(events).forEach((eventName) => {
-      const input = this.element?.querySelector('input');
+      this._element?.addEventListener(eventName, events[eventName]);
+      const input = this._element?.querySelector('input');
+
       if (input) {
-        input?.addEventListener(eventName, events[eventName]);
-      } else {
-        this._element?.addEventListener(eventName, events[eventName]);
+        input.addEventListener(eventName, events[eventName]);
       }
     });
   }
@@ -138,7 +138,6 @@ export default class Component {
 
     Object.entries(this.lists).forEach(([key]) => {
       propsAndStubs[key] = `<div data-id="__l_${_tmpId}"></div>`;
-      console.log(propsAndStubs[key])
     });
 
     

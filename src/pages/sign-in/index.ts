@@ -8,7 +8,7 @@ import Title from '../../components/title';
 import validateInput from '../../utils/validation';
 import findEmptyField from '../../utils/findEmptyField';
 import getFormData from '../../utils/getFormData';
-import isValidForm from '../../utils/isValidForm';
+// import isValidForm from '../../utils/isValidForm';
 
 export default class SignIn extends Block {
   constructor(props: Record<string, any>) {
@@ -40,7 +40,7 @@ export default class SignIn extends Block {
         valid: 'false',
         events: {
           blur: (e) => {
-            const errorMessage = validateInput(e);
+            const errorMessage = validateInput(e.target as HTMLInputElement);
             const target = e.target as HTMLInputElement;
 
             this.lists.signInInputList[index].setProps({
@@ -54,6 +54,7 @@ export default class SignIn extends Block {
       });
       this.lists.signInInputList.push(input); // Add the input to the list
     });
+
 
     this.children.signInButton = new Button({
       text: 'Зарегистрироваться',
@@ -82,9 +83,9 @@ export default class SignIn extends Block {
       getFormData(form);
     }
 
-    if (isValidForm(form)) {
-      alert();
-    }
+    // if (isValidForm(form)) {
+    //   alert();
+    // }
   }
 
   render() {
