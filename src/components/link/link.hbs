@@ -1,6 +1,12 @@
+{{#if wrapper}}
+<{{wrapper}}>
+{{/if}}
 <a href="{{ url }}" class="link{{#if className}} {{className}}{{/if}}" page="{{ page }}">
     {{ text }}
     {{#if icon}} 
         <img src="{{ icon }}" alt="Иконка">
     {{/if}}
 </a>
+{{#if wrapper}}
+</{{wrapper}}>
+{{/if}}

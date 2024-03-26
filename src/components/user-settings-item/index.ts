@@ -10,6 +10,7 @@ interface InterfaceuserSettingsItem {
   value?: string;
   errorMessages?: string;
   label?: string;
+  disabled?: Boolean;
   blur: (e: Event) => void; 
 }
 
@@ -25,6 +26,7 @@ export default class userSettingsItem extends Component {
       type: props.type,
       value: props.value,
       errorMessages: props.errorMessages,
+      disabled: props.disabled,
       events: {
         blur: (e : Event) => {
           props.blur(e)

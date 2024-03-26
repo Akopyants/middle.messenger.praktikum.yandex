@@ -7,6 +7,7 @@ import LoginPage from './pages/login-page';
 import SignIn from './pages/sign-in';
 import ChangeSettings from './pages/change-settings';
 import changePassword from './pages/change-password';
+import Profile from './pages/profile';
 // import LoginPage from './pages/login-page';
 
 
@@ -15,7 +16,7 @@ const pages: { [key: string]: [any] } = {
   login: [new LoginPage({})],
   'sign-in': [new SignIn({})],
   'choose-chat': [Pages.chooseChatPage],
-  profile: [Pages.Profile],
+  profile: [new Profile({})],
   'change-password': [new changePassword({})],
   'change-settings': [new ChangeSettings({})],
   'not-found': [Pages.NotFound],
@@ -35,7 +36,7 @@ function navigate(page: string): void {
 }
 
 function handleHashChange() {
-  const page = window.location.hash ? window.location.hash.replace(/^#/, '') : 'change-password';
+  const page = window.location.hash ? window.location.hash.replace(/^#/, '') : 'profile';
   navigate(page);
 }
 

@@ -8,6 +8,7 @@ interface InterfaceLink {
   page?: string;
   text?: string;
   icon?: Boolean;
+  wrapper?: string;
 }
 
 export default class Link extends Component {
