@@ -5,6 +5,7 @@ import './title.scss';
 interface InterfaceTitle {
   text?: string;
   level: number;
+  className?: string;
 }
 
 export default class Title extends Component {
