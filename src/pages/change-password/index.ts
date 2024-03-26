@@ -8,7 +8,7 @@ import isValidForm from '../../utils/isValidForm';
 import validateInput from '../../utils/validation';
 import template from './change-password.hbs?raw';
 
-export default class changePassword extends Block {
+export default class СhangePassword extends Block {
   constructor(props: Record<string, any>) {
     super({
       ...props,
