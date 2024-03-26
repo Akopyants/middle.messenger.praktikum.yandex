@@ -9,6 +9,7 @@ import ChangeSettings from './pages/change-settings';
 import changePassword from './pages/change-password';
 import Profile from './pages/profile';
 import NotFound from './pages/not-found';
+import ErrorPage from './pages/error-page';
 
 const pages: { [key: string]: [any] } = {
   chat: [Pages.ChatPage],
@@ -19,7 +20,7 @@ const pages: { [key: string]: [any] } = {
   'change-password': [new changePassword({})],
   'change-settings': [new ChangeSettings({})],
   'not-found': [new NotFound({})],
-  'error-page': [Pages.ErrorPage],
+  'error-page': [new ErrorPage({})],
 };
 
 Object.entries(Components).forEach(([name, component]) => {
@@ -35,7 +36,7 @@ function navigate(page: string): void {
 }
 
 function handleHashChange() {
-  const page = window.location.hash ? window.location.hash.replace(/^#/, '') : 'profile';
+  const page = window.location.hash ? window.location.hash.replace(/^#/, '') : 'error-page';
   navigate(page);
 }
 
