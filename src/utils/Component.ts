@@ -129,7 +129,6 @@ export default class Component {
   }
 
   private _render(): void {
-
     const propsAndStubs: Record<string, any> = { ...this.props };
     const _tmpId = Math.floor(100000 + Math.random() * 900000);
     Object.entries(this.children).forEach(([key, child]) => {
@@ -140,13 +139,10 @@ export default class Component {
       propsAndStubs[key] = `<div data-id="__l_${_tmpId}"></div>`;
     });
 
-    
-
     const fragment = this._createDocumentElement('template');
     fragment.innerHTML = Handlebars.compile(this.render())(propsAndStubs);
 
     Object.values(this.children).forEach((child) => {
-
       const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
       if (stub) {
         stub.replaceWith(child.getContent() as HTMLElement);
@@ -155,11 +151,11 @@ export default class Component {
 
     Object.entries(this.lists).forEach(([_, child]) => {
       const listCont = this._createDocumentElement('template');
-      child.forEach(item => {
+      child.forEach((item) => {
         if (item instanceof Component) {
-            listCont.content.append(item.getContent()  as HTMLElement);
+          listCont.content.append(item.getContent() as HTMLElement);
         } else {
-            listCont.content.append(`${item}`);
+          listCont.content.append(`${item}`);
         }
       });
       const stub = fragment.content.querySelector(`[data-id="__l_${_tmpId}"]`);
@@ -189,11 +185,10 @@ export default class Component {
   getProps() {
     return this.props;
   }
-  
+
   private _makePropsProxy(props: Record<string, any>) {
     const self = this;
     return new Proxy(props, {
-     
       set(target, prop: string, value) {
         const oldTarget = { ...target };
         target[prop] = value;

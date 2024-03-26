@@ -8,7 +8,7 @@ interface InterfaceButton {
   transparent?: Boolean,
   page?: string,
   text?: string,
-  icon?: Boolean,
+  icon?: string,
   type?: string,
   events?: {
     click: (e : Event) => void;

@@ -1,4 +1,4 @@
-<div class="input-row login-form__input-row">
+<div class="input-row login-form__input-row {{#if rowClassName}} {{rowClassName}} {{/if}}">
      <input class="input{{#if className}} {{ className }}{{/if}} {{#if error}}input--error{{/if}}"
           name="{{name}}" 
           {{#if value}} value="{{value}}"{{/if}} 

@@ -8,7 +8,7 @@ import Title from '../../components/title';
 import validateInput from '../../utils/validation';
 import findEmptyField from '../../utils/findEmptyField';
 import getFormData from '../../utils/getFormData';
-// import isValidForm from '../../utils/isValidForm';
+import isValidForm from '../../utils/isValidForm';
 
 export default class SignIn extends Block {
   constructor(props: Record<string, any>) {
@@ -52,7 +52,7 @@ export default class SignIn extends Block {
         },
         ...inputProps,
       });
-      this.lists.signInInputList.push(input); // Add the input to the list
+      this.lists.signInInputList.push(input); 
     });
 
 
@@ -83,9 +83,9 @@ export default class SignIn extends Block {
       getFormData(form);
     }
 
-    // if (isValidForm(form)) {
-    //   alert();
-    // }
+    if (isValidForm(form)) {
+      alert();
+    }
   }
 
   render() {

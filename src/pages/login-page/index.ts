@@ -8,7 +8,6 @@ import Link from '../../components/link';
 import validateInput from '../../utils/validation';
 import findEmptyField from '../../utils/findEmptyField';
 import getFormData from '../../utils/getFormData';
-// import isValidForm from '../../utils/isValidForm';
 
 export default class LoginPage extends Block {
   constructor(props: Record<string, any>) {
