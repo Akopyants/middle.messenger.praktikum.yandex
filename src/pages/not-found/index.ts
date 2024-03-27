@@ -4,10 +4,8 @@ import template from './not-found.hbs?raw';
 import './not-found.scss';
 
 export default class NotFound extends Block {
-  constructor(props: Record<string, any>) {
-    super({
-      ...props,
-    });
+  constructor() {
+    super();
 
     this.children.ErrorItem = new ErrorItem({
       code: '404',

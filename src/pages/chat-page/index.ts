@@ -9,23 +9,17 @@ import './chat-page.scss';
 import { chatsData } from './data';
 
 export default class ChatPage extends Block {
-  constructor(props: Record<string, any>) {
-    super({
-      ...props,
-    });
+  constructor() {
+    super();
 
-    this.lists.chatItems = [];
-
-    chatsData.forEach((item) => {
-      const chatItem = new ChatItem({
+    this.lists.chatItems = chatsData.map((item) => {
+      return new ChatItem({
         avatarSrc: item.avatar,
         name: item.name,
         lastMessage: item.lastMessage,
         unreadMessages: item.unreadMessages,
         time: item.time,
       });
-
-      this.lists.chatItems.push(chatItem);
     });
 
     this.children.profileLink = new Link({

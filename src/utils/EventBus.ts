@@ -1,5 +1,7 @@
+type Callback = (...args: unknown[]) => void;
+
 class EventBus {
-  private listeners: Record<string, Function[]>;
+  private listeners: Record<string, Callback[]>;
 
   constructor() {
     this.listeners = {};

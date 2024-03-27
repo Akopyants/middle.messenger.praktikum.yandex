@@ -2,6 +2,20 @@ import EventBus from './EventBus';
 import Handlebars from 'handlebars';
 import { v4 as makeUUID } from 'uuid';
 
+export interface Props {
+  events?: Record<string, EventListener>;
+  attrs?: Record<string, string>;
+  [key: string]: unknown;
+}
+
+type lists = {
+  [key: string]: Component | unknown;
+};
+
+type childrenType = {
+  [key: string]: Component | unknown;
+};
+
 export default class Component {
   static EVENTS = {
     INIT: 'init',
@@ -13,12 +27,12 @@ export default class Component {
   private _element: HTMLElement | null = null;
   private _id: string;
 
-  protected props: Record<string, any>;
-  protected children: Record<string, Component>;
-  protected lists: Record<string, any[]>;
+  protected props: Props;
+  protected children: childrenType = {};
+  protected lists: lists;
   protected eventBus: () => EventBus;
 
-  constructor(propsWithChildren: Record<string, any> = {}) {
+  constructor(propsWithChildren = {}) {
     this._id = makeUUID();
 
     const eventBus = new EventBus();
@@ -33,7 +47,11 @@ export default class Component {
 
   private _addEvents(): void {
     const { events = {} } = this.props;
-    Object.keys(events).forEach((eventName) => {
+    if (!events) {
+      return;
+    }
+
+    Object.keys(events).forEach((eventName: string) => {
       this._element?.addEventListener(eventName, events[eventName]);
       const input = this._element?.querySelector('input');
 
@@ -55,43 +73,42 @@ export default class Component {
   }
 
   private _componentDidMount() {
-    this.componentDidMount();
-    Object.values(this.children).forEach((child) => {
-      child.dispatchComponentDidMount();
+    Object.values(this.children).forEach((child: unknown) => {
+      if (child instanceof Component) {
+        child.dispatchComponentDidMount();
+      }
     });
   }
-
-  componentDidMount() {}
 
   dispatchComponentDidMount(): void {
     this.eventBus().emit(Component.EVENTS.FLOW_CDM);
   }
 
-  private _componentDidUpdate(oldProps: unknown, newProps: unknown) {
+  private _componentDidUpdate(...args: unknown[]) {
+    const [oldProps, newProps] = args as [Props, Props];
     const response = this.componentDidUpdate(oldProps, newProps);
-    if (!response) {
-      return;
+    if (response) {
+      this._render();
     }
-    this._render();
   }
 
-  componentDidUpdate(oldProps: unknown, newProps: unknown) {
+  componentDidUpdate(oldProps: Props, newProps: Props) {
     return oldProps !== newProps;
   }
 
-  compile(template: string, data: Record<string, any>): string {
+  compile(template: string, data: Record<string, unknown>): string {
     const compiledTemplate = Handlebars.compile(template);
     return compiledTemplate(data);
   }
 
-  private _getChildrenPropsAndProps(propsAndChildren: Record<string, any>): {
-    children: Record<string, Component>;
-    props: Record<string, any>;
-    lists: Record<string, any[]>;
+  private _getChildrenPropsAndProps(propsAndChildren: Props): {
+    children: childrenType;
+    props: Props;
+    lists: lists;
   } {
     const children: Record<string, Component> = {};
-    const props: Record<string, any> = {};
-    const lists: Record<string, any[]> = {};
+    const props: Props = {};
+    const lists: lists = {};
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Component) {
@@ -107,16 +124,17 @@ export default class Component {
   }
 
   private _addAttribute() {
-    const { attr = {} } = this.props;
+    const { attr = {} } = this.props as { attr?: Record<string, unknown> };
 
     Object.entries(attr).forEach(([key, value]) => {
+      console.log(attr);
       if (typeof value === 'string') {
         this._element?.setAttribute(key, value);
       }
     });
   }
 
-  setProps(nextProps: Record<string, any>): void {
+  setProps(nextProps: Props): void {
     if (!nextProps) {
       return;
     }
@@ -129,10 +147,13 @@ export default class Component {
   }
 
   private _render(): void {
-    const propsAndStubs: Record<string, any> = { ...this.props };
+    const propsAndStubs: Props = { ...this.props };
     const _tmpId = Math.floor(100000 + Math.random() * 900000);
+
     Object.entries(this.children).forEach(([key, child]) => {
-      propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
+      if (child instanceof Component) {
+        propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
+      }
     });
 
     Object.entries(this.lists).forEach(([key]) => {
@@ -142,28 +163,33 @@ export default class Component {
     const fragment = this._createDocumentElement('template');
     fragment.innerHTML = Handlebars.compile(this.render())(propsAndStubs);
 
-    Object.values(this.children).forEach((child) => {
-      const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
-      if (stub) {
-        stub.replaceWith(child.getContent() as HTMLElement);
+    Object.values(this.children).forEach((child: unknown) => {
+      if (child instanceof Component) {
+        const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
+        if (stub) {
+          stub.replaceWith(child.getContent() as HTMLElement);
+        }
       }
     });
 
-    Object.entries(this.lists).forEach(([_, child]) => {
+    Object.entries(this.lists).forEach(([child]: [string, Component[] | unknown]) => {
       const listCont = this._createDocumentElement('template');
-      child.forEach((item) => {
-        if (item instanceof Component) {
-          listCont.content.append(item.getContent() as HTMLElement);
-        } else {
-          listCont.content.append(`${item}`);
-        }
-      });
+      if (Array.isArray(child)) {
+        child.forEach((item: Component | unknown) => {
+          if (item instanceof Component) {
+            listCont.content.append(item.getContent() as HTMLElement);
+          } else {
+            listCont.content.append(`${item}`);
+          }
+        });
+      }
       const stub = fragment.content.querySelector(`[data-id="__l_${_tmpId}"]`);
 
       if (stub) {
         stub.replaceWith(listCont.content);
       }
     });
+
     const newElement = fragment.content.firstElementChild as HTMLElement;
     if (this._element) {
       this._element.replaceWith(newElement);
@@ -186,16 +212,15 @@ export default class Component {
     return this.props;
   }
 
-  private _makePropsProxy(props: Record<string, any>) {
-    const self = this;
+  private _makePropsProxy(props: Props) {
     return new Proxy(props, {
-      set(target, prop: string, value) {
+      set: (target, prop: string, value) => {
         const oldTarget = { ...target };
         target[prop] = value;
-        self.eventBus().emit(Component.EVENTS.FLOW_CDU, oldTarget, target);
+        this.eventBus().emit(Component.EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },
-      deleteProperty() {
+      deleteProperty: () => {
         throw new Error('No access');
       },
     });

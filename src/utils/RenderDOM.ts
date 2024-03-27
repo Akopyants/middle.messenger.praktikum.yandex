@@ -5,6 +5,7 @@ function RenderDOM(query: string, block: Component) {
   if (root) {
     root.appendChild(block.getContent()!);
   }
+  
   block.dispatchComponentDidMount();
   return root;
 }

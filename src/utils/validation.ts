@@ -9,6 +9,7 @@ interface ValidationRules {
   };
   disallowedPattern: RegExp;
   allowedPattern: RegExp;
+  firstCapitalLetter: RegExp;
   oneCapitalLetter: RegExp;
   requiresDigit: RegExp;
   validEmail: RegExp;
@@ -29,7 +30,8 @@ const validationRules: ValidationRules = {
   },
   disallowedPattern: /^\d+$/,
   allowedPattern: /^[a-zA-Z\d_-]+$/,
-  oneCapitalLetter: /^[A-ZА-Я]/,
+  firstCapitalLetter: /^[A-ZА-Я]/,
+  oneCapitalLetter: /[A-Z]/,
   requiresDigit: /\d/,
   validEmail: /^[^@\s]+@([^@\s]+\.)+[^@\s]{2,}$/i,
   noNumber: /^[^\d]*$/,
@@ -79,7 +81,7 @@ const validationEmail = (value: string): string => {
 };
 
 const validationName = (value: string): string => {
-  if (!validationRules.oneCapitalLetter.test(value)) {
+  if (!validationRules.firstCapitalLetter.test(value)) {
     return 'Первая буква должна быть заглавной';
   }
 

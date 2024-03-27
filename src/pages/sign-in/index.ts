@@ -5,24 +5,18 @@ import Input from '../../components/input';
 import template from './sign-in.hbs?raw';
 import './sign-in.scss';
 import Title from '../../components/title';
-import validateInput from '../../utils/validation';
 import findEmptyField from '../../utils/findEmptyField';
 import getFormData from '../../utils/getFormData';
 import isValidForm from '../../utils/isValidForm';
 
 export default class SignIn extends Block {
-  constructor(props: Record<string, any>) {
-    super({
-      ...props,
-    });
+  constructor() {
+    super();
 
     this.children.title = new Title({
       text: 'Регистрация',
       level: 3,
     });
-
-    this.lists.signInInputList = [];
-
     const signInInputListProps = [
       { name: 'email', type: 'email', placeholder: 'Почта' },
       { name: 'login', type: 'text', placeholder: 'Логин' },
@@ -33,26 +27,14 @@ export default class SignIn extends Block {
       { name: 'confirm_password', type: 'password', placeholder: 'Подтвердите пароль' },
     ];
 
-    signInInputListProps.forEach((inputProps, index) => {
-      const input = new Input({
+    this.lists.signInInputList = signInInputListProps.map((inputProps) => {
+      return new Input({
         rowClassName: 'sign-in-form__input-row',
         errorMessages: '',
         valid: 'false',
-        events: {
-          blur: (e) => {
-            const errorMessage = validateInput(e.target as HTMLInputElement);
-            const target = e.target as HTMLInputElement;
-
-            this.lists.signInInputList[index].setProps({
-              value: target.value,
-              valid: !errorMessage,
-              errorMessages: errorMessage,
-            });
-          },
-        },
+        validate: true,
         ...inputProps,
       });
-      this.lists.signInInputList.push(input);
     });
 
     this.children.signInButton = new Button({

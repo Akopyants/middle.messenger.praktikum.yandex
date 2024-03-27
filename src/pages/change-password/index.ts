@@ -5,16 +5,11 @@ import userSettingsItem from '../../components/user-settings-item';
 import Block from '../../utils/Component';
 import getFormData from '../../utils/getFormData';
 import isValidForm from '../../utils/isValidForm';
-import validateInput from '../../utils/validation';
 import template from './change-password.hbs?raw';
 
 export default class СhangePassword extends Block {
-  constructor(props: Record<string, any>) {
-    super({
-      ...props,
-    });
-
-    this.lists.userSettingsItemList = [];
+  constructor() {
+    super();
 
     const signInInputListProps = [
       { label: 'Старый пароль', name: 'oldPassword', type: 'password', value: 'Closer227' },
@@ -22,26 +17,14 @@ export default class СhangePassword extends Block {
       { label: 'Новый пароль', name: 'newPasswordRepeat', type: 'password', placeholder: 'Пароль', value: 'Closer227' },
     ];
 
-    signInInputListProps.forEach((inputProps, index) => {
-      const userSettingsItemInstance = new userSettingsItem({
+    this.lists.userSettingsItemList = signInInputListProps.map((inputProps) => {
+      return new userSettingsItem({
         label: inputProps.label,
         name: inputProps.name,
         placeholder: inputProps.label,
         value: inputProps.value,
         type: inputProps.type,
-        blur: (e) => {
-          const errorMessage = validateInput(e.target as HTMLInputElement);
-          const target = e.target as HTMLInputElement;
-
-          this.lists.userSettingsItemList[index].children.input.setProps({
-            value: target.value,
-            valid: !errorMessage,
-            errorMessages: errorMessage,
-          });
-        },
       });
-
-      this.lists.userSettingsItemList.push(userSettingsItemInstance);
     });
 
     this.children.userSettingsAvatar = new userSettingsAvatar({

@@ -20,7 +20,7 @@ export default class ErrorItem extends Component {
     });
 
     this.children.link = new Link({
-      url: '#',
+      url: 'chat',
       text: 'Назад к чатам',
       className: 'error-item__link',
     });

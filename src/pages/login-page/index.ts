@@ -5,15 +5,13 @@ import Title from '../../components/title';
 import Input from '../../components/input';
 import Button from '../../components/button';
 import Link from '../../components/link';
-import validateInput from '../../utils/validation';
 import findEmptyField from '../../utils/findEmptyField';
 import getFormData from '../../utils/getFormData';
+import isValidForm from '../../utils/isValidForm';
 
 export default class LoginPage extends Block {
-  constructor(props: Record<string, any>) {
-    super({
-      ...props,
-    });
+  constructor() {
+    super();
 
     this.children.title = new Title({
       text: 'Вход',
@@ -28,9 +26,7 @@ export default class LoginPage extends Block {
       placeholder: 'Логин',
       errorMessages: '',
       valid: 'false',
-      events: {
-        blur: this.handleInputBlur.bind(this, 'login'),
-      },
+      validate: true,
     });
 
     this.children.inputPassword = new Input({
@@ -39,9 +35,7 @@ export default class LoginPage extends Block {
       type: 'password',
       placeholder: 'Пароль',
       valid: 'false',
-      events: {
-        blur: this.handleInputBlur.bind(this, 'password'),
-      },
+      validate: true,
     });
 
     this.children.loginButton = new Button({
@@ -63,19 +57,6 @@ export default class LoginPage extends Block {
     });
   }
 
-  handleInputBlur(name: string, e: Event) {
-    const errorMessage = validateInput(e.target as HTMLInputElement);
-    const target = e.target as HTMLInputElement;
-
-    const input = name === 'login' ? this.children.inputLogin : this.children.inputPassword;
-
-    input.setProps({
-      value: target.value,
-      valid: !errorMessage,
-      errorMessages: errorMessage,
-    });
-  }
-
   submitForm(e: Event) {
     e.preventDefault();
     const form = this.element?.querySelector('form') as HTMLFormElement;
@@ -85,9 +66,9 @@ export default class LoginPage extends Block {
       getFormData(form);
     }
 
-    // if (isValidForm(form)) {
-    //   alert()
-    // }
+    if (isValidForm(form)) {
+      alert()
+    }
   }
 
   render() {
