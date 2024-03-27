@@ -45,7 +45,7 @@ export default class SignIn extends Block {
 
             this.lists.signInInputList[index].setProps({
               value: target.value,
-              valid: !Boolean(errorMessage),
+              valid: !errorMessage,
               errorMessages: errorMessage,
             });
           },

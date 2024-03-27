@@ -7,7 +7,7 @@ interface InterfaceLink {
   className?: string;
   page?: string;
   text?: string;
-  icon?: Boolean;
+  icon?: boolean;
   wrapper?: string;
 }
 

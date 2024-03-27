@@ -1,26 +1,32 @@
 module.exports = {
-    env: {
-      browser: true,
-      es2021: true,
+    "env": {
+        "browser": true,
+        "es2021": true
     },
-    overrides: [
-      {
-        env: {
-          node: true,
-        },
-        files: ['.eslintrc.{js,cjs}'],
-        parserOptions: {
-          sourceType: 'script',
-        },
-      },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
-    parser: '@typescript-eslint/parser',
-    parserOptions: {
-      ecmaVersion: 'latest',
-      project: './tsconfig.json',
+    "overrides": [
+        {
+            "env": {
+                "node": true
+            },
+            "files": [
+                ".eslintrc.{js,cjs}"
+            ],
+            "parserOptions": {
+                "sourceType": "script"
+            }
+        }
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": "latest"
     },
-    plugins: ['@typescript-eslint'],
-    rules: {},
-    extends: ['airbnb-typescript'],
-  };
-  
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "rules": {
+    }
+}

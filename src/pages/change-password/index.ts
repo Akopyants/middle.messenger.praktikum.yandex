@@ -30,12 +30,12 @@ export default class СhangePassword extends Block {
         value: inputProps.value,
         type: inputProps.type,
         blur: (e) => {
-          let errorMessage = validateInput(e.target as HTMLInputElement);
+          const errorMessage = validateInput(e.target as HTMLInputElement);
           const target = e.target as HTMLInputElement;
 
           this.lists.userSettingsItemList[index].children.input.setProps({
             value: target.value,
-            valid: !Boolean(errorMessage),
+            valid: !errorMessage,
             errorMessages: errorMessage,
           });
         },

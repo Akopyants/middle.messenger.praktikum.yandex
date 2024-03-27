@@ -16,10 +16,7 @@
     "noImplicitAny": true,
     "sourceMap": true,
     "strictNullChecks": true,
-    "skipLibCheck": true,
-    "paths": {
-      "@": ["./src"]
-    }
+    "skipLibCheck": true
   },
   "include": ["src", "global.d.ts"]
 }

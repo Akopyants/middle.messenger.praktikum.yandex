@@ -10,7 +10,7 @@ interface InterfaceuserSettingsItem {
   value?: string;
   errorMessages?: string;
   label?: string;
-  disabled?: Boolean;
+  disabled?: boolean;
   blur: (e: Event) => void;
 }
 

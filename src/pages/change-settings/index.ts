@@ -36,7 +36,7 @@ export default class ChangeSettings extends Block {
 
           this.lists.userSettingsItemList[index].children.input.setProps({
             value: target.value,
-            valid: !Boolean(errorMessage),
+            valid: !errorMessage,
             errorMessages: errorMessage,
           });
         },

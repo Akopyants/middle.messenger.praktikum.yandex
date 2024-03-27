@@ -71,7 +71,7 @@ export default class LoginPage extends Block {
 
     input.setProps({
       value: target.value,
-      valid: !Boolean(errorMessage),
+      valid: !errorMessage,
       errorMessages: errorMessage,
     });
   }

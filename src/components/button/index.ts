@@ -4,8 +4,8 @@ import './button.scss';
 
 interface InterfaceButton {
   className?: string;
-  square?: Boolean;
-  transparent?: Boolean;
+  square?: boolean;
+  transparent?: boolean;
   page?: string;
   text?: string;
   icon?: string;

@@ -8,10 +8,10 @@ interface InterfaceInput {
   rowClassName?: string;
   name: string;
   type: string;
-  error?: Boolean;
+  error?: boolean;
   placeholder: string;
-  disabled?: Boolean;
-  required?: Boolean;
+  disabled?: boolean;
+  required?: boolean;
   errorMessages?: string;
   valid?: string;
   events?: {
