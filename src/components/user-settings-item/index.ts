@@ -11,11 +11,10 @@ interface InterfaceuserSettingsItem {
   errorMessages?: string;
   label?: string;
   disabled?: Boolean;
-  blur: (e: Event) => void; 
+  blur: (e: Event) => void;
 }
 
 export default class userSettingsItem extends Component {
-
   constructor(props: InterfaceuserSettingsItem) {
     super({ ...props });
 
@@ -28,13 +27,12 @@ export default class userSettingsItem extends Component {
       errorMessages: props.errorMessages,
       disabled: props.disabled,
       events: {
-        blur: (e : Event) => {
-          props.blur(e)
-        }
-      }
+        blur: (e: Event) => {
+          props.blur(e);
+        },
+      },
     });
   }
-
 
   render() {
     return template;

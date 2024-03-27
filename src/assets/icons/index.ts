@@ -5,15 +5,15 @@ import arrowBtn from './arrow-btn.svg';
 import avatarPreview from './avatar-preview.svg';
 
 interface Icons {
-    [key : string]: string,
+  [key: string]: string;
 }
 
-const icons : Icons = {
-    arrowRight,
-    dotsVertical,
-    clip,
-    arrowBtn,
-    avatarPreview
+const icons: Icons = {
+  arrowRight,
+  dotsVertical,
+  clip,
+  arrowBtn,
+  avatarPreview,
 };
 
 export default icons;

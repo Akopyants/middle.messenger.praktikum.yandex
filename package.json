@@ -12,11 +12,12 @@
     "start": "npm run build && node server.js",
     "preview": "vite preview",
     "stylelint": "stylelint \"**/*.{css,scss,sass}\"",
-    "fix:css": "stylelint \"**/*.{css,scss,sass}\" --fix"
+    "fix:css": "stylelint \"**/*.{css,scss,sass}\" --fix",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,scss,json,html,md, hbs}\""
   },
   "devDependencies": {
     "@types/handlebars": "^4.1.0",
-    "prettier": "3.2.5",
+    "prettier": "^3.2.5",
     "sass": "^1.71.1",
     "stylelint": "^13.13.1",
     "stylelint-config-idiomatic-order": "^8.1.0",

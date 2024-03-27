@@ -58,7 +58,6 @@ export default class Profile extends Block {
         wrapper: 'li',
       });
 
-
       this.lists.profileLinks.push(link);
     });
 
@@ -76,8 +75,6 @@ export default class Profile extends Block {
       text: 'Назад',
       className: 'profile__back-btn',
     });
-
-
   }
 
   submitForm(e: Event) {

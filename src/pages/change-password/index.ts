@@ -60,9 +60,9 @@ export default class СhangePassword extends Block {
     });
 
     this.children.backButton = new Button({
-        text: 'Назад',
-        className: 'profile__back-btn',
-      });
+      text: 'Назад',
+      className: 'profile__back-btn',
+    });
   }
 
   submitForm(e: Event) {

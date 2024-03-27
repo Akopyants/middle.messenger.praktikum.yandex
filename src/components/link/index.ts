@@ -13,7 +13,7 @@ interface InterfaceLink {
 
 export default class Link extends Component {
   constructor(props: InterfaceLink) {
-    super({...props});
+    super({ ...props });
   }
 
   render() {

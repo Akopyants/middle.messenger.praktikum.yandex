@@ -52,9 +52,8 @@ export default class SignIn extends Block {
         },
         ...inputProps,
       });
-      this.lists.signInInputList.push(input); 
+      this.lists.signInInputList.push(input);
     });
-
 
     this.children.signInButton = new Button({
       text: 'Зарегистрироваться',

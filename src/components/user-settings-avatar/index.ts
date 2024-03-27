@@ -4,7 +4,7 @@ import './user-settings-avatar.scss';
 
 interface InterfaceUserSettingsAvatar {
   name: string;
-  icon?: string
+  icon?: string;
 }
 
 export default class userSettingsAvatar extends Component {
@@ -12,9 +12,7 @@ export default class userSettingsAvatar extends Component {
     super(props);
   }
 
-
   render() {
-
     return `${template}`;
   }
 }

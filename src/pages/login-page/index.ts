@@ -29,7 +29,7 @@ export default class LoginPage extends Block {
       errorMessages: '',
       valid: 'false',
       events: {
-        blur: this.handleInputBlur.bind(this, 'login')
+        blur: this.handleInputBlur.bind(this, 'login'),
       },
     });
 
@@ -40,7 +40,7 @@ export default class LoginPage extends Block {
       placeholder: 'Пароль',
       valid: 'false',
       events: {
-        blur: this.handleInputBlur.bind(this, 'password')
+        blur: this.handleInputBlur.bind(this, 'password'),
       },
     });
 
@@ -49,7 +49,7 @@ export default class LoginPage extends Block {
       page: 'choose-chat',
       type: 'submit',
       events: {
-        click: (e : Event) => {
+        click: (e: Event) => {
           this.submitForm(e);
         },
       },
@@ -61,12 +61,11 @@ export default class LoginPage extends Block {
       className: 'sign-in-form__link',
       page: 'sign-in',
     });
-
   }
 
   handleInputBlur(name: string, e: Event) {
     const errorMessage = validateInput(e.target as HTMLInputElement);
-    const target = e.target as HTMLInputElement;  
+    const target = e.target as HTMLInputElement;
 
     const input = name === 'login' ? this.children.inputLogin : this.children.inputPassword;
 
@@ -77,7 +76,7 @@ export default class LoginPage extends Block {
     });
   }
 
-  submitForm(e : Event) {
+  submitForm(e: Event) {
     e.preventDefault();
     const form = this.element?.querySelector('form') as HTMLFormElement;
 
@@ -88,9 +87,8 @@ export default class LoginPage extends Block {
 
     // if (isValidForm(form)) {
     //   alert()
-    // } 
-  } 
-
+    // }
+  }
 
   render() {
     return template;
