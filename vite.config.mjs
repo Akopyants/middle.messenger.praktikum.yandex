@@ -5,7 +5,7 @@ import checker from "vite-plugin-checker";
 
 export default defineConfig({
   server: {
-    port: 4000,
+    port: 3000,
   },
   root: resolve(__dirname, 'src'),
   build: {
