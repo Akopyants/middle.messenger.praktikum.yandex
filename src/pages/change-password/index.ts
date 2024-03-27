@@ -2,7 +2,7 @@ import icons from '../../assets/icons';
 import Button from '../../components/button';
 import userSettingsAvatar from '../../components/user-settings-avatar';
 import userSettingsItem from '../../components/user-settings-item';
-import Block from '../../utils/Component';
+import Block from '../../utils/Block';
 import getFormData from '../../utils/getFormData';
 import isValidForm from '../../utils/isValidForm';
 import template from './change-password.hbs?raw';

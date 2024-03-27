@@ -1,6 +1,6 @@
-import Component from './Component';
+import Block from './Block';
 
-function RenderDOM(query: string, block: Component) {
+function RenderDOM(query: string, block: Block) {
   const root = document.querySelector(query) as HTMLElement;
   if (root) {
     root.appendChild(block.getContent()!);

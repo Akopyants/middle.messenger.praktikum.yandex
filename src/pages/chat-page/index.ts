@@ -3,7 +3,7 @@ import Button from '../../components/button';
 import ChatItem from '../../components/chat-item';
 import Input from '../../components/input';
 import Link from '../../components/link';
-import Block from '../../utils/Component';
+import Block from '../../utils/Block';
 import template from './chat-page.hbs?raw';
 import './chat-page.scss';
 import { chatsData } from './data';

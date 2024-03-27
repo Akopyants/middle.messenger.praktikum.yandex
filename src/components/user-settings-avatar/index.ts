@@ -1,4 +1,4 @@
-import Component from '../../utils/Component';
+import Block from '../../utils/Block';
 import template from './user-settings-avatar.hbs?raw';
 import './user-settings-avatar.scss';
 
@@ -7,12 +7,12 @@ interface InterfaceUserSettingsAvatar {
   icon?: string;
 }
 
-export default class userSettingsAvatar extends Component {
+export default class userSettingsAvatar extends Block {
   constructor(props: InterfaceUserSettingsAvatar) {
     super(props);
   }
 
   render() {
-    return `${template}`;
+    return template;
   }
 }

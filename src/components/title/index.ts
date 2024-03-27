@@ -1,4 +1,4 @@
-import Component from '../../utils/Component';
+import Block from '../../utils/Block';
 import template from './title.hbs?raw';
 import './title.scss';
 
@@ -8,12 +8,12 @@ interface InterfaceTitle {
   className?: string;
 }
 
-export default class Title extends Component {
+export default class Title extends Block {
   constructor(props: InterfaceTitle) {
     super(props);
   }
 
   render() {
-    return `${template}`;
+    return template;
   }
 }

@@ -1,4 +1,4 @@
-import Block from '../../utils/Component';
+import Block from '../../utils/Block';
 import template from './change-settings.hbs?raw';
 import './change-settings.scss';
 import { profileUserData } from '../../pages/profile/data';
