@@ -8,11 +8,11 @@
   border: 1px solid vars.$gray;
   background-color: vars.$bgColorBase;
   background-color: vars.$gray;
-  cursor: pointer;
+  border-radius: 5px;
   color: #fff;
+  cursor: pointer;
   text-align: center;
   white-space: nowrap;
-  border-radius: 5px;
 
   &[type='button'] {
     cursor: pointer;

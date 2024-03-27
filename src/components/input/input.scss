@@ -2,8 +2,8 @@
 @use '@styles/mixins' as mixins;
 
 .input-row {
-  display: flex;
   position: relative;
+  display: flex;
 }
 
 .input {
@@ -14,8 +14,8 @@
   display: block;
   padding: 0 2rem;
   border: 1px solid vars.$gray;
-  outline: none;
   border-radius: 5px;
+  outline: none;
 
   &:focus,
   &:active {
@@ -37,11 +37,12 @@
 
   &__error {
     @include mixins.font(1.3rem, 1);
-    color: #fc0000;
+
     position: absolute;
     bottom: 0;
-    left: 0;
     bottom: -18px;
+    left: 0;
+    color: #fc0000;
     white-space: nowrap;
   }
 }
