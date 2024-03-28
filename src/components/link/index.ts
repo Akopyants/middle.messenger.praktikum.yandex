@@ -1,4 +1,4 @@
-import Component from '../../utils/Component';
+import Block from '../../utils/Block';
 import template from './link.hbs?raw';
 import './link.scss';
 
@@ -11,12 +11,12 @@ interface InterfaceLink {
   wrapper?: string;
 }
 
-export default class Link extends Component {
+export default class Link extends Block {
   constructor(props: InterfaceLink) {
     super({ ...props });
   }
 
   render() {
-    return this.compile(template, { ...this.props });
+    return template;
   }
 }

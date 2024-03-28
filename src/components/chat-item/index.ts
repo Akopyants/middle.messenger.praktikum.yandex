@@ -1,4 +1,4 @@
-import Component from '../../utils/Component';
+import Block from '../../utils/Block';
 import template from './chat-item.hbs?raw';
 import './chat-item.scss';
 
@@ -10,7 +10,7 @@ interface InterfaceChatItem {
   time?: string;
 }
 
-export default class ChatItem extends Component {
+export default class ChatItem extends Block {
   constructor(props: InterfaceChatItem) {
     super({ ...props });
   }

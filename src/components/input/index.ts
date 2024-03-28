@@ -1,4 +1,4 @@
-import Component from '../../utils/Component';
+import Block from '../../utils/Block';
 import validateInput from '../../utils/validation';
 import template from './input.hbs?raw';
 import './input.scss';
@@ -21,21 +21,22 @@ interface InterfaceInput {
   };
 }
 
-export default class Input extends Component {
+export default class Input extends Block {
   constructor(props: InterfaceInput) {
     super({
       ...props,
       events: {
         blur: (e: Event) => {
-          console.log(this.props.validate)
-          const errorMessage = validateInput(e.target as HTMLInputElement);
-          const target = e.target as HTMLInputElement;
-
-          this.setProps({
-            value: target.value,
-            valid: !errorMessage,
-            errorMessages: errorMessage,
-          });
+          if (this.props.validate) {
+            const errorMessage = validateInput(e.target as HTMLInputElement);
+            const target = e.target as HTMLInputElement;
+  
+            this.setProps({
+              value: target.value,
+              valid: !errorMessage,
+              errorMessages: errorMessage,
+            });
+          }
         },
       },
     });

@@ -1,4 +1,4 @@
-import Component from '../../utils/Component';
+import Block from '../../utils/Block';
 import template from './user-settings-item.hbs?raw';
 import './user-settings-item.scss';
 import Input from '../input';
@@ -15,10 +15,10 @@ interface InterfaceuserSettingsItem {
 }
 
 type childrenType = {
-  [key: string]: Component | unknown;
+  [key: string]: Block | unknown;
 };
 
-export default class userSettingsItem extends Component {
+export default class userSettingsItem extends Block {
   constructor(props: InterfaceuserSettingsItem) {
     super({ ...props });
 
