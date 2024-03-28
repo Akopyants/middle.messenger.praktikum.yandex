@@ -25,6 +25,7 @@ export default class ChangeSettings extends Block {
         placeholder: item.label,
         value: item.value,
         type: item.type,
+        validate: true
       });
     });
 

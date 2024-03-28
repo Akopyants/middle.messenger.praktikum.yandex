@@ -24,6 +24,7 @@ export default class СhangePassword extends Block {
         placeholder: inputProps.label,
         value: inputProps.value,
         type: inputProps.type,
+        validate: true,
       });
     });
 

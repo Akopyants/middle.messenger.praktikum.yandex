@@ -30,13 +30,13 @@ export default class Profile extends Block {
       });
     });
 
-    const linksProps = [{ text: 'Изменить данные' }, { text: 'Изменить пароль' }, { text: 'Выйти' }];
+    const linksProps = [{ text: 'Изменить данные', page: 'change-settings' }, { text: 'Изменить пароль', page: 'change-password' }, { text: 'Выйти', page: 'login' }];
 
     this.lists.profileLinks = linksProps.map((item) => {
       return new Link({
         url: '#',
-        text: item.text,
         wrapper: 'li',
+        ...item
       });
     });
 

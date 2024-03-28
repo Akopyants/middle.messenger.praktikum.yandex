@@ -116,7 +116,7 @@ const validateInput = (target: HTMLInputElement): string => {
     return validateLogin(value);
   }
 
-  if (name === 'password' || name === 'oldPassword' || name === 'newPassword' || name === 'newPasswordRepeat') {
+  if (name === 'password' || name === 'oldPassword' || name === 'newPassword' || name === 'newPasswordRepeat' || name === 'confirm_password') {
     return validatePassword(value);
   }
 

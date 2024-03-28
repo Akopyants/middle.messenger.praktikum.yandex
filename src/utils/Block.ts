@@ -172,7 +172,9 @@ export default class Block {
       }
     });
 
-    Object.entries(this.lists).forEach(([child]: [string, Block[] | unknown]) => {
+    Object.entries(this.lists).forEach(([key, child]: [string, Block[] | unknown]) => {
+      if (!key || !Array.isArray(child)) return;
+
       const listCont = this._createDocumentElement('template');
       if (Array.isArray(child)) {
         child.forEach((item: Block | unknown) => {

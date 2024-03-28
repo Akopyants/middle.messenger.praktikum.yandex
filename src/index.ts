@@ -5,7 +5,7 @@ interface PageMap {
   [key: string]: ChatPage | LoginPage | SignIn | ChangeSettings | ChangePassword | Profile | NotFound | ErrorPage;
 }
 
-const pages : PageMap = {
+const pages: PageMap = {
   chat: new ChatPage(),
   login: new LoginPage(),
   'sign-in': new SignIn(),
@@ -22,15 +22,23 @@ function navigate(page: string): void {
   if (source) {
     RenderDOM('#app', source);
     window.location.hash = page;
-  } else {
-    console.error('Page not found:', page);
   }
 }
-navigate('login');
 
-// function handleHashChange() {
-//   const page = window.location.hash ? window.location.hash.replace(/^#/, '') : 'sign-in';
-//   navigate(page);
-// }
+document.addEventListener('click', (e) => {
+  const target = e.target as HTMLElement;
+  const page = target.getAttribute('page');
+  if (page) {
+    navigate(page);
 
-// document.addEventListener('DOMContentLoaded', () => handleHashChange());
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  }
+});
+
+function handleHashChange() {
+  const page = window.location.hash ? window.location.hash.replace(/^#/, '') : 'login';
+  navigate(page);
+}
+
+document.addEventListener('DOMContentLoaded', () => handleHashChange());

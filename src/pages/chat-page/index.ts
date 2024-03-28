@@ -24,6 +24,7 @@ export default class ChatPage extends Block {
 
     this.children.profileLink = new Link({
       url: '#',
+      page: 'profile',
       text: 'Профиль',
       className: 'chat-page__profile-link',
     });
