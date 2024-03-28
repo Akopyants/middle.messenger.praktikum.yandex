@@ -49,3 +49,11 @@
 [404](https://www.figma.com/file/xpJY2gaqLFcgd0H1LbtUci/Untitled?type=design&node-id=43-592&mode=design&t=akUoru5DjIE8lYtc-11)
 
 [5\*\*](https://www.figma.com/file/xpJY2gaqLFcgd0H1LbtUci/Untitled?type=design&node-id=48-596&mode=design&t=akUoru5DjIE8lYtc-11)
+
+# Что было сделано 
+    - внедрил ts  
+    - добавил компонентный подход в проект 
+    - cделал сбор данных из форм
+    - добавил валидацию 
+    - добавил ESLint
+    - добавил класс для работы с запросами
