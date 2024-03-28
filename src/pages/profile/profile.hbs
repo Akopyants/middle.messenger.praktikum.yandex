@@ -1,19 +1,13 @@
 <section class="profile">
     <div class="profile__container">
-      {{> UserSettingsAvatar }}
-
-      {{#> UserSettingsList className="" }}
-        {{#each (profile-user-data)}}
-          {{> UserSettingsItem disabled="true" }}
-        {{/each}}
-      {{/ UserSettingsList }}
-
+      {{{ userSettingsAvatar }}}
+     
+      {{{ userSettingsItemList }}}
       <ul class="profile__links">
-        <li>{{> Link text='Изменить данные' page="change-settings" }}</li>
-        <li>{{> Link text='Изменить пароль' page="change-password"}}</li>
-        <li>{{> Link text='Выйти' page="login" }}</li>
+        {{{ profileLinks }}}
       </ul>
     </div>
 
-    {{> Button className="profile__back-btn" text="Назад" page="chat" }}
+    {{{ backButton }}}
+
 </section>

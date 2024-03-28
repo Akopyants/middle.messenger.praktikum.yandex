@@ -1,6 +1,79 @@
 @use '@/assets/variables' as vars;
 @use '@styles/mixins' as mixins;
 
+.chat {
+  position: relative;
+  display: flex;
+  width: calc(100% - 31rem);
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__choose-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+  }
+
+  &__body {
+    flex-grow: 1;
+    padding: 2rem;
+  }
+
+  &__footer {
+    .input-row {
+      flex-grow: 1;
+      margin: 0 1rem;
+    }
+
+    form {
+      display: flex;
+      justify-content: space-between;
+      padding: 2rem;
+      border-top: 1px solid vars.$gray;
+    }
+  }
+
+  &__input {
+    border: 1px solid vars.$gray;
+
+    &:focus,
+    &:active {
+      border: 1px solid vars.$colorBase;
+    }
+  }
+
+  &__user-settings-btn {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    display: flex;
+    align-items: center;
+  }
+
+  &__message {
+    width: fit-content;
+    padding: 10px;
+    background: #e5e5e5;
+    border-radius: 5px;
+    font-size: 1.4rem;
+
+    & + .chat__message {
+      margin-top: 1rem;
+    }
+
+    &--right {
+      margin-left: auto;
+    }
+  }
+
+  &-list {
+    overflow: auto;
+    height: 100%;
+  }
+}
+
 .chat-page {
   display: flex;
   overflow: hidden;
