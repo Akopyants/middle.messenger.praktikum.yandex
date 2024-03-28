@@ -19,5 +19,5 @@ export default defineConfig({
       '@scripts': path.resolve(__dirname, './src/scripts'),
     },
   },
-  plugins: [checker({ typescript: true /** or an object config */ })],
+  plugins: [checker({ typescript: true })],
 });

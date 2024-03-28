@@ -40,6 +40,7 @@ export default class ChangeSettings extends Block {
     });
 
     this.children.backButton = new Button({
+      page: 'profile',
       text: 'Назад',
       className: 'profile__back-btn',
     });

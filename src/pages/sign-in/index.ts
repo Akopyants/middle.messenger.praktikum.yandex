@@ -48,10 +48,10 @@ export default class SignIn extends Block {
     });
 
     this.children.signInLink = new Link({
-      url: '#chat',
+      url: '#',
       text: 'Войти',
       className: 'login-form__link',
-      page: 'sign-in',
+      page: 'chat',
     });
   }
 

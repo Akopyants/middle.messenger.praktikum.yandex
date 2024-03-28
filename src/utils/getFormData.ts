@@ -1,9 +1,12 @@
 const getFormData = (form: HTMLFormElement) => {
   const formData = new FormData(form);
+  const data: { [key: string]: string } = {};
 
-  formData.forEach((value, name) => {
-    console.log(`${name} : ${value}`);
+  formData.forEach((value, key) => {
+    data[key] = value as string;
   });
+
+  console.log(data)
 };
 
 export default getFormData;
