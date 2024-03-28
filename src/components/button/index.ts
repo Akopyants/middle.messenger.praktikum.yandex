@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Component from '../../utils/Component';
 import template from './button.hbs?raw';
 import './button.scss';
 
@@ -15,7 +15,7 @@ interface InterfaceButton {
   };
 }
 
-export default class Button extends Block {
+export default class Button extends Component {
   constructor(props: InterfaceButton) {
     super({ ...props });
   }

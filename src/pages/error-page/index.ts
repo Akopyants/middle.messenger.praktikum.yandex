@@ -1,5 +1,5 @@
 import ErrorItem from '../../components/error-item';
-import Block from '../../utils/Block';
+import Block from '../../utils/Component';
 import template from './error-page.hbs?raw';
 
 export default class ErrorPage extends Block {

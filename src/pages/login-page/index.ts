@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from '../../utils/Component';
 import template from './login-page.hbs?raw';
 import './login-page.scss';
 import Title from '../../components/title';

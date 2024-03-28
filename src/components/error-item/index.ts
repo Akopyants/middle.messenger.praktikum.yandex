@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Component from '../../utils/Component';
 import Link from '../link';
 import Title from '../title';
 import template from './error-item.hbs?raw';
@@ -9,7 +9,7 @@ interface InterfaceErrorItem {
   text: string;
 }
 
-export default class ErrorItem extends Block {
+export default class ErrorItem extends Component {
   constructor(props: InterfaceErrorItem) {
     super({ ...props });
 

@@ -9,14 +9,14 @@ export interface Props {
 }
 
 type lists = {
-  [key: string]: Block | unknown;
+  [key: string]: Component | unknown;
 };
 
 type childrenType = {
-  [key: string]: Block | unknown;
+  [key: string]: Component | unknown;
 };
 
-export default class Block {
+export default class Component {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -42,7 +42,7 @@ export default class Block {
     this.lists = this._makePropsProxy(lists);
     this.eventBus = () => eventBus;
     this._registerEvents(eventBus);
-    eventBus.emit(Block.EVENTS.INIT);
+    eventBus.emit(Component.EVENTS.INIT);
   }
 
   private _addEvents(): void {
@@ -62,26 +62,26 @@ export default class Block {
   }
 
   private _registerEvents(eventBus: EventBus): void {
-    eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+    eventBus.on(Component.EVENTS.INIT, this.init.bind(this));
+    eventBus.on(Component.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+    eventBus.on(Component.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(Component.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
   init(): void {
-    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+    this.eventBus().emit(Component.EVENTS.FLOW_RENDER);
   }
 
   private _componentDidMount() {
     Object.values(this.children).forEach((child: unknown) => {
-      if (child instanceof Block) {
+      if (child instanceof Component) {
         child.dispatchComponentDidMount();
       }
     });
   }
 
   dispatchComponentDidMount(): void {
-    this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+    this.eventBus().emit(Component.EVENTS.FLOW_CDM);
   }
 
   private _componentDidUpdate(...args: unknown[]) {
@@ -106,12 +106,12 @@ export default class Block {
     props: Props;
     lists: lists;
   } {
-    const children: Record<string, Block> = {};
+    const children: Record<string, Component> = {};
     const props: Props = {};
     const lists: lists = {};
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
-      if (value instanceof Block) {
+      if (value instanceof Component) {
         children[key] = value;
       } else if (Array.isArray(value)) {
         lists[key] = value;
@@ -151,7 +151,7 @@ export default class Block {
     const _tmpId = Math.floor(100000 + Math.random() * 900000);
 
     Object.entries(this.children).forEach(([key, child]) => {
-      if (child instanceof Block) {
+      if (child instanceof Component) {
         propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
       }
     });
@@ -164,7 +164,7 @@ export default class Block {
     fragment.innerHTML = Handlebars.compile(this.render())(propsAndStubs);
 
     Object.values(this.children).forEach((child: unknown) => {
-      if (child instanceof Block) {
+      if (child instanceof Component) {
         const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
         if (stub) {
           stub.replaceWith(child.getContent() as HTMLElement);
@@ -172,11 +172,11 @@ export default class Block {
       }
     });
 
-    Object.entries(this.lists).forEach(([child]: [string, Block[] | unknown]) => {
+    Object.entries(this.lists).forEach(([child]: [string, Component[] | unknown]) => {
       const listCont = this._createDocumentElement('template');
       if (Array.isArray(child)) {
-        child.forEach((item: Block | unknown) => {
-          if (item instanceof Block) {
+        child.forEach((item: Component | unknown) => {
+          if (item instanceof Component) {
             listCont.content.append(item.getContent() as HTMLElement);
           } else {
             listCont.content.append(`${item}`);
@@ -217,7 +217,7 @@ export default class Block {
       set: (target, prop: string, value) => {
         const oldTarget = { ...target };
         target[prop] = value;
-        this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
+        this.eventBus().emit(Component.EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },
       deleteProperty: () => {
@@ -235,7 +235,7 @@ export default class Block {
   show(): void {
     const content = this.getContent();
     if (content) {
-      content.style.display = 'Block';
+      content.style.display = 'Component';
     }
   }
 
