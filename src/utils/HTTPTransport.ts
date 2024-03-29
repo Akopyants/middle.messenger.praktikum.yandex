@@ -23,22 +23,25 @@ interface Options {
   method?: METHODS;
 }
 
+type HTTPMethod = (url: string, options?: Options) => Promise<unknown>
+
 class HTTPTransport {
-  get = (url: string, options: Options = {}) => {
-    return this.request(url, { ...options, method: METHODS.GET });
-  };
 
-  put = (url: string, options: Options = {}) => {
-    return this.request(url, { ...options, method: METHODS.PUT });
-  };
+  get: HTTPMethod = (url, options = {}) => (
+    this.request(url, {...options, method: METHODS.GET}, options.timeout)
+  )
 
-  post = (url: string, options: Options = {}) => {
-    return this.request(url, { ...options, method: METHODS.POST });
-  };
+  put: HTTPMethod = (url, options = {}) => (
+    this.request(url, {...options, method: METHODS.PUT}, options.timeout)
+  )
 
-  delete = (url: string, options: Options = {}) => {
-    return this.request(url, { ...options, method: METHODS.DELETE });
-  };
+  post: HTTPMethod = (url, options = {}) => (
+    this.request(url, {...options, method: METHODS.POST}, options.timeout)
+  )
+
+  delete: HTTPMethod = (url, options = {}) => (
+    this.request(url, {...options, method: METHODS.DELETE}, options.timeout)
+  )
 
   request = (url: string, options: Options, timeout = 5000) => {
     const { data, method } = options;

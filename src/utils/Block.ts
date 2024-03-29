@@ -61,6 +61,22 @@ export default class Block {
     });
   }
 
+  private _removeEvents(): void {
+    const { events = {} } = this.props;
+    if (!events) {
+      return;
+    }
+
+    Object.keys(events).forEach((eventName: string) => {
+      this._element?.removeEventListener(eventName, events[eventName]);
+      const input = this._element?.querySelector('input');
+
+      if (input) {
+        input.removeEventListener(eventName, events[eventName]);
+      }
+    });
+  }
+
   private _registerEvents(eventBus: EventBus): void {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
@@ -150,6 +166,8 @@ export default class Block {
     const propsAndStubs: Props = { ...this.props };
     const _tmpId = Math.floor(100000 + Math.random() * 900000);
 
+    this._removeEvents();
+    
     Object.entries(this.children).forEach(([key, child]) => {
       if (child instanceof Block) {
         propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
