@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import path from 'path';
+import checker from "vite-plugin-checker";
 
 export default defineConfig({
   server: {
@@ -18,4 +19,5 @@ export default defineConfig({
       '@scripts': path.resolve(__dirname, './src/scripts'),
     },
   },
+  plugins: [checker({ typescript: true })],
 });

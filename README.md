@@ -6,11 +6,20 @@
 
 <code>npm run start</code> - запуск проекта
 
+# Что было сделано 
+    - внедрил ts  
+    - добавил компонентный подход в проект 
+    - cделал сбор данных из форм
+    - добавил валидацию 
+    - добавил ESLint
+    - добавил класс для работы с запросами
+    
 # Домен
 
 [Сайт](https://akopyants-chat.netlify.app/)
 
-# Ссылки на страницы 
+# Ссылки на страницы
+
 [Авторизация](https://akopyants-chat.netlify.app/#login)
 
 [Регистрация](https://akopyants-chat.netlify.app/#sign-in)
@@ -29,8 +38,7 @@
 
 [500](https://akopyants-chat.netlify.app/#error-page)
 
-
-# Cссылки на страницы в фигме 
+# Cссылки на страницы в фигме
 
 [Авторизация](https://www.figma.com/file/xpJY2gaqLFcgd0H1LbtUci/Untitled?type=design&node-id=25-20&mode=design&t=akUoru5DjIE8lYtc-4)
 
@@ -48,5 +56,4 @@
 
 [404](https://www.figma.com/file/xpJY2gaqLFcgd0H1LbtUci/Untitled?type=design&node-id=43-592&mode=design&t=akUoru5DjIE8lYtc-11)
 
-[5**](https://www.figma.com/file/xpJY2gaqLFcgd0H1LbtUci/Untitled?type=design&node-id=48-596&mode=design&t=akUoru5DjIE8lYtc-11)
-
+[5\*\*](https://www.figma.com/file/xpJY2gaqLFcgd0H1LbtUci/Untitled?type=design&node-id=48-596&mode=design&t=akUoru5DjIE8lYtc-11)

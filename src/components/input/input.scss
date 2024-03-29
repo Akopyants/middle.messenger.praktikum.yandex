@@ -2,6 +2,7 @@
 @use '@styles/mixins' as mixins;
 
 .input-row {
+  position: relative;
   display: flex;
 }
 
@@ -13,6 +14,7 @@
   display: block;
   padding: 0 2rem;
   border: 1px solid vars.$gray;
+  border-radius: 5px;
   outline: none;
 
   &:focus,
@@ -27,5 +29,20 @@
   &:disabled {
     background-color: transparent;
     color: vars.$gray;
+  }
+
+  &--error {
+    border: 1px solid #fc0000;
+  }
+
+  &__error {
+    @include mixins.font(1.3rem, 1);
+
+    position: absolute;
+    bottom: 0;
+    bottom: -18px;
+    left: 0;
+    color: #fc0000;
+    white-space: nowrap;
   }
 }

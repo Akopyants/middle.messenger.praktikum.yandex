@@ -12,10 +12,18 @@
     "start": "npm run build && node server.js",
     "preview": "vite preview",
     "stylelint": "stylelint \"**/*.{css,scss,sass}\"",
-    "fix:css": "stylelint \"**/*.{css,scss,sass}\" --fix"
+    "fix:css": "stylelint \"**/*.{css,scss,sass}\" --fix",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,scss,json,html,md, hbs}\"",
+    "eslint": "eslint src --ext ts",
+    "eslintFix": "eslint src --fix"
   },
   "devDependencies": {
-    "prettier": "3.2.5",
+    "@types/handlebars": "^4.1.0",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/parser": "^7.4.0",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "prettier": "^3.2.5",
     "sass": "^1.71.1",
     "stylelint": "^13.13.1",
     "stylelint-config-idiomatic-order": "^8.1.0",
@@ -24,11 +32,16 @@
     "stylelint-order": "^4.1.0",
     "stylelint-scss": "^3.20.1",
     "stylelint-webpack-plugin": "^3.0.1",
+    "typescript": "^5.4.3",
     "vite": "^5.1.4"
   },
   "dependencies": {
+    "@types/uuid": "^9.0.8",
     "express": "^4.18.3",
     "handlebars": "^4.7.8",
-    "scss": "^0.2.4"
+    "scss": "^0.2.4",
+    "ts-node": "^10.9.2",
+    "uuid": "^9.0.1",
+    "vite-plugin-checker": "^0.6.4"
   }
 }
