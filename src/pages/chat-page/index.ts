@@ -119,6 +119,8 @@ export default class ChatPage extends Block {
         },
       },
     });
+
+    console.log(store)
   }
 
   render() {

@@ -80,7 +80,11 @@ export default class Profile extends Block {
 
     store.on(StoreEvents.Updated, () => {
       createUserSettingsItemList()
+      console.log('store')
+
     });
+
+
   }
 
   submitForm(e: Event) {
