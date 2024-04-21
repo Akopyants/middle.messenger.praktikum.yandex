@@ -40,11 +40,15 @@ class AuthController {
     try {
       const res = await authApi.getUserData();
 
-      store.set('user', JSON.parse(res.response));
-      // router.go('/login')
-    
+      if (res.status === 200) {
+        router.go('/chat')
+        store.set('user', JSON.parse(res.response));
+      }
+
     } catch (error) {
       store.set('user', {});
+      router.go('/')
+
     }
   }
 }

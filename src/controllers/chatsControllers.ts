@@ -1,8 +1,11 @@
 import { chatsApi } from '../api/chatsApi';
 import store from '../utils/store';
 
-// import router from '../router';
-// import store from '../utils/store';
+type putUserData = {
+  users: number[];
+  chatId: number;
+};
+
 
 export class chatController {
   static async create(title: string) {
@@ -11,6 +14,14 @@ export class chatController {
       this.getChats();
     } catch (err) {
       console.log(title);
+    }
+  }
+
+  static async addUserToChat(data : putUserData) {
+    try {
+      await chatsApi.addUserToChat(data);
+    } catch (err) {
+      console.log(err)
     }
   }
 

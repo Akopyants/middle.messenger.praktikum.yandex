@@ -7,7 +7,7 @@ enum METHODS {
 }
 
 interface Options {
-  data?: { [key: string]: string };
+  data?: { [key: string]: string | unknown }; 
   timeout?: number;
   method?: METHODS;
 }
