@@ -10,6 +10,7 @@ import AuthController from './controllers/authControllers';
 window.addEventListener('DOMContentLoaded', async () => {
   await AuthController.getUser();
 
+  router.use('/', LoginPage);
   router.use('/login', LoginPage);
   router.use('/sign-up', SignUp);
   router.use('/chat', ChatPage);
