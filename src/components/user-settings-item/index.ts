@@ -3,7 +3,7 @@ import template from './user-settings-item.hbs?raw';
 import './user-settings-item.scss';
 import Input from '../input';
 
-interface InterfaceuserSettingsItem {
+export interface InterfaceuserSettingsItem {
   name: string;
   placeholder: string;
   type: string;
@@ -28,6 +28,9 @@ export default class userSettingsItem extends Block {
       disabled: props.disabled,
       validate: props.validate,
     });
+
+
+  
   }
 
   render() {

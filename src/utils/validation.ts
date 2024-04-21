@@ -7,6 +7,9 @@ interface ValidationRules {
     minLength: number;
     maxLength: number;
   };
+  chatName: {
+    minLength: number;
+  };
   disallowedPattern: RegExp;
   allowedPattern: RegExp;
   firstCapitalLetter: RegExp;
@@ -27,6 +30,9 @@ const validationRules: ValidationRules = {
   password: {
     minLength: 8,
     maxLength: 40,
+  },
+  chatName: {
+    minLength: 3
   },
   disallowedPattern: /^\d+$/,
   allowedPattern: /^[a-zA-Z\d_-]+$/,
@@ -108,6 +114,13 @@ const validationPhone = (value: string): string => {
   return '';
 };
 
+const validationChatName = (value: string) :string => {
+  if (value.length < validationRules.chatName.minLength) {
+    return `Название чата должно состоять миниммум из ${validationRules.chatName.minLength}`;
+  }
+  return ''
+}
+
 const validateInput = (target: HTMLInputElement): string => {
   const value = target.value;
   const name = target.name;
@@ -130,6 +143,10 @@ const validateInput = (target: HTMLInputElement): string => {
 
   if (name === 'phone') {
     return validationPhone(value);
+  }
+
+  if (name === 'chatName') {
+    return validationChatName(value);
   }
 
   return '';

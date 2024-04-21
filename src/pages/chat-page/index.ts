@@ -1,30 +1,41 @@
 import icons from '../../assets/icons';
+import addChatModal from '../../components/addChatModal';
 import Button from '../../components/button';
 import ChatItem from '../../components/chat-item';
 import Input from '../../components/input';
 import Link from '../../components/link';
+import { chatController } from '../../controllers/chatsControllers';
 import Block from '../../utils/Block';
+import store, {StoreEvents} from '../../utils/store';
 import template from './chat-page.hbs?raw';
 import './chat-page.scss';
-import { chatsData } from './data';
+// import { chatsData } from './data';
 
 export default class ChatPage extends Block {
+
   constructor() {
     super();
 
-    this.lists.chatItems = chatsData.map((item) => {
-      return new ChatItem({
-        avatarSrc: item.avatar,
-        name: item.name,
-        lastMessage: item.lastMessage,
-        unreadMessages: item.unreadMessages,
-        time: item.time,
+    chatController.getChats();
+
+    store.on(StoreEvents.Updated, () => {
+      
+      this.lists.chatItems = store.getState().chats.map((item) => {
+        return new ChatItem({
+          id: item.id,
+          avatar: item.avatar,
+          title: item.title
+        });
       });
     });
 
+  
+
+ 
+
     this.children.profileLink = new Link({
       url: '#',
-      page: 'profile',
+      page: '/profile',
       text: 'Профиль',
       className: 'chat-page__profile-link',
     });
@@ -36,9 +47,9 @@ export default class ChatPage extends Block {
       placeholder: 'Поиск',
     });
 
-    this.children.chatItemHeader = new ChatItem({
-      name: 'Вадим',
-    });
+    // this.children.chatItemHeader = new ChatItem({
+    //   name: 'Вадим',
+    // });
 
     this.children.chatUserSettingButton = new Button({
       className: 'chat__user-settings-btn',
@@ -64,6 +75,25 @@ export default class ChatPage extends Block {
       square: true,
       icon: icons.arrowBtn,
     });
+
+
+    this.children.addChatModal = new addChatModal({
+      isOpen: false
+    })
+  
+    this.children.buttonOpenModalAddChat = new Button({
+      className: 'button-add-chat-modal',
+      square: true,
+      icon: icons.plus,
+      events: {
+        click: () => {
+          (this.children.addChatModal as addChatModal).setProps({
+            isOpen: true
+          })
+        }
+      }
+    })
+
   }
 
   render() {

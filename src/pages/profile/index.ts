@@ -9,6 +9,8 @@ import isValidForm from '../../utils/isValidForm';
 import userSettingsAvatar from '../../components/user-settings-avatar';
 import icons from '../../assets/icons';
 import Link from '../../components/link';
+import store, { StoreEvents } from '../../utils/store';
+import router from '../../router';
 
 export default class Profile extends Block {
   constructor() {
@@ -19,24 +21,40 @@ export default class Profile extends Block {
       icon: icons.avatarPreview,
     });
 
-    this.lists.userSettingsItemList = Object.values(profileUserData).map((item) => {
-      return new userSettingsItem({
-        label: item.label,
-        name: item.name,
-        placeholder: item.label,
-        value: item.value,
-        type: item.type,
-        disabled: true,
-      });
-    });
+    const createUserSettingsItemList = () => {
+      const user = store.getState().user
 
-    const linksProps = [{ text: 'Изменить данные', page: 'change-settings' }, { text: 'Изменить пароль', page: 'change-password' }, { text: 'Выйти', page: 'login' }];
+      Object.entries(user).forEach((element) => {
+        if (profileUserData.hasOwnProperty(element[0])) {
+          profileUserData[element[0]].value = element[1];
+        }
+      });
+  
+      this.lists.userSettingsItemList = Object.values(profileUserData).map((item) => {
+        return new userSettingsItem({
+          label: item.label,
+          name: item.name,
+          placeholder: item.label,
+          value: item.value,
+          type: item.type,
+          disabled: true,
+        });
+      });
+    }
+
+    createUserSettingsItemList()
+
+    const linksProps = [
+      { text: 'Изменить данные', page: '/change-settings' },
+      { text: 'Изменить пароль', page: '/change-password' },
+      { text: 'Выйти', page: 'logout' },
+    ];
 
     this.lists.profileLinks = linksProps.map((item) => {
       return new Link({
         url: '#',
         wrapper: 'li',
-        ...item
+        ...item,
       });
     });
 
@@ -53,6 +71,15 @@ export default class Profile extends Block {
     this.children.backButton = new Button({
       text: 'Назад',
       className: 'profile__back-btn',
+      events: {
+        click: () => {
+          router.back();
+        }
+      }
+    });
+
+    store.on(StoreEvents.Updated, () => {
+      createUserSettingsItemList()
     });
   }
 

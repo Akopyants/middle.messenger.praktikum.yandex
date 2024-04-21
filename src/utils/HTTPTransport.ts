@@ -6,44 +6,32 @@ enum METHODS {
   DELETE = 'DELETE',
 }
 
-function queryStringify(data: { [key: string]: string }): string {
-  return (
-    '?' +
-    Object.keys(data)
-      .map((key) => {
-        return `${key}=${data[key]}`;
-      })
-      .join('&')
-  );
-}
-
 interface Options {
-  timeout?: number;
   data?: { [key: string]: string };
+  timeout?: number;
   method?: METHODS;
 }
 
-type HTTPMethod = (url: string, options?: Options) => Promise<unknown>
+type HTTPMethod = (url: string, options?: Options) => Promise<XMLHttpRequest>;
 
 class HTTPTransport {
+  constructor(private apiUrl: string) {
+    this.apiUrl = apiUrl;
+  }
 
-  get: HTTPMethod = (url, options = {}) => (
-    this.request(url, {...options, method: METHODS.GET}, options.timeout)
-  )
+  get: HTTPMethod = (url, options = {}) =>
+    this.request(`${this.apiUrl}/${url}`, { ...options, method: METHODS.GET }, options?.timeout);
 
-  put: HTTPMethod = (url, options = {}) => (
-    this.request(url, {...options, method: METHODS.PUT}, options.timeout)
-  )
+  put: HTTPMethod = (url, options = {}) =>
+    this.request(`${this.apiUrl}/${url}`, { ...options, method: METHODS.PUT }, options?.timeout);
 
-  post: HTTPMethod = (url, options = {}) => (
-    this.request(url, {...options, method: METHODS.POST}, options.timeout)
-  )
+  post: HTTPMethod = (url, options = {}) =>
+    this.request(`${this.apiUrl}/${url}`, { ...options, method: METHODS.POST }, options?.timeout);
 
-  delete: HTTPMethod = (url, options = {}) => (
-    this.request(url, {...options, method: METHODS.DELETE}, options.timeout)
-  )
+  delete: HTTPMethod = (url, options = {}) =>
+    this.request(url, { ...options, method: METHODS.DELETE }, options?.timeout);
 
-  request = (url: string, options: Options, timeout = 5000) => {
+  request(url: string, options: Options = {}, timeout = 1000): Promise<XMLHttpRequest> {
     const { data, method } = options;
 
     return new Promise((resolve, reject) => {
@@ -57,20 +45,26 @@ class HTTPTransport {
       xhr.timeout = timeout;
 
       xhr.onload = function () {
-        resolve(xhr);
+        if (xhr.status >= 200 && xhr.status < 300) {
+          resolve(xhr);
+        } else {
+          reject(xhr);
+        }
       };
 
       xhr.onabort = reject;
       xhr.onerror = reject;
       xhr.ontimeout = reject;
+      xhr.withCredentials = true;
 
       if (method === 'GET' || !data) {
         xhr.send();
       } else {
-        xhr.send(queryStringify(data));
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(data));
       }
     });
-  };
+  }
 }
 
 export default HTTPTransport;

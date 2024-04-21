@@ -2,8 +2,9 @@ import icons from '../../assets/icons';
 import Button from '../../components/button';
 import userSettingsAvatar from '../../components/user-settings-avatar';
 import userSettingsItem from '../../components/user-settings-item';
+import { settingsControllers } from '../../controllers/settingsControllers';
+import router from '../../router';
 import Block from '../../utils/Block';
-import getFormData from '../../utils/getFormData';
 import isValidForm from '../../utils/isValidForm';
 import template from './change-password.hbs?raw';
 
@@ -12,9 +13,8 @@ export default class СhangePassword extends Block {
     super();
 
     const signInInputListProps = [
-      { label: 'Старый пароль', name: 'oldPassword', type: 'password', value: 'Closer227' },
-      { label: 'Новый пароль', name: 'newPassword', type: 'password', value: 'Closer227' },
-      { label: 'Новый пароль', name: 'newPasswordRepeat', type: 'password', placeholder: 'Пароль', value: 'Closer227' },
+      { label: 'Старый пароль', name: 'oldPassword', type: 'password', value: '' },
+      { label: 'Новый пароль', name: 'newPassword', type: 'password', value: '' },
     ];
 
     this.lists.userSettingsItemList = signInInputListProps.map((inputProps) => {
@@ -47,6 +47,11 @@ export default class СhangePassword extends Block {
       page: 'profile',
       text: 'Назад',
       className: 'profile__back-btn',
+      events: {
+        click: () => {
+          router.back();
+        }
+      }
     });
   }
 
@@ -54,12 +59,8 @@ export default class СhangePassword extends Block {
     e.preventDefault();
     const form = this.element?.querySelector('form') as HTMLFormElement;
 
-    if (form) {
-      getFormData(form);
-    }
-
     if (isValidForm(form)) {
-      alert('submit');
+      settingsControllers.changePassword(new FormData(form));
     }
   }
 

@@ -8,6 +8,10 @@ import getFormData from '../../utils/getFormData';
 import isValidForm from '../../utils/isValidForm';
 import userSettingsAvatar from '../../components/user-settings-avatar';
 import icons from '../../assets/icons';
+// import { authApi } from '../../api/autApi';
+import store from '../../utils/store';
+import { settingsControllers } from '../../controllers/settingsControllers';
+import router from '../../router';
 
 export default class ChangeSettings extends Block {
   constructor() {
@@ -18,6 +22,12 @@ export default class ChangeSettings extends Block {
       icon: icons.avatarPreview,
     });
 
+    Object.entries(store.getState().user).forEach((element) => {
+      if (profileUserData.hasOwnProperty(element[0])) {
+        profileUserData[element[0]].value = element[1];
+      }
+    });
+
     this.lists.userSettingsItemList = Object.values(profileUserData).map((item) => {
       return new userSettingsItem({
         label: item.label,
@@ -25,7 +35,7 @@ export default class ChangeSettings extends Block {
         placeholder: item.label,
         value: item.value,
         type: item.type,
-        validate: true
+        validate: true,
       });
     });
 
@@ -43,10 +53,15 @@ export default class ChangeSettings extends Block {
       page: 'profile',
       text: 'Назад',
       className: 'profile__back-btn',
+      events: {
+        click: () => {
+          router.back();
+        },
+      },
     });
   }
 
-  submitForm(e: Event) {
+  async submitForm(e: Event) {
     e.preventDefault();
     const form = this.element?.querySelector('form') as HTMLFormElement;
 
@@ -55,8 +70,9 @@ export default class ChangeSettings extends Block {
     }
 
     if (isValidForm(form)) {
-      alert('submit');
+      settingsControllers.changeSettings(new FormData(form))
     }
+
   }
 
   render() {

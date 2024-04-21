@@ -155,7 +155,9 @@ export default class Block {
       return;
     }
 
+
     Object.assign(this.props, nextProps);
+
   }
 
   get element(): HTMLElement | null {
