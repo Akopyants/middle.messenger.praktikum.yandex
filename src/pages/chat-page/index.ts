@@ -24,14 +24,21 @@ export default class ChatPage extends Block {
         return new ChatItem({
           id: item.id,
           avatar: item.avatar,
-          title: item.title
+          title: item.title,
+          showAddUserButton: false,
         });
       });
+
+
+      this.children.chatItemHeader = new ChatItem({
+        title: 'Вадим',
+        showAddUserButton: true,
+      });
+
+      (this.children.chatItemHeader as ChatItem).setProps({'id': store.getState().currentChatId});
+
+
     });
-
-  
-
- 
 
     this.children.profileLink = new Link({
       url: '#',
@@ -47,9 +54,7 @@ export default class ChatPage extends Block {
       placeholder: 'Поиск',
     });
 
-    // this.children.chatItemHeader = new ChatItem({
-    //   name: 'Вадим',
-    // });
+   
 
     this.children.chatUserSettingButton = new Button({
       className: 'chat__user-settings-btn',

@@ -35,12 +35,14 @@ class AuthController {
     }
   }
 
+
   public async getUser(): Promise<void> {
     try {
       const res = await authApi.getUserData();
 
       store.set('user', JSON.parse(res.response));
       // router.go('/login')
+    
     } catch (error) {
       store.set('user', {});
     }

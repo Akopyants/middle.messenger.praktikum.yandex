@@ -12,6 +12,14 @@ class ChatsApi extends BaseAPI {
   getChats() {
     return fetch.get('');
   }
+
+  getChatToken(id: string) {
+    return fetch.post(`/token/${id}`);
+  }
+
+  getCurrentChat(id: string) {
+    return fetch.get(`${id}/common`)
+  }
 }
 
 export const chatsApi = new ChatsApi();

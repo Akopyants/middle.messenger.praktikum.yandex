@@ -34,12 +34,17 @@ interface chatsInterface {
 interface storeInterface {
   user: userInterface;
   chats: chatsInterface[];
+  currentChatId: string;
+  token: string
 }
 
 class Store extends EventBus {
   private state: storeInterface = {
     user: {},
     chats: [],
+    token: '',
+    currentChatId: ''
+
     // currentChat: { unread_count: 0 },
     // chats: [],
     // currentMessages: [],

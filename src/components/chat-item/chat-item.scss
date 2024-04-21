@@ -69,3 +69,16 @@
     text-align: center;
   }
 }
+
+
+.button-add-user {
+  @include mixins.size(3rem);
+
+  margin-left: auto;
+
+  img {
+    @include mixins.size(1.8rem);
+
+    pointer-events: none;
+  }
+}
