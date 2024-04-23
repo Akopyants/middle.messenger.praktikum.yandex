@@ -6,11 +6,16 @@ import Input from '../input';
 import Title from '../title';
 import template from './addUserToChatModal.hbs?raw';
 import './addUserToChatModal.scss';
+import store from '../../utils/store';
 
 interface InterfaceModal {
   isOpen?: boolean;
 }
 
+type putUserData = {
+  users: number[];
+  chatId: number;
+};
 export default class addUserToChatModal extends Block {
   constructor(props: InterfaceModal) {
     super({ ...props });
@@ -60,11 +65,18 @@ export default class addUserToChatModal extends Block {
 
 
     if (isValidForm(form)) {
-      const inputValue = (this.children.addChatInput as Input).getProps().value;
+      const inputValue = (this.children.addUserToChatInput as Input).getProps().value;
       
       if (typeof inputValue === 'string') {
-        chatController.create(inputValue);
-      }
+          const id = +inputValue;
+
+          const data : putUserData = {
+            users: [id],
+            chatId: +store.getState().currentChatId.toString
+          }
+
+          chatController.addUserToChat(data)
+        }
     }
   }
 

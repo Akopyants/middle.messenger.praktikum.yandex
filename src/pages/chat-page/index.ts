@@ -6,11 +6,13 @@ import chatHeader from '../../components/chat-header';
 import ChatItem from '../../components/chat-item';
 import Input from '../../components/input';
 import Link from '../../components/link';
+import messageForm from '../../components/message-form';
 import { chatController } from '../../controllers/chatsControllers';
 import Block from '../../utils/Block';
 import store, { StoreEvents } from '../../utils/store';
 import template from './chat-page.hbs?raw';
 import './chat-page.scss';
+// messageForm
 
 export default class ChatPage extends Block {
   constructor() {
@@ -81,24 +83,6 @@ export default class ChatPage extends Block {
       icon: icons.dotsVertical,
     });
 
-    this.children.clipButton = new Button({
-      square: true,
-      transparent: true,
-      icon: icons.clip,
-    });
-
-    this.children.inputMessage = new Input({
-      className: 'chat__input',
-      type: 'text',
-      name: 'message',
-      placeholder: 'Сообщение',
-    });
-
-    this.children.submitMessageButton = new Button({
-      square: true,
-      icon: icons.arrowBtn,
-    });
-
     this.children.addChatModal = new addChatModal({
       isOpen: false,
     });
@@ -120,7 +104,35 @@ export default class ChatPage extends Block {
       },
     });
 
-    console.log(store)
+    this.children.messageForm = new messageForm({
+      events: {
+        submit : (e: Event) => {
+          this.sendMessage(e)
+        }
+      }
+    })
+
+  }
+
+  sendMessage(e : Event) {
+    e.preventDefault();
+
+    const target = e.target as HTMLElement;
+    const input = target.querySelector('input') as HTMLInputElement | null; // Получаем элемент HTMLInputElement или null
+  
+    if (input) {
+      const value = input.value; // Получаем значение из HTMLInputElement
+
+      // chatController.sendMessage(id, )
+      chatController.ws.send(JSON.stringify({
+        content: value,
+        type: 'message',
+      }));
+
+      
+      // Здесь вы можете использовать значение 'value' для отправки сообщения или выполнения другой логики
+    }
+
   }
 
   render() {

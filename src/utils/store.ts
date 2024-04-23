@@ -17,23 +17,31 @@ interface userInterface {
   id?: number;
 }
 
+interface interfaceMessage {
+  user?: userInterface;
+  time?: string;
+  content?: string;
+  id?: number;
+
+}
+
 interface chatsInterface {
   id?: number;
   title?: string;
   avatar?: string;
   created_by?: number;
   unread_count?: number;
-  last_message?: {
-    user?: userInterface;
-    time?: string;
-    content?: string;
-    id?: number;
-  };
+  last_message?: interfaceMessage
 }
+
+// interface messagesInterface {
+
+// }
 
 interface storeInterface {
   user: userInterface;
   chats: chatsInterface[];
+  messages?: Record<string, interfaceMessage[]>;
   currentChatId: string;
   token: string
 }
@@ -43,7 +51,8 @@ class Store extends EventBus {
     user: {},
     chats: [],
     token: '',
-    currentChatId: ''
+    currentChatId: '',
+    messages: {}
 
     // currentChat: { unread_count: 0 },
     // chats: [],
