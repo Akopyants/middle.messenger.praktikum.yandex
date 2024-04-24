@@ -79,6 +79,8 @@ export class chatController {
       const chatId = store.getState().currentChatId;
       const token = store.getState().token;
 
+      console.log(store)
+
       chatController.ws = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);
 
       chatController.ws.addEventListener('open', () => {
