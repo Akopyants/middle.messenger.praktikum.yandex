@@ -22,7 +22,6 @@ interface interfaceMessage {
   time?: string;
   content?: string;
   id?: number;
-
 }
 
 interface chatsInterface {
@@ -33,10 +32,6 @@ interface chatsInterface {
   unread_count?: number;
   last_message?: interfaceMessage
 }
-
-// interface messagesInterface {
-
-// }
 
 interface storeInterface {
   user: userInterface;

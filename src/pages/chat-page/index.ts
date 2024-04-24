@@ -7,12 +7,25 @@ import ChatItem from '../../components/chat-item';
 import Input from '../../components/input';
 import Link from '../../components/link';
 import messageForm from '../../components/message-form';
+import Messages from '../../components/messages';
 import { chatController } from '../../controllers/chatsControllers';
 import Block from '../../utils/Block';
 import store, { StoreEvents } from '../../utils/store';
 import template from './chat-page.hbs?raw';
 import './chat-page.scss';
+// Messages
 // messageForm
+
+interface messageInterface {
+  chat_id?: number;
+  content?: string;
+  file?: null;
+  id?: number;
+  is_read?: boolean;
+  time?: string;
+  type?: string;
+  user_id?: number;
+}
 
 export default class ChatPage extends Block {
   constructor() {
@@ -21,13 +34,13 @@ export default class ChatPage extends Block {
     chatController.getChats();
 
     store.on(StoreEvents.Updated, () => {
+
       this.lists.chatItems = store.getState().chats.map((item) => {
         return new ChatItem({
           id: item.id,
           avatar: item.avatar,
           title: item.title,
           showAddUserButton: false,
-          
         });
       });
 
@@ -39,13 +52,13 @@ export default class ChatPage extends Block {
             const targetElement = e.target as HTMLElement;
 
             if (targetElement.tagName === 'BUTTON') {
-               (this.children.addUserToChatModal as addUserToChatModal).setProps({
-              isOpen: true,
-            });
+              (this.children.addUserToChatModal as addUserToChatModal).setProps({
+                isOpen: true,
+              });
             }
 
-            console.log(targetElement)
-           
+            console.log(targetElement);
+
             // const targetElement = e.target as HTMLElement;
             // const chatItemElement = targetElement.closest('.chat-item') as HTMLElement | null;
 
@@ -60,6 +73,26 @@ export default class ChatPage extends Block {
       });
 
       (this.children.chatItemHeader as ChatItem).setProps({ id: store.getState().currentChatId });
+
+      const chatId = store.getState().currentChatId;
+
+      if (chatId) {
+        const allMessages = store.getState().messages;
+
+        if (allMessages) {
+          const currentChatMessages = allMessages[chatId]; 
+
+          if (currentChatMessages && Array.isArray(currentChatMessages)) {
+            this.lists.messages = currentChatMessages.map((item: messageInterface) => {
+              const content = item.content ?? '';
+
+              return new Messages({
+                value: content,
+              });
+            });
+          }
+        }
+      }
     });
 
     this.children.profileLink = new Link({
@@ -106,33 +139,31 @@ export default class ChatPage extends Block {
 
     this.children.messageForm = new messageForm({
       events: {
-        submit : (e: Event) => {
-          this.sendMessage(e)
-        }
-      }
-    })
-
+        submit: (e: Event) => {
+          this.sendMessage(e);
+        },
+      },
+    });
   }
 
-  sendMessage(e : Event) {
+  sendMessage(e: Event) {
     e.preventDefault();
 
     const target = e.target as HTMLElement;
     const input = target.querySelector('input') as HTMLInputElement | null; // Получаем элемент HTMLInputElement или null
-  
+
     if (input) {
-      const value = input.value; // Получаем значение из HTMLInputElement
+      const value = input.value;  
 
-      // chatController.sendMessage(id, )
-      chatController.ws.send(JSON.stringify({
-        content: value,
-        type: 'message',
-      }));
+      chatController.ws.send(
+        JSON.stringify({
+          content: value,
+          type: 'message',
+        }),
+      );
 
-      
-      // Здесь вы можете использовать значение 'value' для отправки сообщения или выполнения другой логики
+      input.value = '';
     }
-
   }
 
   render() {

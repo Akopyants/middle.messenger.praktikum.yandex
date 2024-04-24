@@ -79,11 +79,6 @@ export class chatController {
       const chatId = store.getState().currentChatId;
       const token = store.getState().token;
 
-      // console.log('userId', userId)
-      // console.log('chatId', chatId)
-      // console.log('token', token)
-      // console.log('store', store)
-
       chatController.ws = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);
 
       chatController.ws.addEventListener('open', () => {
@@ -91,10 +86,10 @@ export class chatController {
 
         chatController.ws.send(
           JSON.stringify({
-            content: 'Моё первое сообщение миру!',
-            type: 'message',
-          }),
-        );
+            content: '0',
+            type: 'get old'
+          })
+        )
       });
 
       chatController.ws.addEventListener('close', (event) => {
@@ -109,25 +104,24 @@ export class chatController {
 
       chatController.ws.addEventListener('message', (event) => {
         if (chatId) {
-          const newMessage = [];
-          const message = event.data;
-        
-          newMessage.push(JSON.parse(message));
-        
           const state = store.getState();
           const messages = state.messages || {}; 
-        
-          const currentMessages = messages[chatId] || [];
-        
-        
-          const updatedMessages = [...currentMessages, ...newMessage];
-        
-          store.set(`messages.${chatId}`, updatedMessages);
-          
+          const message = JSON.parse(event.data);
 
-          console.log(store)
+          if (Array.isArray(message)) {
+            store.set(`messages.${chatId}`, [...message]);
+
+          } else {
+            const currentMessages = messages[chatId] || [];
+            const updatedMessages = [...currentMessages, message];
+            
+            store.set(`messages.${chatId}`, updatedMessages);
+  
+          }
+        
+      
+        
         }
-   
 
       });
 
