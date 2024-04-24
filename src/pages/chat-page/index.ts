@@ -83,13 +83,11 @@ export default class ChatPage extends Block {
         if (currentChatMessages && Array.isArray(currentChatMessages)) {
           this.lists.messages = currentChatMessages.map((item: messageInterface) => {
             const content = item.content ?? '';
-            const userId = store.getState().user.id;
-            const chatOwnerId = store.getState().currentChatOwnerId;
- 
+            const id = item.user_id;
 
             return new Messages({
               value: content,
-              isYourMessage: (userId === +chatOwnerId)
+              isYourMessage: (id === store.getState().user.id)
             });
           });
         }
