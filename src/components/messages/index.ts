@@ -4,6 +4,7 @@ import './input.scss';
 
 interface interfaceMessages {
   value: string,
+  isYourMessage?: boolean
 }
 
 export default class Messages extends Block {

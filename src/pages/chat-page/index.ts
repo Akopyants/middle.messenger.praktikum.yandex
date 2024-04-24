@@ -34,7 +34,6 @@ export default class ChatPage extends Block {
     chatController.getChats();
 
     store.on(StoreEvents.Updated, () => {
-
       this.lists.chatItems = store.getState().chats.map((item) => {
         return new ChatItem({
           id: item.id,
@@ -76,21 +75,23 @@ export default class ChatPage extends Block {
 
       const chatId = store.getState().currentChatId;
 
-      if (chatId) {
-        const allMessages = store.getState().messages;
+      const allMessages = store.getState().messages;
 
-        if (allMessages) {
-          const currentChatMessages = allMessages[chatId]; 
+      if (allMessages) {
+        const currentChatMessages = allMessages[chatId];
 
-          if (currentChatMessages && Array.isArray(currentChatMessages)) {
-            this.lists.messages = currentChatMessages.map((item: messageInterface) => {
-              const content = item.content ?? '';
+        if (currentChatMessages && Array.isArray(currentChatMessages)) {
+          this.lists.messages = currentChatMessages.map((item: messageInterface) => {
+            const content = item.content ?? '';
+            const userId = store.getState().user.id;
+            const chatOwnerId = store.getState().currentChatOwnerId;
+ 
 
-              return new Messages({
-                value: content,
-              });
+            return new Messages({
+              value: content,
+              isYourMessage: (userId === +chatOwnerId)
             });
-          }
+          });
         }
       }
     });
@@ -153,7 +154,7 @@ export default class ChatPage extends Block {
     const input = target.querySelector('input') as HTMLInputElement | null; // Получаем элемент HTMLInputElement или null
 
     if (input) {
-      const value = input.value;  
+      const value = input.value;
 
       chatController.ws.send(
         JSON.stringify({

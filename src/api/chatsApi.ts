@@ -27,7 +27,7 @@ class ChatsApi extends BaseAPI {
   }
 
   addUserToChat(data: putUserData) {
-    return fetch.put('/', { data });
+    return fetch.put('/users', { data });
   }
 }
 

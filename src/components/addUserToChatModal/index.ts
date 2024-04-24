@@ -63,6 +63,7 @@ export default class addUserToChatModal extends Block {
     e.preventDefault();
     const form = this.element?.querySelector('form') as HTMLFormElement;
 
+    console.log('store', store)
 
     if (isValidForm(form)) {
       const inputValue = (this.children.addUserToChatInput as Input).getProps().value;
@@ -72,8 +73,9 @@ export default class addUserToChatModal extends Block {
 
           const data : putUserData = {
             users: [id],
-            chatId: +store.getState().currentChatId.toString
+            chatId: +store.getState().currentChatId
           }
+
 
           chatController.addUserToChat(data)
         }

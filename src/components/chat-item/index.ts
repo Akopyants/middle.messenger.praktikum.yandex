@@ -48,6 +48,7 @@ export default class ChatItem extends Block {
         click: async () => {
           const id = this.getProps().id;
           store.set('currentChatId', id);
+          store.set('currentChatOwnerId', store.getState().user.id)
           chatController.getChatToken(id as string);
         },
       },

@@ -38,6 +38,7 @@ interface storeInterface {
   chats: chatsInterface[];
   messages?: Record<string, interfaceMessage[]>;
   currentChatId: string;
+  currentChatOwnerId: string;
   token: string
 }
 
@@ -47,7 +48,9 @@ class Store extends EventBus {
     chats: [],
     token: '',
     currentChatId: '',
+    currentChatOwnerId: '',
     messages: {}
+
 
     // currentChat: { unread_count: 0 },
     // chats: [],
