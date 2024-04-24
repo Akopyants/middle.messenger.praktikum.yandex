@@ -3,6 +3,7 @@ import template from './input.hbs?raw';
 import './input.scss';
 
 interface interfaceMessages {
+  time?:string,
   value: string,
   isYourMessage?: boolean
 }

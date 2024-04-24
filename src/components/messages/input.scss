@@ -1,2 +1,11 @@
 @use '@/assets/variables' as vars;
 @use '@styles/mixins' as mixins;
+
+.chat__message {
+    span {
+        display: block;
+        opacity: 0.4;
+        font-size: 1rem;
+        text-align: right;
+    }
+}

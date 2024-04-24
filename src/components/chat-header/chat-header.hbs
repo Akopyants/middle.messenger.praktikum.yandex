@@ -1,3 +1,4 @@
+{{# if show }}
 <div class="chat-item" page="chat" data-id="{{id}}">
   <div class="chat-item__avatar">
     {{#if avatar}}
@@ -21,6 +22,8 @@
     {{{ addUserButton }}}
   {{/if}}
 </div>
-
+{{else}}
+<div></div>
+{{/if}}
 
 

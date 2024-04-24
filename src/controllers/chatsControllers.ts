@@ -59,12 +59,7 @@ export class chatController {
     }
   }
 
-  static async sendMessage(id: string, value: string) {
-    console.log(id);
-    console.log(value);
-    // store.set(`messages.${chatid}`, id.[...mesages]);
-
-
+  static async sendMessage(value: string) {
     chatController.ws.send(
       JSON.stringify({
         content: value,
@@ -79,8 +74,6 @@ export class chatController {
       const chatId = store.getState().currentChatId;
       const token = store.getState().token;
 
-      console.log(store)
-
       chatController.ws = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);
 
       chatController.ws.addEventListener('open', () => {
@@ -89,9 +82,9 @@ export class chatController {
         chatController.ws.send(
           JSON.stringify({
             content: '0',
-            type: 'get old'
-          })
-        )
+            type: 'get old',
+          }),
+        );
       });
 
       chatController.ws.addEventListener('close', (event) => {
@@ -107,34 +100,28 @@ export class chatController {
       chatController.ws.addEventListener('message', (event) => {
         if (chatId) {
           const state = store.getState();
-          const messages = state.messages || {}; 
+          const messages = state.messages || {};
           const message = JSON.parse(event.data);
-
+          
           if (Array.isArray(message)) {
             store.set(`messages.${chatId}`, [...message]);
-
           } else {
             const currentMessages = messages[chatId] || [];
             const updatedMessages = [...currentMessages, message];
-            
-            store.set(`messages.${chatId}`, updatedMessages);
-  
-          }
-        
-      
-        
-        }
 
+            store.set(`messages.${chatId}`, updatedMessages);
+          }
+
+          const chatBody = document.querySelector('.chat__body') as HTMLElement;
+          chatBody.scrollTop = chatBody.scrollHeight;
+        }
       });
 
       chatController.ws.addEventListener('error', (event) => {
         console.log('Ошибка', event);
       });
-
-      console.log(chatController.ws);
-      console.log('x');
-    } catch {
-      console.log('x');
+    } catch (err) {
+      console.log(err);
     }
   }
 }

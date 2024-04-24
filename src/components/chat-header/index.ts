@@ -1,15 +1,9 @@
-// import { chatController } from '../../controllers/chatsControllers';
-// import authControllers from '../../controllers/authControllers';
 import icons from '../../assets/icons';
-// import { chatController } from '../../controllers/chatsControllers';
 import Block from '../../utils/Block';
-// import store from '../../utils/store';
 import Button from '../button';
-// import store, {StoreEvents} from '../../utils/store';
 import template from './chat-header.hbs?raw';
 import './chat-header.scss';
 
-// addUserToChatModal
 interface userInterface {
   avatar?: string;
   display_name?: string;
@@ -23,6 +17,7 @@ interface userInterface {
 }
 
 interface chatsInterface {
+  show?: boolean;
   id?: number;
   title?: string;
   avatar?: string;

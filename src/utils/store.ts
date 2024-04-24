@@ -48,12 +48,6 @@ class Store extends EventBus {
     token: '',
     currentChatId: '',
     messages: {}
-
-
-    // currentChat: { unread_count: 0 },
-    // chats: [],
-    // currentMessages: [],
-    // isLoggedIn: false,
   };
 
   public getState() {
