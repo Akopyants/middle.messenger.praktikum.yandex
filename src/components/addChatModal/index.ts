@@ -26,7 +26,7 @@ export default class addChatModal extends Block {
       name: 'chatName',
       errorMessages: '',
       type: 'text',
-      value: '123',
+      value: `Тестовый чат ${Math.floor(Math.random() * 1000)}`,
       placeholder: 'Название чата',
       validate: true,
     });
@@ -66,6 +66,12 @@ export default class addChatModal extends Block {
         chatController.create(inputValue);
       }
     }
+
+    console.log(this)
+
+    this.setProps({
+      isOpen: false
+    })
   }
 
   render() {

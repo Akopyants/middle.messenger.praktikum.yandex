@@ -1,3 +1,5 @@
+import router from '../router';
+
 enum METHODS {
   GET = 'GET',
   POST = 'POST',
@@ -7,7 +9,7 @@ enum METHODS {
 }
 
 interface Options {
-  data?: { [key: string]: string | unknown }; 
+  data?: { [key: string]: string | unknown };
   timeout?: number;
   method?: METHODS;
 }
@@ -29,7 +31,7 @@ class HTTPTransport {
     this.request(`${this.apiUrl}/${url}`, { ...options, method: METHODS.POST }, options?.timeout);
 
   delete: HTTPMethod = (url, options = {}) =>
-    this.request(url, { ...options, method: METHODS.DELETE }, options?.timeout);
+    this.request(`${this.apiUrl}/${url}`, { ...options, method: METHODS.DELETE }, options?.timeout);
 
   request(url: string, options: Options = {}, timeout = 1000): Promise<XMLHttpRequest> {
     const { data, method } = options;
@@ -48,6 +50,15 @@ class HTTPTransport {
         if (xhr.status >= 200 && xhr.status < 300) {
           resolve(xhr);
         } else {
+          const response = JSON.parse(xhr.responseText);
+          const reason = response.reason || '';
+
+          if (reason === 'User already in system') {
+            router.go('/messenger');
+            return;
+          }
+
+          console.log(reason);
           reject(xhr);
         }
       };
@@ -59,6 +70,11 @@ class HTTPTransport {
 
       if (method === 'GET' || !data) {
         xhr.send();
+      } else if (data?.file instanceof FormData) {
+          if (data.file) {
+            xhr.send(data.file);
+            return;
+          }
       } else {
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify(data));

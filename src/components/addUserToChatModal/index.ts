@@ -31,7 +31,7 @@ export default class addUserToChatModal extends Block {
       name: 'userId',
       errorMessages: '',
       type: 'text',
-      value: '123',
+      value: '',
       placeholder: 'Id пользователя',
       validate: true,
     });

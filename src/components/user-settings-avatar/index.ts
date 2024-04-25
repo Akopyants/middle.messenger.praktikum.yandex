@@ -5,11 +5,16 @@ import './user-settings-avatar.scss';
 interface InterfaceUserSettingsAvatar {
   name: string;
   icon?: string;
+  events?: {
+    click: (e: Event) => void;
+  };
 }
 
 export default class userSettingsAvatar extends Block {
   constructor(props: InterfaceUserSettingsAvatar) {
-    super(props);
+    super({
+      ...props,
+    });
   }
 
   render() {

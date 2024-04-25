@@ -13,9 +13,9 @@ window.addEventListener('DOMContentLoaded', async () => {
   router.use('/', LoginPage);
   router.use('/login', LoginPage);
   router.use('/sign-up', SignUp);
-  router.use('/chat', ChatPage);
+  router.use('/messenger', ChatPage);
   router.use('/profile', Profile);
   router.use('/change-password', ChangePassword);
-  router.use('/change-settings', ChangeSettings);
+  router.use('/settings', ChangeSettings);
   router.start();
 });

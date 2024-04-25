@@ -27,7 +27,28 @@ class ChatsApi extends BaseAPI {
   }
 
   addUserToChat(data: putUserData) {
-    return fetch.put('/users', { data });
+    return fetch.put('users', { data });
+  }
+
+  deleteChat(id: number) {
+    const data = {
+      chatId: id
+    }
+
+    return fetch.delete('/', { data })
+  }
+
+  uploadChatAvatar(FormData: FormData) {
+    const data = {
+      chatId: FormData.get('chatID'),
+      avatar: FormData.get('avatar')
+    }
+
+    console.log(data)
+    return fetch.put('avatar', { data: {
+      data
+    } })
+    
   }
 }
 

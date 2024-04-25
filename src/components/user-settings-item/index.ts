@@ -11,7 +11,7 @@ export interface InterfaceuserSettingsItem {
   errorMessages?: string;
   label?: string;
   disabled?: boolean;
-  validate?: boolean; 
+  validate?: boolean;
 }
 
 export default class userSettingsItem extends Block {
@@ -28,9 +28,6 @@ export default class userSettingsItem extends Block {
       disabled: props.disabled,
       validate: props.validate,
     });
-
-
-  
   }
 
   render() {

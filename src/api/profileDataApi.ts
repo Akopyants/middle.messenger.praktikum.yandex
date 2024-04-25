@@ -18,6 +18,12 @@ class profileDataApi extends BaseAPI {
     return fetch.put('profile', { data });
   }
 
+  changeAvatar(formData : FormData) {
+    return fetch.put('profile/avatar', {
+      data : { file: formData }
+    })
+  }
+
   changePassword(formData: FormData) {
     const data = {
       oldPassword: formData.get('oldPassword') as string,

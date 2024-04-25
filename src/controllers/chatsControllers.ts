@@ -11,10 +11,23 @@ export class chatController {
 
   static async create(title: string) {
     try {
-      chatsApi.createChat(title);
-      this.getChats();
+      const response = await chatsApi.createChat(title);
+      if (response) {
+        this.getChats();
+      }
     } catch (err) {
       console.log(title);
+    }
+  }
+
+  static async delete(id: number) {
+    try {
+      const response = await chatsApi.deleteChat(id);
+      if (response) {
+        this.getChats();
+      }
+    } catch (err) {
+      console.log(err);
     }
   }
 
@@ -30,8 +43,6 @@ export class chatController {
     try {
       const response = await chatsApi.getChats();
       store.set('chats', JSON.parse(response.response));
-      // console.log(store);
-      // console.log(JSON.parse(response.response))
     } catch {
       console.log('test');
     }
@@ -67,6 +78,8 @@ export class chatController {
       }),
     );
   }
+
+  // static async
 
   static async connectToChat() {
     try {
@@ -104,7 +117,7 @@ export class chatController {
           const message = JSON.parse(event.data);
           
           if (Array.isArray(message)) {
-            store.set(`messages.${chatId}`, [...message]);
+            store.set(`messages.${chatId}`, [...message].reverse());
           } else {
             const currentMessages = messages[chatId] || [];
             const updatedMessages = [...currentMessages, message];
@@ -115,6 +128,9 @@ export class chatController {
           const chatBody = document.querySelector('.chat__body') as HTMLElement;
           chatBody.scrollTop = chatBody.scrollHeight;
         }
+        
+        const input = document.querySelector('.chat__footer input') as HTMLInputElement | null;
+        input?.focus()
       });
 
       chatController.ws.addEventListener('error', (event) => {

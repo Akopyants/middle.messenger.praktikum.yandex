@@ -7,17 +7,18 @@ interface InterfaceInput {
   value?: string;
   className?: string;
   rowClassName?: string;
-  name: string;
+  name?: string;
   type: string;
   error?: boolean;
-  placeholder: string;
+  placeholder?: string;
   disabled?: boolean;
   required?: boolean;
   errorMessages?: string;
   valid?: string;
   validate?: boolean;
   events?: {
-    blur: (e: Event) => void;
+    blur?: (e: Event) => void;
+    change?: (e: Event) => void;
   };
 }
 

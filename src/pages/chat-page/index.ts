@@ -46,8 +46,7 @@ export default class ChatPage extends Block {
       });
 
       const currentChatId = store.getState().currentChatId;
-      const currentChat = store.getState().chats.find(item => item.id === +currentChatId)
-
+      const currentChat = store.getState().chats.find((item) => item.id === +currentChatId);
 
       this.children.chatItemHeader = new chatHeader({
         title: currentChat?.title,
@@ -55,13 +54,32 @@ export default class ChatPage extends Block {
         show: Boolean(store.getState().currentChatId),
         events: {
           click: (e: Event) => {
-            const targetElement = e.target as HTMLElement;
+            console.log(e)
+            // const targetElement = e.target as HTMLElement;
+            // const avatar = targetElement?.classList.contains('chat-item__avatar') ? targetElement : null;
 
-            if (targetElement.tagName === 'BUTTON') {
-              (this.children.addUserToChatModal as addUserToChatModal).setProps({
-                isOpen: true,
-              });
-            }
+            // if (targetElement.tagName === 'BUTTON') {
+            //   (this.children.addUserToChatModal as addUserToChatModal).setProps({
+            //     isOpen: true,
+            //   });
+            // }
+
+            // if (avatar) {
+            //   const fileInput = avatar.querySelector('input') as HTMLInputElement;
+
+            //   fileInput.click();
+            //   fileInput.classList.add('test')
+            //   fileInput.addEventListener('change', () => {
+            //     if (fileInput.files && fileInput.files.length > 0) {
+            //       const file = fileInput.files[0];
+            //       const formData = new FormData();
+            //       formData.append('avatar', file);
+            //       formData.append('chatId', '3693');
+            //       chatsApi.uploadChatAvatar(formData);
+
+            //     }
+            //   })
+            // }
           },
         },
       });
@@ -84,7 +102,7 @@ export default class ChatPage extends Block {
             return new Messages({
               time: getTime(time),
               value: content,
-              isYourMessage: (id === store.getState().user.id)
+              isYourMessage: id === store.getState().user.id,
             });
           });
         }
@@ -140,27 +158,27 @@ export default class ChatPage extends Block {
         },
       },
     });
-
-   
   }
 
   sendMessage(e: Event) {
     e.preventDefault();
 
     const target = e.target as HTMLElement;
-    const input = target.querySelector('input') as HTMLInputElement | null; // Получаем элемент HTMLInputElement или null
+    const input = target.querySelector('.chat__footer input') as HTMLInputElement | null; // Получаем элемент HTMLInputElement или null
 
     if (input) {
       const value = input.value;
 
-      chatController.ws.send(
-        JSON.stringify({
-          content: value,
-          type: 'message',
-        }),
-      );
+      if (0 < value.length) {
+        chatController.ws.send(
+          JSON.stringify({
+            content: value,
+            type: 'message',
+          }),
+        );
 
-      input.value = '';
+        input.value = '';
+      }
     }
   }
 

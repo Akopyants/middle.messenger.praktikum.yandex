@@ -11,6 +11,10 @@
 
   &:hover {
     background-color: #f7f7f7;
+
+    .button-delete-chat {
+      opacity: 1;
+    }
   }
 
   &__avatar {
@@ -80,5 +84,20 @@
     @include mixins.size(1.8rem);
 
     pointer-events: none;
+  }
+}
+
+.button-delete-chat {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  // opacity: 0;
+  transition: .3s;
+
+  img {
+    pointer-events: none;
+    transform: rotate(45deg);
   }
 }

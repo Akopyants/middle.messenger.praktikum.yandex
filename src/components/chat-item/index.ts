@@ -1,3 +1,4 @@
+// import { chatsApi } from '../../api/chatsApi';
 import icons from '../../assets/icons';
 import { chatController } from '../../controllers/chatsControllers';
 import Block from '../../utils/Block';
@@ -29,7 +30,7 @@ export default class ChatItem extends Block {
         click: async () => {
           const id = this.getProps().id;
           store.set('currentChatId', id);
-          
+
           chatController.getChatToken(id as string);
         },
       },
@@ -39,6 +40,22 @@ export default class ChatItem extends Block {
       square: true,
       className: 'button-add-user',
       icon: icons.plus,
+    });
+
+    this.children.deleteChatButton = new Button({
+      square: true,
+      className: 'button-delete-chat',
+      icon: icons.plus,
+      events: {
+        click: (e: Event) => {
+          e.stopPropagation();
+          const target = e.target as HTMLElement;
+          const chatItem = target?.closest('.chat-item') as HTMLElement;
+          const chatId = chatItem?.dataset.id || '';
+
+          chatController.delete(+chatId);
+        }
+      }
     });
   }
 
