@@ -1,4 +1,3 @@
-// import { chatsApi } from '../../api/chatsApi';
 import icons from '../../assets/icons';
 import { chatController } from '../../controllers/chatsControllers';
 import Block from '../../utils/Block';

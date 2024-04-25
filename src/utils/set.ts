@@ -1,4 +1,4 @@
-import merge from "./merge";
+import merge from './merge';
 
 type Indexed<T = unknown> = {
   [key in string]: T;
@@ -23,8 +23,3 @@ function set(object: Indexed | unknown, path: string, value: unknown): Indexed |
 }
 
 export default set;
-
-/**
- * set({ foo: 5 }, 'bar.baz', 10); // { foo: 5, bar: { baz: 10 } }
- * set(3, 'foo.bar', 'baz'); // 3
- */

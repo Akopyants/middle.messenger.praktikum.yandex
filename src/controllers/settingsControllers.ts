@@ -1,5 +1,4 @@
 import { profileApi } from '../api/profileDataApi';
-// import router from '../router';
 import store from '../utils/store';
 
 
@@ -24,6 +23,17 @@ export class settingsControllers {
 
       alert('Пароль успешно изменено')
   
+    } catch (err) {
+      alert(err)
+    }
+  }
+
+  static async changeAvatar(data: FormData) {
+    try {
+      const response = await profileApi.changeAvatar(data);
+      const responseText = JSON.parse(response.responseText);
+
+      store.set('user.avatar', responseText.avatar)
     } catch (err) {
       alert(err)
     }

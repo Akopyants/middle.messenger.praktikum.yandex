@@ -35,5 +35,4 @@ class AuthApi extends BaseAPI {
   }
 }
 
-// export default  const = new AuthApi;
 export const authApi = new AuthApi();

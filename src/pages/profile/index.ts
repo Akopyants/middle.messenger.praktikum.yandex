@@ -18,6 +18,7 @@ export default class Profile extends Block {
 
     this.children.userSettingsAvatar = new userSettingsAvatar({
       name: 'Иван',
+      avatar: store.getState().user.avatar,
       icon: icons.avatarPreview,
     });
 
@@ -45,7 +46,7 @@ export default class Profile extends Block {
     createUserSettingsItemList()
 
     const linksProps = [
-      { text: 'Изменить данные', page: '/change-settings' },
+      { text: 'Изменить данные', page: '/settings' },
       { text: 'Изменить пароль', page: '/change-password' },
       { text: 'Выйти', page: 'logout' },
     ];
@@ -79,12 +80,12 @@ export default class Profile extends Block {
     });
 
     store.on(StoreEvents.Updated, () => {
-      createUserSettingsItemList()
-      console.log('store')
+      createUserSettingsItemList();
 
+      (this.children.userSettingsAvatar as userSettingsAvatar).setProps({
+        avatar: store.getState().user.avatar,
+      });
     });
-
-
   }
 
   submitForm(e: Event) {

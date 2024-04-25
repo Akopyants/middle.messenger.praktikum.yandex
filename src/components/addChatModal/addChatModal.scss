@@ -15,7 +15,6 @@
   align-items: center;
   justify-content: center;
 
-
   &--open {
     display: flex;
   }
@@ -53,7 +52,7 @@
       position: relative;
       background: #fff;
       border: unset;
-    
+
       &::after {
         @include mixins.size(100%);
 
@@ -68,5 +67,3 @@
     }
   }
 }
-
-

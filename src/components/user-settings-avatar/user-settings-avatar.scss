@@ -12,6 +12,8 @@
     position: relative;
     background-color: vars.$gray-light;
     border-radius: 50%;
+    overflow: hidden;
+    object-fit: contain;
 
     input {
       display: none;
@@ -30,5 +32,9 @@
 
     margin-top: 2rem;
     font-weight: vars.$fontWeightMedium;
+  }
+
+  +input {
+    visibility: hidden;
   }
 }

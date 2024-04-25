@@ -54,32 +54,14 @@ export default class ChatPage extends Block {
         show: Boolean(store.getState().currentChatId),
         events: {
           click: (e: Event) => {
-            console.log(e)
-            // const targetElement = e.target as HTMLElement;
-            // const avatar = targetElement?.classList.contains('chat-item__avatar') ? targetElement : null;
+            const targetElement = e.target as HTMLElement;
 
-            // if (targetElement.tagName === 'BUTTON') {
-            //   (this.children.addUserToChatModal as addUserToChatModal).setProps({
-            //     isOpen: true,
-            //   });
-            // }
+            if (targetElement.tagName === 'BUTTON') {
+              (this.children.addUserToChatModal as addUserToChatModal).setProps({
+                isOpen: true,
+              });
+            }
 
-            // if (avatar) {
-            //   const fileInput = avatar.querySelector('input') as HTMLInputElement;
-
-            //   fileInput.click();
-            //   fileInput.classList.add('test')
-            //   fileInput.addEventListener('change', () => {
-            //     if (fileInput.files && fileInput.files.length > 0) {
-            //       const file = fileInput.files[0];
-            //       const formData = new FormData();
-            //       formData.append('avatar', file);
-            //       formData.append('chatId', '3693');
-            //       chatsApi.uploadChatAvatar(formData);
-
-            //     }
-            //   })
-            // }
           },
         },
       });

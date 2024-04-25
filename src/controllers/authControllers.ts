@@ -1,7 +1,6 @@
 import { authApi } from '../api/autApi';
 import router from '../router';
 import store from '../utils/store';
-// import store from '../utils/store';
 
 class AuthController {
   public logout(): Promise<void> {
@@ -28,6 +27,9 @@ class AuthController {
     try {
       const res = await authApi.registration(data);
       store.set('user', JSON.parse(res.response));
+      if (res.status === 200) {
+        router.go('/messenger')
+      }
     } catch (error) {
       if (error instanceof XMLHttpRequest) {
         alert(error.response);
@@ -42,14 +44,12 @@ class AuthController {
 
       console.log(res.status)
       if (res.status === 200) {
-        // router.go('/messenger')
         store.set('user', JSON.parse(res.response));
       }
 
     } catch (error) {
       store.set('user', {});
       router.go('/')
-
     }
   }
 }

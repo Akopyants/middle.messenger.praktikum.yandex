@@ -79,8 +79,6 @@ export class chatController {
     );
   }
 
-  // static async
-
   static async connectToChat() {
     try {
       const userId = store.getState().user.id;
@@ -115,7 +113,7 @@ export class chatController {
           const state = store.getState();
           const messages = state.messages || {};
           const message = JSON.parse(event.data);
-          
+
           if (Array.isArray(message)) {
             store.set(`messages.${chatId}`, [...message].reverse());
           } else {
@@ -128,9 +126,9 @@ export class chatController {
           const chatBody = document.querySelector('.chat__body') as HTMLElement;
           chatBody.scrollTop = chatBody.scrollHeight;
         }
-        
+
         const input = document.querySelector('.chat__footer input') as HTMLInputElement | null;
-        input?.focus()
+        input?.focus();
       });
 
       chatController.ws.addEventListener('error', (event) => {

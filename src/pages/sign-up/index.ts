@@ -6,9 +6,7 @@ import template from './sign-up.hbs?raw';
 import './sign-up.scss';
 import Title from '../../components/title';
 import findEmptyField from '../../utils/findEmptyField';
-import isValidForm from '../../utils/isValidForm';
 import AuthController  from '../../controllers/authControllers';
-// import signUp from '../../api/user-signup';
 
 export default class SignUp extends Block {
   constructor() {
@@ -18,7 +16,7 @@ export default class SignUp extends Block {
       text: 'Регистрация',
       level: 3,
     });
-    // TODO: Убрать value
+    
     const SignUpInputListProps = [
       { name: 'email', type: 'email', placeholder: 'Почта', value: 'Test@m.ru' },
       { name: 'login', type: 'text', placeholder: 'Логин', value: 'TestAkopyants' },
@@ -64,9 +62,6 @@ export default class SignUp extends Block {
       findEmptyField(form);
     }
 
-    if (isValidForm(form)) {
-      // new signUp().registration(new FormData(form));        
-    }
     const formData = new FormData(form)
     AuthController.registration(formData)
   }

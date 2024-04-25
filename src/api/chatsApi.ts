@@ -32,23 +32,24 @@ class ChatsApi extends BaseAPI {
 
   deleteChat(id: number) {
     const data = {
-      chatId: id
-    }
+      chatId: id,
+    };
 
-    return fetch.delete('/', { data })
+    return fetch.delete('/', { data });
   }
 
   uploadChatAvatar(FormData: FormData) {
     const data = {
       chatId: FormData.get('chatID'),
-      avatar: FormData.get('avatar')
-    }
+      avatar: FormData.get('avatar'),
+    };
 
-    console.log(data)
-    return fetch.put('avatar', { data: {
-      data
-    } })
-    
+    console.log(data);
+    return fetch.put('avatar', {
+      data: {
+        data,
+      },
+    });
   }
 }
 

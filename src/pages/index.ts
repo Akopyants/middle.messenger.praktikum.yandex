@@ -6,4 +6,3 @@ export { default as ChangeSettings } from '../pages/change-settings';
 export { default as ChangePassword } from '../pages/change-password';
 export { default as Profile } from '../pages/profile';
 export { default as NotFound } from '../pages/not-found';
-

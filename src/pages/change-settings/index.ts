@@ -8,11 +8,9 @@ import getFormData from '../../utils/getFormData';
 import isValidForm from '../../utils/isValidForm';
 import userSettingsAvatar from '../../components/user-settings-avatar';
 import icons from '../../assets/icons';
-// import { authApi } from '../../api/autApi';
-import store from '../../utils/store';
+import store, { StoreEvents } from '../../utils/store';
 import { settingsControllers } from '../../controllers/settingsControllers';
 import router from '../../router';
-import { profileApi } from '../../api/profileDataApi';
 
 export default class ChangeSettings extends Block {
   constructor() {
@@ -21,28 +19,32 @@ export default class ChangeSettings extends Block {
     this.children.userSettingsAvatar = new userSettingsAvatar({
       name: 'Иван',
       icon: icons.avatarPreview,
+      avatar: store.getState().user.avatar,
       events: {
         click: () => {
-          const input = document.querySelector("#file") as HTMLInputElement;
+          const input = document.querySelector('#file') as HTMLInputElement;
 
           if (input) {
             input.click();
-          
+
             input.addEventListener('change', () => {
               const formData = new FormData();
-          
-              // Check if input.files is defined and has elements
+
               if (input.files && input.files.length > 0) {
                 formData.append('avatar', input.files[0]);
-                console.log(input.files[0])
-                profileApi.changeAvatar(formData)
-              } else {
-                console.error('No file selected.');
+                console.log(input.files[0]);
+                settingsControllers.changeAvatar(formData);
               }
             });
           }
         },
-      }
+      },
+    });
+
+    store.on(StoreEvents.Updated, () => {
+      (this.children.userSettingsAvatar as userSettingsAvatar).setProps({
+        avatar: store.getState().user.avatar,
+      });
     });
 
     Object.entries(store.getState().user).forEach((element) => {
@@ -93,9 +95,8 @@ export default class ChangeSettings extends Block {
     }
 
     if (isValidForm(form)) {
-      settingsControllers.changeSettings(new FormData(form))
+      settingsControllers.changeSettings(new FormData(form));
     }
-
   }
 
   render() {

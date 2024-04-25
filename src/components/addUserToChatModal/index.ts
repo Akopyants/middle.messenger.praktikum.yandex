@@ -52,8 +52,8 @@ export default class addUserToChatModal extends Block {
       events: {
         click: () => {
           this.setProps({
-            isOpen: false
-          })
+            isOpen: false,
+          });
         },
       },
     });
@@ -63,22 +63,21 @@ export default class addUserToChatModal extends Block {
     e.preventDefault();
     const form = this.element?.querySelector('form') as HTMLFormElement;
 
-    console.log('store', store)
+    console.log('store', store);
 
     if (isValidForm(form)) {
       const inputValue = (this.children.addUserToChatInput as Input).getProps().value;
-      
+
       if (typeof inputValue === 'string') {
-          const id = +inputValue;
+        const id = +inputValue;
 
-          const data : putUserData = {
-            users: [id],
-            chatId: +store.getState().currentChatId
-          }
+        const data: putUserData = {
+          users: [id],
+          chatId: +store.getState().currentChatId,
+        };
 
-
-          chatController.addUserToChat(data)
-        }
+        chatController.addUserToChat(data);
+      }
     }
   }
 
