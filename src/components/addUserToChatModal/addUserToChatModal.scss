@@ -3,17 +3,17 @@
 
 .modal {
   position: fixed;
-  top: 0;
-  bottom: 0;
-  display: none;
-  left: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  right: 0;
-  will-change: opacity;
   z-index: 3000;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
   align-items: center;
   justify-content: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  will-change: opacity;
 
   &--open {
     display: flex;
@@ -22,11 +22,11 @@
   &::after {
     @include mixins.size(100%);
 
+    position: absolute;
     top: 0;
     left: 0;
-    content: '';
-    position: absolute;
     background: #000;
+    content: '';
     opacity: 0.8;
   }
 
@@ -38,9 +38,10 @@
 
   &__content {
     @include mixins.size(400px, auto);
+
     z-index: 100;
-    background: #fff;
     padding: 2rem;
+    background: #fff;
 
     &-button {
       margin-top: 4rem;
@@ -50,8 +51,8 @@
       @include mixins.size(20px);
 
       position: relative;
-      background: #fff;
       border: unset;
+      background: #fff;
 
       &::after {
         @include mixins.size(100%);
@@ -59,10 +60,10 @@
         position: absolute;
         top: 0;
         left: 0;
-        content: '';
         background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='iso-8859-1'%3F%3E%3C!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools --%3E%3Csvg fill='%23000000' height='800px' width='800px' version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 490 490' xml:space='preserve'%3E%3Cpolygon points='456.851,0 245,212.564 33.149,0 0.708,32.337 212.669,245.004 0.708,457.678 33.149,490 245,277.443 456.851,490 489.292,457.678 277.331,245.004 489.292,32.337 '/%3E%3C/svg%3E");
-        background-size: contain;
         background-repeat: no-repeat;
+        background-size: contain;
+        content: '';
       }
     }
   }

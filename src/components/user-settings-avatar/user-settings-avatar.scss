@@ -10,9 +10,9 @@
     @include mixins.size(13rem);
 
     position: relative;
+    overflow: hidden;
     background-color: vars.$gray-light;
     border-radius: 50%;
-    overflow: hidden;
     object-fit: contain;
 
     input {

@@ -17,9 +17,9 @@
   }
 
   &__body {
-    overflow-y: scroll;
     flex-grow: 1;
     padding: 2rem;
+    overflow-y: scroll;
   }
 
   &__footer {
@@ -128,8 +128,8 @@
 
 .button-add-chat-modal {
   position: absolute;
-  left: 2rem;
   bottom: 2rem;
+  left: 2rem;
 
   img {
     @include mixins.size(2rem);
