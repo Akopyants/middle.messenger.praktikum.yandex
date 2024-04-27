@@ -1,0 +1,16 @@
+@use '@/assets/variables' as vars;
+@use '@styles/mixins' as mixins;
+
+.remove-user-item-list {
+    list-style: none;
+
+    li {
+        font-size: 2rem;
+        margin-top: 1.6rem;
+        cursor: pointer;
+
+        &:hover {
+            color: rgb(199, 15, 15);
+        }
+    }
+}

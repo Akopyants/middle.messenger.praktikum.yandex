@@ -46,6 +46,12 @@ export default class chatHeader extends Block {
       className: 'button-add-user',
       icon: icons.plus,
     });
+
+    this.children.removeUserButton = new Button({
+      square: true,
+      className: 'button-remove-user',
+      icon: icons.minus,
+    });
   }
 
   render() {

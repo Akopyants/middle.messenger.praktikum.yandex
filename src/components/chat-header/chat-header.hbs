@@ -7,20 +7,14 @@
   </div>
   <div class="chat-item__info">
     <span class="chat-item__name">{{ title }}</span>
-    {{#if lastMessage}}
-      <p class="chat-item__message">{{ lastMessage }}</p>
-    {{/if}}
   </div>
-  {{#if unreadMessages}}
-    <div class="chat-item__unread-messages">{{ unreadMessages }}</div>
-  {{/if}}
-  {{#if time}}
-    <div class="chat-item__time">{{ time }}</div>
-  {{/if}}
 
-  {{#if showAddUserButton }}
-    {{{ addUserButton }}}
-  {{/if}}
+  <div class="chat-item__buttons">
+  {{{ addUserButton }}}
+  {{{ removeUserButton }}}
+  </div>
+  
+
 </div>
 {{else}}
 <div></div>

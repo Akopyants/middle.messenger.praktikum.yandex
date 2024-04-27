@@ -33,13 +33,26 @@ interface chatsInterface {
   last_message?: interfaceMessage
 }
 
+interface ChatUser {
+  id: number;
+  // first_name: string;
+  // second_name: string;
+  // display_name: string | null;
+  login: string;
+  // avatar: string | null;
+  // role: 'regular' | 'admin';
+}
+
 interface storeInterface {
   user: userInterface;
   chats: chatsInterface[];
   messages?: Record<string, interfaceMessage[]>;
   currentChatId: string;
-  token: string
+  token: string;
+  currentChatUsers?: ChatUser[];
 }
+
+
 
 class Store extends EventBus {
   private state: storeInterface = {
@@ -47,6 +60,7 @@ class Store extends EventBus {
     chats: [],
     token: '',
     currentChatId: '',
+    currentChatUsers: [],
     messages: {}
   };
 

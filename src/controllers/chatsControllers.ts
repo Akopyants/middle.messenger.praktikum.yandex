@@ -70,6 +70,28 @@ export class chatController {
     }
   }
 
+  static async getChatUsers(id: number) {
+    try {
+      const response = await chatsApi.getChatUsers(id);
+      store.set('currentChatUsers', JSON.parse(response.response));
+      
+
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  
+  static async deleteUsersFromChat(usersId: number, chatId: number) {
+    try {
+      await chatsApi.deleteUserFromChat(usersId, chatId);
+      const response = await chatsApi.getChatUsers(chatId);
+      store.set('currentChatUsers', JSON.parse(response.response));
+
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   static async sendMessage(value: string) {
     chatController.ws.send(
       JSON.stringify({

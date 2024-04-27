@@ -22,6 +22,10 @@ class ChatsApi extends BaseAPI {
     return fetch.post(`/token/${id}`);
   }
 
+  getChatUsers(id: number) {
+    return fetch.get(`${id}/users`)
+  }
+
   getCurrentChat(id: string) {
     return fetch.get(`${id}/common`);
   }
@@ -38,6 +42,15 @@ class ChatsApi extends BaseAPI {
     return fetch.delete('/', { data });
   }
 
+  deleteUserFromChat(usersId: number, chatId: number) {
+    const data = {
+      users: [usersId],
+      chatId
+    }
+
+    return fetch.delete('users/', { data })
+  }
+ 
   uploadChatAvatar(FormData: FormData) {
     const data = {
       chatId: FormData.get('chatID'),

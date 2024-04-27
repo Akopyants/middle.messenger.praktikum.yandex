@@ -12,7 +12,7 @@ class AuthController {
   public async login(data: FormData) {
     try {
       await authApi.login(data);
-      router.go('/chat');
+      router.go('/messenger');
       const res = await authApi.getUserData();
       store.set('user', JSON.parse(res.response));
       console.log(store);

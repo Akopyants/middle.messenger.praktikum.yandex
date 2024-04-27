@@ -8,6 +8,7 @@ import Input from '../../components/input';
 import Link from '../../components/link';
 import messageForm from '../../components/message-form';
 import Messages from '../../components/messages';
+import removeUserToChatModal from '../../components/removeUserToChatModal';
 import { chatController } from '../../controllers/chatsControllers';
 import Block from '../../utils/Block';
 import store, { StoreEvents } from '../../utils/store';
@@ -57,11 +58,27 @@ export default class ChatPage extends Block {
             const targetElement = e.target as HTMLElement;
 
             if (targetElement.tagName === 'BUTTON') {
-              (this.children.addUserToChatModal as addUserToChatModal).setProps({
-                isOpen: true,
-              });
-            }
+              if (targetElement.classList.contains('button-add-user')) {
+                (this.children.addUserToChatModal as addUserToChatModal).setProps({
+                  isOpen: true,
+                });
+              }
 
+              if (targetElement.classList.contains('button-remove-user')) {
+
+                (this.children.removeUserToChatModal as removeUserToChatModal).setProps({
+                  isOpen: true
+                })
+
+                const target = e.target as HTMLElement;
+                const chatItem = target?.closest('.chat-item') as HTMLElement;
+                const chatId = chatItem?.dataset.id;
+
+                if (chatId) {
+                  chatController.getChatUsers(+chatId);
+                }
+              }
+            }
           },
         },
       });
@@ -127,6 +144,10 @@ export default class ChatPage extends Block {
     this.children.addUserToChatModal = new addUserToChatModal({
       isOpen: false,
     });
+
+    this.children.removeUserToChatModal = new removeUserToChatModal({
+      isOpen: false
+    })
 
     this.children.buttonOpenModalAddChat = new Button({
       className: 'button-add-chat-modal',
