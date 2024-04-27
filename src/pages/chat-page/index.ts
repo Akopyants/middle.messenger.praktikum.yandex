@@ -65,10 +65,9 @@ export default class ChatPage extends Block {
               }
 
               if (targetElement.classList.contains('button-remove-user')) {
-
                 (this.children.removeUserToChatModal as removeUserToChatModal).setProps({
-                  isOpen: true
-                })
+                  isOpen: true,
+                });
 
                 const target = e.target as HTMLElement;
                 const chatItem = target?.closest('.chat-item') as HTMLElement;
@@ -146,8 +145,8 @@ export default class ChatPage extends Block {
     });
 
     this.children.removeUserToChatModal = new removeUserToChatModal({
-      isOpen: false
-    })
+      isOpen: false,
+    });
 
     this.children.buttonOpenModalAddChat = new Button({
       className: 'button-add-chat-modal',
