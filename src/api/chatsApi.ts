@@ -11,7 +11,7 @@ type putUserData = {
 
 class ChatsApi extends BaseAPI {
   createChat(title: string) {
-    return fetch.post('/', { data: { title } });
+    return fetch.post('', { data: { title } });
   }
 
   getChats() {
