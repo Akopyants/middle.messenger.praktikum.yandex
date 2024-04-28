@@ -1,7 +1,7 @@
 import { chatsApi } from '../api/chatsApi';
 import store from '../utils/store';
 
-type putUserData = {
+type PutUserData = {
   users: number[];
   chatId: number;
 };
@@ -31,7 +31,7 @@ export class chatController {
     }
   }
 
-  static async addUserToChat(data: putUserData) {
+  static async addUserToChat(data: PutUserData) {
     try {
       await chatsApi.addUserToChat(data);
     } catch (err) {
@@ -42,7 +42,11 @@ export class chatController {
   static async getChats() {
     try {
       const response = await chatsApi.getChats();
-      store.set('chats', JSON.parse(response.response));
+      try {
+        store.set('chats', JSON.parse(response.response));
+      } catch (error) {
+        console.log(error);
+      }
     } catch {
       console.log('test');
     }
@@ -51,8 +55,11 @@ export class chatController {
   static async getChatToken(id: string) {
     try {
       const response = await chatsApi.getChatToken(id);
-
-      store.set('token', JSON.parse(response.response).token);
+      try {
+        store.set('token', JSON.parse(response.response).token);
+      } catch (error) {
+        console.log(error);
+      }
 
       this.connectToChat();
     } catch {
@@ -63,8 +70,11 @@ export class chatController {
   static async getCurrentChat(id: string) {
     try {
       const response = await chatsApi.getCurrentChat(id);
-
-      store.set('currentChatId', JSON.parse(response.response));
+      try {
+        store.set('currentChatId', JSON.parse(response.response));
+      } catch (error) {
+        console.log(error);
+      }
     } catch {
       console.log('test');
     }
@@ -73,22 +83,27 @@ export class chatController {
   static async getChatUsers(id: number) {
     try {
       const response = await chatsApi.getChatUsers(id);
-      store.set('currentChatUsers', JSON.parse(response.response));
-      
-
+      try {
+        store.set('currentChatUsers', JSON.parse(response.response));
+      } catch (error) {
+        console.log(error);
+      }
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   }
-  
+
   static async deleteUsersFromChat(usersId: number, chatId: number) {
     try {
       await chatsApi.deleteUserFromChat(usersId, chatId);
       const response = await chatsApi.getChatUsers(chatId);
-      store.set('currentChatUsers', JSON.parse(response.response));
-
+      try {
+        store.set('currentChatUsers', JSON.parse(response.response));
+      } catch (error) {
+        console.log(error);
+      }
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   }
 
@@ -134,19 +149,22 @@ export class chatController {
         if (chatId) {
           const state = store.getState();
           const messages = state.messages || {};
-          const message = JSON.parse(event.data);
+          try {
+            const message = JSON.parse(event.data);
+            if (Array.isArray(message)) {
+              store.set(`messages.${chatId}`, [...message].reverse());
+            } else {
+              const currentMessages = messages[chatId] || [];
+              const updatedMessages = [...currentMessages, message];
 
-          if (Array.isArray(message)) {
-            store.set(`messages.${chatId}`, [...message].reverse());
-          } else {
-            const currentMessages = messages[chatId] || [];
-            const updatedMessages = [...currentMessages, message];
+              store.set(`messages.${chatId}`, updatedMessages);
+            }
 
-            store.set(`messages.${chatId}`, updatedMessages);
+            const chatBody = document.querySelector('.chat__body') as HTMLElement;
+            chatBody.scrollTop = chatBody.scrollHeight;
+          } catch (error) {
+            console.log(error);
           }
-
-          const chatBody = document.querySelector('.chat__body') as HTMLElement;
-          chatBody.scrollTop = chatBody.scrollHeight;
         }
 
         const input = document.querySelector('.chat__footer input') as HTMLInputElement | null;

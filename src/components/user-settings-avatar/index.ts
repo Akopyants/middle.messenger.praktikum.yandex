@@ -11,7 +11,7 @@ interface InterfaceUserSettingsAvatar {
   };
 }
 
-export default class userSettingsAvatar extends Block {
+export default class UserSettingsAvatar extends Block {
   constructor(props: InterfaceUserSettingsAvatar) {
     super({
       ...props,

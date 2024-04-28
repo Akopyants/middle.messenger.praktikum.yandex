@@ -14,7 +14,7 @@ export interface InterfaceuserSettingsItem {
   validate?: boolean;
 }
 
-export default class userSettingsItem extends Block {
+export default class UserSettingsItem extends Block {
   constructor(props: InterfaceuserSettingsItem) {
     super({ ...props });
 

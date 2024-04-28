@@ -12,11 +12,11 @@ interface InterfaceModal {
   isOpen?: boolean;
 }
 
-type putUserData = {
+type PutUserData = {
   users: number[];
   chatId: number;
 };
-export default class addUserToChatModal extends Block {
+export default class AddUserToChatModal extends Block {
   constructor(props: InterfaceModal) {
     super({ ...props });
 
@@ -71,7 +71,7 @@ export default class addUserToChatModal extends Block {
       if (typeof inputValue === 'string') {
         const id = +inputValue;
 
-        const data: putUserData = {
+        const data: PutUserData = {
           users: [id],
           chatId: +store.getState().currentChatId,
         };

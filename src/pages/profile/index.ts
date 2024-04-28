@@ -17,7 +17,7 @@ export default class Profile extends Block {
     super();
 
     this.children.userSettingsAvatar = new userSettingsAvatar({
-      name: 'Иван',
+      name: store.getState().user.login  || 'Введите имя',
       avatar: store.getState().user.avatar,
       icon: icons.avatarPreview,
     });

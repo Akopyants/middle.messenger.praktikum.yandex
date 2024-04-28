@@ -50,16 +50,20 @@ class HTTPTransport {
         if (xhr.status >= 200 && xhr.status < 300) {
           resolve(xhr);
         } else {
-          const response = JSON.parse(xhr.responseText);
-          const reason = response.reason || '';
-
-          if (reason === 'User already in system') {
-            router.go('/messenger');
-            return;
+          try {
+            const response = JSON.parse(xhr.responseText);
+            const reason = response.reason || '';
+  
+            if (reason === 'User already in system') {
+              router.go('/messenger');
+              return;
+            }
+  
+            console.log(reason);
+            reject(xhr);
+          } catch (error) {
+            console.log(error)
           }
-
-          console.log(reason);
-          reject(xhr);
         }
       };
 

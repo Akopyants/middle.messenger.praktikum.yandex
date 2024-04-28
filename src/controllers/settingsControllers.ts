@@ -7,8 +7,12 @@ export class settingsControllers {
     try {
       const response = await profileApi.changeSettings(data);
       const user = response.response;
-
-      store.set('user', JSON.parse(user))
+      
+      try {
+        store.set('user', JSON.parse(user))
+      } catch (error) {
+        console.log(error)
+      }
 
       alert('Данные сохранены')
     } catch (err) {
@@ -31,9 +35,12 @@ export class settingsControllers {
   static async changeAvatar(data: FormData) {
     try {
       const response = await profileApi.changeAvatar(data);
-      const responseText = JSON.parse(response.responseText);
-
-      store.set('user.avatar', responseText.avatar)
+      try {
+        const responseText = JSON.parse(response.responseText);
+        store.set('user.avatar', responseText.avatar)
+      } catch (error) {
+        console.log(error)
+      }
     } catch (err) {
       alert(err)
     }

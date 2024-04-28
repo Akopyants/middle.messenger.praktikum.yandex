@@ -12,7 +12,7 @@ interface chatsInterface {
   };
 }
 
-export default class messageForm extends Block {
+export default class MessageForm extends Block {
   constructor(props: chatsInterface) {
     super({
       ...props,

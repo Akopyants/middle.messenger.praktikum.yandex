@@ -35,7 +35,7 @@ interface chatsInterface {
   };
 }
 
-export default class chatHeader extends Block {
+export default class ChatHeader extends Block {
   constructor(props: chatsInterface) {
     super({
       ...props,

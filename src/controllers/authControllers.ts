@@ -14,8 +14,11 @@ class AuthController {
       await authApi.login(data);
       router.go('/messenger');
       const res = await authApi.getUserData();
-      store.set('user', JSON.parse(res.response));
-      console.log(store);
+      try {
+        store.set('user', JSON.parse(res.response));
+      } catch (error) {
+        console.log(error)
+      }
     } catch (error) {
       if (error instanceof XMLHttpRequest) {
         alert(error.response);
@@ -26,7 +29,11 @@ class AuthController {
   public async registration(data: FormData) {
     try {
       const res = await authApi.registration(data);
-      store.set('user', JSON.parse(res.response));
+      try {
+        store.set('user', JSON.parse(res.response));      
+      } catch (error) {
+        console.log(error)
+      }
       if (res.status === 200) {
         router.go('/messenger')
       }
@@ -44,7 +51,11 @@ class AuthController {
 
       console.log(res.status)
       if (res.status === 200) {
-        store.set('user', JSON.parse(res.response));
+        try {
+          store.set('user', JSON.parse(res.response));
+        } catch (error) {
+          console.log(error)
+        }
       }
 
     } catch (error) {

@@ -10,7 +10,7 @@ interface InterfaceModal {
   isOpen?: boolean;
 }
 
-export default class addChatModal extends Block {
+export default class AddChatModal extends Block {
   constructor(props: InterfaceModal) {
     super({ ...props });
 

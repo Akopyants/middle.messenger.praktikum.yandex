@@ -4,7 +4,7 @@ import HTTPTransport from '../utils/HTTPTransport';
 
 const fetch = new HTTPTransport(`${apiUrl}/chats`);
 
-type putUserData = {
+type PutUserData = {
   users: number[];
   chatId: number;
 };
@@ -30,7 +30,7 @@ class ChatsApi extends BaseAPI {
     return fetch.get(`${id}/common`);
   }
 
-  addUserToChat(data: putUserData) {
+  addUserToChat(data: PutUserData) {
     return fetch.put('users', { data });
   }
 

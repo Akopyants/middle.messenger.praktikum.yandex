@@ -14,12 +14,7 @@ interface InterfaceModal {
   isOpen?: boolean;
 }
 
-// type putUserData = {
-//   users: number[];
-//   chatId: number;
-// };
-
-export default class removeUserToChatModal extends Block {
+export default class RemoveUserToChatModal extends Block {
   constructor(props: InterfaceModal) {
     super({ ...props });
 
@@ -57,26 +52,6 @@ export default class removeUserToChatModal extends Block {
       })
     });
 
-    // this.children.addUserToChatInput = new Input({
-    //   rowClassName: '',
-    //   name: 'userId',
-    //   errorMessages: '',
-    //   type: 'text',
-    //   value: '',
-    //   placeholder: 'Id пользователя',
-    //   validate: true,
-    // });
-
-    // this.children.addUserToChatButton = new Button({
-    //   text: 'Добавить',
-    //   className: 'modal__content-button',
-    //   events: {
-    //     click: (e: Event) => {
-    //       this.submitForm(e);
-    //     },
-    //   },
-    // });
-
     this.children.closeModal = new Button({
       text: '',
       className: 'modal__content-close',
@@ -89,28 +64,6 @@ export default class removeUserToChatModal extends Block {
       },
     });
   }
-
-  // submitForm(e: Event) {
-    // e.preventDefault();
-    // const form = this.element?.querySelector('form') as HTMLFormElement;
-
-    // console.log('store', store);
-
-    // if (isValidForm(form)) {
-      // const inputValue = (this.children.addUserToChatInput as Input).getProps().value;
-
-      // if (typeof inputValue === 'string') {
-      //   const id = +inputValue;
-
-      //   const data: putUserData = {
-      //     users: [id],
-      //     chatId: +store.getState().currentChatId,
-      //   };
-
-      //   chatController.addUserToChat(data);
-      // }
-    // }
-  // }
 
   render() {
     return template;
