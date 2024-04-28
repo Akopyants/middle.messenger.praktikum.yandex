@@ -1,8 +1,5 @@
-// import { chatController } from '../../controllers/chatsControllers';
 import Block from '../../utils/Block';
-// import isValidForm from '../../utils/isValidForm';
 import Button from '../button';
-// import Input from '../input';
 import Title from '../title';
 import template from './removeUserToChatModal.hbs?raw';
 import './removeUserToChatModal.scss';
