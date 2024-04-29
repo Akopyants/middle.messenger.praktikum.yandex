@@ -9,7 +9,7 @@ import isValidForm from '../../utils/isValidForm';
 import userSettingsAvatar from '../../components/user-settings-avatar';
 import icons from '../../assets/icons';
 import store, { StoreEvents } from '../../utils/store';
-import { settingsControllers } from '../../controllers/settingsControllers';
+import { SettingsControllers } from '../../controllers/settingsControllers';
 import router from '../../router';
 
 export default class ChangeSettings extends Block {
@@ -33,7 +33,7 @@ export default class ChangeSettings extends Block {
               if (input.files && input.files.length > 0) {
                 formData.append('avatar', input.files[0]);
                 console.log(input.files[0]);
-                settingsControllers.changeAvatar(formData);
+                SettingsControllers.changeAvatar(formData);
               }
             });
           }
@@ -95,7 +95,7 @@ export default class ChangeSettings extends Block {
     }
 
     if (isValidForm(form)) {
-      settingsControllers.changeSettings(new FormData(form));
+      SettingsControllers.changeSettings(new FormData(form));
     }
   }
 

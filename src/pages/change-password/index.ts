@@ -2,7 +2,7 @@ import icons from '../../assets/icons';
 import Button from '../../components/button';
 import userSettingsAvatar from '../../components/user-settings-avatar';
 import userSettingsItem from '../../components/user-settings-item';
-import { settingsControllers } from '../../controllers/settingsControllers';
+import { SettingsControllers } from '../../controllers/settingsControllers';
 import router from '../../router';
 import Block from '../../utils/Block';
 import isValidForm from '../../utils/isValidForm';
@@ -60,7 +60,7 @@ export default class СhangePassword extends Block {
     const form = this.element?.querySelector('form') as HTMLFormElement;
 
     if (isValidForm(form)) {
-      settingsControllers.changePassword(new FormData(form));
+      SettingsControllers.changePassword(new FormData(form));
     }
   }
 
