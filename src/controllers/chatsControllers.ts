@@ -6,7 +6,7 @@ type PutUserData = {
   chatId: number;
 };
 
-export class chatController {
+export class ChatController {
   static ws: WebSocket;
 
   static async create(title: string) {
@@ -108,7 +108,7 @@ export class chatController {
   }
 
   static async sendMessage(value: string) {
-    chatController.ws.send(
+    ChatController.ws.send(
       JSON.stringify({
         content: value,
         type: 'message',
@@ -122,12 +122,12 @@ export class chatController {
       const chatId = store.getState().currentChatId;
       const token = store.getState().token;
 
-      chatController.ws = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);
+      ChatController.ws = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);
 
-      chatController.ws.addEventListener('open', () => {
+      ChatController.ws.addEventListener('open', () => {
         console.log('Соединение установлено');
 
-        chatController.ws.send(
+        ChatController.ws.send(
           JSON.stringify({
             content: '0',
             type: 'get old',
@@ -135,7 +135,7 @@ export class chatController {
         );
       });
 
-      chatController.ws.addEventListener('close', (event) => {
+      ChatController.ws.addEventListener('close', (event) => {
         if (event.wasClean) {
           console.log('Соединение закрыто чисто');
         } else {
@@ -145,7 +145,7 @@ export class chatController {
         console.log(`Код: ${event.code} | Причина: ${event.reason}`);
       });
 
-      chatController.ws.addEventListener('message', (event) => {
+      ChatController.ws.addEventListener('message', (event) => {
         if (chatId) {
           const state = store.getState();
           const messages = state.messages || {};
@@ -171,7 +171,7 @@ export class chatController {
         input?.focus();
       });
 
-      chatController.ws.addEventListener('error', (event) => {
+      ChatController.ws.addEventListener('error', (event) => {
         console.log('Ошибка', event);
       });
     } catch (err) {
