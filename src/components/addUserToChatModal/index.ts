@@ -1,4 +1,4 @@
-import { chatController } from '../../controllers/chatsControllers';
+import { ChatController } from '../../controllers/chatsControllers';
 import Block from '../../utils/Block';
 import isValidForm from '../../utils/isValidForm';
 import Button from '../button';
@@ -76,7 +76,7 @@ export default class AddUserToChatModal extends Block {
           chatId: +store.getState().currentChatId,
         };
 
-        chatController.addUserToChat(data);
+        ChatController.addUserToChat(data);
       }
     }
   }

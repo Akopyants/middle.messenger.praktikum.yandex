@@ -1,4 +1,4 @@
-import { chatController } from '../../controllers/chatsControllers';
+import { ChatController } from '../../controllers/chatsControllers';
 import Block from '../../utils/Block';
 import Button from '../button';
 import ModalForm from '../form';
@@ -52,7 +52,7 @@ export default class AddChatModal extends Block {
       const formData = new FormData(modalForm._element);
       const title = formData.get('chatName') as string;
 
-      chatController.create(title);
+      ChatController.create(title);
 
       this.setProps({
         isOpen: false,

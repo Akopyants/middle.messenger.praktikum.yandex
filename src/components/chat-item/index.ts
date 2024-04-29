@@ -1,5 +1,5 @@
 import icons from '../../assets/icons';
-import { chatController } from '../../controllers/chatsControllers';
+import { ChatController } from '../../controllers/chatsControllers';
 import Block from '../../utils/Block';
 import store from '../../utils/store';
 import Button from '../button';
@@ -30,7 +30,7 @@ export default class ChatItem extends Block {
           const id = this.getProps().id;
           store.set('currentChatId', id);
 
-          chatController.getChatToken(id as string);
+          ChatController.getChatToken(id as string);
         },
       },
     });
@@ -52,7 +52,7 @@ export default class ChatItem extends Block {
           const chatItem = target?.closest('.chat-item') as HTMLElement;
           const chatId = chatItem?.dataset.id || '';
 
-          chatController.delete(+chatId);
+          ChatController.delete(+chatId);
         }
       }
     });

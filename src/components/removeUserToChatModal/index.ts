@@ -5,7 +5,7 @@ import template from './removeUserToChatModal.hbs?raw';
 import './removeUserToChatModal.scss';
 import store, {StoreEvents} from '../../utils/store';
 import RemoveUser from '../remove-user';
-import { chatController } from '../../controllers/chatsControllers';
+import { ChatController } from '../../controllers/chatsControllers';
 
 interface InterfaceModal {
   isOpen?: boolean;
@@ -38,7 +38,7 @@ export default class RemoveUserToChatModal extends Block {
             events: {
               click: () => {
                 if (id && chatId) {
-                  chatController.deleteUsersFromChat(id, +chatId);
+                  ChatController.deleteUsersFromChat(id, +chatId);
                 }
               }
             }

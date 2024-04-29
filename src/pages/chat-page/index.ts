@@ -9,7 +9,7 @@ import Link from '../../components/link';
 import messageForm from '../../components/message-form';
 import Messages from '../../components/messages';
 import removeUserToChatModal from '../../components/removeUserToChatModal';
-import { chatController } from '../../controllers/chatsControllers';
+import { ChatController } from '../../controllers/chatsControllers';
 import Block from '../../utils/Block';
 import store, { StoreEvents } from '../../utils/store';
 import getTime from '../../utils/time';
@@ -31,7 +31,7 @@ export default class ChatPage extends Block {
   constructor() {
     super();
 
-    chatController.getChats();
+    ChatController.getChats();
 
     store.on(StoreEvents.Updated, () => {
       this.lists.chatItems = store.getState().chats.map((item) => {
@@ -74,7 +74,7 @@ export default class ChatPage extends Block {
                 const chatId = chatItem?.dataset.id;
 
                 if (chatId) {
-                  chatController.getChatUsers(+chatId);
+                  ChatController.getChatUsers(+chatId);
                 }
               }
             }
@@ -172,7 +172,7 @@ export default class ChatPage extends Block {
       const value = input.value;
 
       if (0 < value.length) {
-        chatController.ws.send(
+        ChatController.ws.send(
           JSON.stringify({
             content: value,
             type: 'message',
