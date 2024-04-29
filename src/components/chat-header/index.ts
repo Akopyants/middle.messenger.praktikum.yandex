@@ -4,7 +4,7 @@ import Button from '../button';
 import template from './chat-header.hbs?raw';
 import './chat-header.scss';
 
-interface userInterface {
+interface UserInterface {
   avatar?: string;
   display_name?: string;
   first_name?: string;
@@ -16,7 +16,7 @@ interface userInterface {
   id?: number;
 }
 
-interface chatsInterface {
+interface ChatsInterface {
   show?: boolean;
   id?: number;
   title?: string;
@@ -24,7 +24,7 @@ interface chatsInterface {
   created_by?: number;
   unread_count?: number;
   last_message?: {
-    user?: userInterface;
+    user?: UserInterface;
     time?: string;
     content?: string;
     id?: number;
@@ -36,7 +36,7 @@ interface chatsInterface {
 }
 
 export default class ChatHeader extends Block {
-  constructor(props: chatsInterface) {
+  constructor(props: ChatsInterface) {
     super({
       ...props,
     });

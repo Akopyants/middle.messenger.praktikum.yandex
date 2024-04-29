@@ -24,7 +24,7 @@ interface interfaceMessage {
   id?: number;
 }
 
-interface chatsInterface {
+interface ChatsInterface {
   id?: number;
   title?: string;
   avatar?: string;
@@ -35,17 +35,12 @@ interface chatsInterface {
 
 interface ChatUser {
   id: number;
-  // first_name: string;
-  // second_name: string;
-  // display_name: string | null;
   login: string;
-  // avatar: string | null;
-  // role: 'regular' | 'admin';
 }
 
 interface storeInterface {
   user: userInterface;
-  chats: chatsInterface[];
+  chats: ChatsInterface[];
   messages?: Record<string, interfaceMessage[]>;
   currentChatId: string;
   token: string;

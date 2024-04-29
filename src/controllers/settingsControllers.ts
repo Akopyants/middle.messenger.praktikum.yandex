@@ -2,7 +2,7 @@ import { profileApi } from '../api/profileDataApi';
 import store from '../utils/store';
 
 
-export class settingsControllers {
+export class SettingsControllers {
   static async changeSettings(data: FormData) {
     try {
       const response = await profileApi.changeSettings(data);

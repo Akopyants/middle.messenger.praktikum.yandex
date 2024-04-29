@@ -4,7 +4,7 @@ import HTTPTransport from '../utils/HTTPTransport';
 
 const fetch = new HTTPTransport(`${apiUrl}/user`);
 
-class profileDataApi extends BaseAPI {
+class ProfileDataApi extends BaseAPI {
   changeSettings(formData: FormData) {
     const data = {
       first_name: formData.get('first_name') as string,
@@ -34,4 +34,4 @@ class profileDataApi extends BaseAPI {
   }
 }
 
-export const profileApi = new profileDataApi();
+export const profileApi = new ProfileDataApi();

@@ -5,7 +5,7 @@ import Input from '../input';
 import template from './message-form.hbs?raw';
 import './message-form.scss';
 
-interface chatsInterface {
+interface ChatsInterface {
   show?: boolean;
   events?: {
     submit: (e: Event) => void;
@@ -13,7 +13,7 @@ interface chatsInterface {
 }
 
 export default class MessageForm extends Block {
-  constructor(props: chatsInterface) {
+  constructor(props: ChatsInterface) {
     super({
       ...props,
     });
