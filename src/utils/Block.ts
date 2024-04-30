@@ -12,7 +12,7 @@ type lists = {
   [key: string]: Block | unknown;
 };
 
-type childrenType = {
+type ChildrenType = {
   [key: string]: Block | unknown;
 };
 
@@ -28,7 +28,7 @@ export default class Block {
   private _id: string;
 
   protected props: Props;
-  protected children: childrenType = {};
+  protected children: ChildrenType = {};
   protected lists: lists;
   protected eventBus: () => EventBus;
 
@@ -118,7 +118,7 @@ export default class Block {
   }
 
   private _getChildrenPropsAndProps(propsAndChildren: Props): {
-    children: childrenType;
+    children: ChildrenType;
     props: Props;
     lists: lists;
   } {
@@ -155,7 +155,9 @@ export default class Block {
       return;
     }
 
+
     Object.assign(this.props, nextProps);
+
   }
 
   get element(): HTMLElement | null {

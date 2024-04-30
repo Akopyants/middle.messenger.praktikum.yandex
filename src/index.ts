@@ -1,44 +1,17 @@
-import RenderDOM from './utils/RenderDOM';
-import { ChatPage, LoginPage, SignIn, ChangeSettings, ChangePassword, Profile, NotFound, ErrorPage } from './pages';
+import router from './router';
 
-interface PageMap {
-  [key: string]: ChatPage | LoginPage | SignIn | ChangeSettings | ChangePassword | Profile | NotFound | ErrorPage;
-}
+import { LoginPage, SignUp, ChatPage, Profile, ChangePassword, ChangeSettings } from './pages';
+import AuthController from './controllers/authControllers';
 
-const pages: PageMap = {
-  chat: new ChatPage(),
-  login: new LoginPage(),
-  'sign-in': new SignIn(),
-  profile: new Profile(),
-  'change-password': new ChangePassword(),
-  'change-settings': new ChangeSettings(),
-  'not-found': new NotFound(),
-  'error-page': new ErrorPage(),
-};
+window.addEventListener('DOMContentLoaded', async () => {
+  await AuthController.getUser();
 
-function navigate(page: string): void {
-  const source = pages[page];
-
-  if (source) {
-    RenderDOM('#app', source);
-    window.location.hash = page;
-  }
-}
-
-document.addEventListener('click', (e) => {
-  const target = e.target as HTMLElement;
-  const page = target.getAttribute('page');
-  if (page) {
-    navigate(page);
-
-    e.preventDefault();
-    e.stopImmediatePropagation();
-  }
+  router.use('/', LoginPage);
+  router.use('/login', LoginPage);
+  router.use('/sign-up', SignUp);
+  router.use('/messenger', ChatPage);
+  router.use('/profile', Profile);
+  router.use('/change-password', ChangePassword);
+  router.use('/settings', ChangeSettings);
+  router.start();
 });
-
-function handleHashChange() {
-  const page = window.location.hash ? window.location.hash.replace(/^#/, '') : 'login';
-  navigate(page);
-}
-
-document.addEventListener('DOMContentLoaded', () => handleHashChange());

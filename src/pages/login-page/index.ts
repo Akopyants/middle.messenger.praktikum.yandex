@@ -8,6 +8,8 @@ import Link from '../../components/link';
 import findEmptyField from '../../utils/findEmptyField';
 import getFormData from '../../utils/getFormData';
 import isValidForm from '../../utils/isValidForm';
+import AuthController from '../../controllers/authControllers';
+// import store from '../../utils/store';
 
 export default class LoginPage extends Block {
   constructor() {
@@ -26,6 +28,7 @@ export default class LoginPage extends Block {
       placeholder: 'Логин',
       errorMessages: '',
       valid: 'false',
+      value: 'TTTTAkopyantsTTTT',
       validate: true,
     });
 
@@ -35,6 +38,7 @@ export default class LoginPage extends Block {
       type: 'password',
       placeholder: 'Пароль',
       valid: 'false',
+      value: 'TestTest1234',
       validate: true,
     });
 
@@ -50,11 +54,12 @@ export default class LoginPage extends Block {
     });
 
     this.children.regLink = new Link({
-      url: '#',
+      url: 'sign-in',
       text: 'Нет аккаунта?',
       className: 'sign-in-form__link',
-      page: 'sign-in',
+      page: '/sign-up',
     });
+    
   }
 
   submitForm(e: Event) {
@@ -67,7 +72,7 @@ export default class LoginPage extends Block {
     }
 
     if (isValidForm(form)) {
-      alert()
+      AuthController.login(new FormData(form));
     }
   }
 

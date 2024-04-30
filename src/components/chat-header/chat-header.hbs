@@ -1,0 +1,23 @@
+{{# if show }}
+<div class="chat-item" page="chat" data-id="{{id}}">
+  <div class="chat-item__avatar">
+    {{#if avatar}}
+    <img class="chat-item__avatar-image" src={{ avatar }} alt="" />
+    {{/if}}
+  </div>
+  <div class="chat-item__info">
+    <span class="chat-item__name">{{ title }}</span>
+  </div>
+
+  <div class="chat-item__buttons">
+  {{{ addUserButton }}}
+  {{{ removeUserButton }}}
+  </div>
+  
+
+</div>
+{{else}}
+<div></div>
+{{/if}}
+
+

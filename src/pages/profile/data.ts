@@ -6,32 +6,33 @@ interface data {
     type: string;
   };
 }
+
 export const profileUserData: data = {
   email: {
     name: 'email',
     label: 'Почта',
-    value: 'pochta@yandex.ru',
+    value: '',
     type: 'email',
   },
   login: {
     name: 'login',
     label: 'Логин',
-    value: 'ivanivanov',
+    value: '',
     type: 'text',
   },
-  firstName: {
+  first_name: {
     name: 'first_name',
     label: 'Имя',
-    value: 'Иван',
+    value: '',
     type: 'text',
   },
-  secondName: {
+  second_name: {
     name: 'second_name',
     label: 'Фамилия',
     value: '',
     type: 'text',
   },
-  displayName: {
+  display_name: {
     name: 'display_name',
     label: 'Имя в чате',
     value: '',
@@ -40,7 +41,7 @@ export const profileUserData: data = {
   phone: {
     name: 'phone',
     label: 'Телефон',
-    value: '+7(909)9673030',
+    value: '',
     type: 'tel',
   },
 };

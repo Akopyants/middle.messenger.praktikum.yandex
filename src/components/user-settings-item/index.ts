@@ -3,7 +3,7 @@ import template from './user-settings-item.hbs?raw';
 import './user-settings-item.scss';
 import Input from '../input';
 
-interface InterfaceuserSettingsItem {
+export interface InterfaceuserSettingsItem {
   name: string;
   placeholder: string;
   type: string;
@@ -11,10 +11,10 @@ interface InterfaceuserSettingsItem {
   errorMessages?: string;
   label?: string;
   disabled?: boolean;
-  validate?: boolean; 
+  validate?: boolean;
 }
 
-export default class userSettingsItem extends Block {
+export default class UserSettingsItem extends Block {
   constructor(props: InterfaceuserSettingsItem) {
     super({ ...props });
 

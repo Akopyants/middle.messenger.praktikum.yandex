@@ -1,0 +1,26 @@
+@use '@/assets/variables' as vars;
+@use '@styles/mixins' as mixins;
+
+.user-settings-item {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  border-bottom: 1px solid vars.$gray;
+
+  &__label {
+    @include mixins.font(1.6rem);
+
+    padding: 1rem 0;
+  }
+
+  &__input {
+    padding: 0;
+    border: unset;
+    text-align: right;
+
+    &:focus,
+    &:active {
+      border: unset;
+    }
+  }
+}

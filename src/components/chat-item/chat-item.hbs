@@ -1,19 +1,26 @@
-<div class="chat-item" page="chat">
+<div class="chat-item" page="chat" data-id="{{id}}">
   <div class="chat-item__avatar">
-    {{#if avatarSrc}}
-    <img class="chat-item__avatar-image" src={{ avatarSrc }} alt="" />
+    {{#if avatar}}
+    <img class="chat-item__avatar-image" src={{ avatar }} alt="" />
     {{/if}}
   </div>
   <div class="chat-item__info">
-    <span class="chat-item__name">{{ name }}</span>
+    <span class="chat-item__name">{{ title }}</span>
     {{#if lastMessage}}
-      <p class="chat-item__message">{{ lastMessage }}</p>
+      <p class="chat-item__message">{{ lastMessageLogin }} : {{ lastMessage }}</p>
     {{/if}}
   </div>
-  {{#if unreadMessages}}
-    <div class="chat-item__unread-messages">{{ unreadMessages }}</div>
+  {{#if unreadCount}}
+    <div class="chat-item__unread-messages">{{ unreadCount }}</div>
   {{/if}}
   {{#if time}}
     <div class="chat-item__time">{{ time }}</div>
   {{/if}}
+
+  {{#if showAddUserButton }}
+    {{{ addUserButton }}}
+  {{/if}}
+
+  {{{ deleteChatButton }}}
+
 </div>

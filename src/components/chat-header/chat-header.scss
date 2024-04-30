@@ -1,0 +1,32 @@
+@use '@/assets/variables' as vars;
+@use '@styles/mixins' as mixins;
+
+.chat-item__buttons {
+  display: flex;
+  margin-left: auto;
+  gap: 10px;
+}
+
+.button-add-user {
+  @include mixins.size(3rem);
+
+  margin-left: auto;
+
+  img {
+    @include mixins.size(1.8rem);
+
+    pointer-events: none;
+  }
+}
+
+.button-remove-user {
+  @include mixins.size(3rem);
+
+  margin-left: auto;
+
+  img {
+    @include mixins.size(1.8rem);
+
+    pointer-events: none;
+  }
+}

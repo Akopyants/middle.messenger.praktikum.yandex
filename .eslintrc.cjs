@@ -28,5 +28,6 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
+        "no-prototype-builtins": "off"
     }
 }

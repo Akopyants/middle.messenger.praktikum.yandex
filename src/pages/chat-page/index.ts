@@ -1,30 +1,123 @@
 import icons from '../../assets/icons';
+import addChatModal from '../../components/addChatModal';
+import addUserToChatModal from '../../components/addUserToChatModal';
 import Button from '../../components/button';
+import chatHeader from '../../components/chat-header';
 import ChatItem from '../../components/chat-item';
 import Input from '../../components/input';
 import Link from '../../components/link';
+import messageForm from '../../components/message-form';
+import Messages from '../../components/messages';
+import removeUserToChatModal from '../../components/removeUserToChatModal';
+import { ChatController } from '../../controllers/chatsControllers';
 import Block from '../../utils/Block';
+import store, { StoreEvents } from '../../utils/store';
+import getTime from '../../utils/time';
 import template from './chat-page.hbs?raw';
 import './chat-page.scss';
-import { chatsData } from './data';
+
+interface messageInterface {
+  chat_id?: number;
+  content?: string;
+  file?: null;
+  id?: number;
+  is_read?: boolean;
+  time?: string;
+  type?: string;
+  user_id?: number;
+}
 
 export default class ChatPage extends Block {
   constructor() {
     super();
 
-    this.lists.chatItems = chatsData.map((item) => {
-      return new ChatItem({
-        avatarSrc: item.avatar,
-        name: item.name,
-        lastMessage: item.lastMessage,
-        unreadMessages: item.unreadMessages,
-        time: item.time,
+    ChatController.getChats();
+
+    store.on(StoreEvents.Updated, () => {
+      this.lists.chatItems = store.getState().chats.map((item) => {
+        return new ChatItem({
+          id: item.id,
+          avatar: item.avatar,
+          title: item.title,
+          showAddUserButton: false,
+          lastMessage: item.last_message?.content,
+          lastMessageLogin: item.last_message?.user?.login,
+          unreadCount: item.unread_count,
+        });
+      });
+
+      const currentChatId = store.getState().currentChatId;
+      const currentChat = store.getState().chats.find((item) => item.id === +currentChatId);
+
+      this.children.chatItemHeader = new chatHeader({
+        title: currentChat?.title,
+        showAddUserButton: true,
+        show: Boolean(store.getState().currentChatId),
+        events: {
+          click: (e: Event) => {
+            const targetElement = e.target as HTMLElement;
+
+            if (targetElement.tagName === 'BUTTON') {
+              if (targetElement.classList.contains('button-add-user')) {
+                (this.children.addUserToChatModal as addUserToChatModal).setProps({
+                  isOpen: true,
+                });
+              }
+
+              if (targetElement.classList.contains('button-remove-user')) {
+                (this.children.removeUserToChatModal as removeUserToChatModal).setProps({
+                  isOpen: true,
+                });
+
+                const target = e.target as HTMLElement;
+                const chatItem = target?.closest('.chat-item') as HTMLElement;
+                const chatId = chatItem?.dataset.id;
+
+                if (chatId) {
+                  ChatController.getChatUsers(+chatId);
+                }
+              }
+            }
+          },
+        },
+      });
+
+      (this.children.chatItemHeader as ChatItem).setProps({ id: store.getState().currentChatId });
+
+      const chatId = store.getState().currentChatId;
+
+      const allMessages = store.getState().messages;
+
+      if (allMessages) {
+        const currentChatMessages = allMessages[chatId];
+
+        if (currentChatMessages && Array.isArray(currentChatMessages)) {
+          this.lists.messages = currentChatMessages.map((item: messageInterface) => {
+            const content = item.content ?? '';
+            const id = item.user_id;
+            const time = item.time ?? '';
+
+            return new Messages({
+              time: getTime(time),
+              value: content,
+              isYourMessage: id === store.getState().user.id,
+            });
+          });
+        }
+      }
+      this.children.messageForm = new messageForm({
+        show: Boolean(store.getState().currentChatId),
+        events: {
+          submit: (e: Event) => {
+            this.sendMessage(e);
+          },
+        },
       });
     });
 
     this.children.profileLink = new Link({
       url: '#',
-      page: 'profile',
+      page: '/profile',
       text: 'Профиль',
       className: 'chat-page__profile-link',
     });
@@ -36,10 +129,6 @@ export default class ChatPage extends Block {
       placeholder: 'Поиск',
     });
 
-    this.children.chatItemHeader = new ChatItem({
-      name: 'Вадим',
-    });
-
     this.children.chatUserSettingButton = new Button({
       className: 'chat__user-settings-btn',
       square: true,
@@ -47,24 +136,56 @@ export default class ChatPage extends Block {
       icon: icons.dotsVertical,
     });
 
-    this.children.clipButton = new Button({
-      square: true,
-      transparent: true,
-      icon: icons.clip,
+    this.children.addChatModal = new addChatModal({
+      isOpen: false,
     });
 
-    this.children.inputMessage = new Input({
-      className: 'chat__input',
-      type: 'text',
-      name: 'message',
-      placeholder: 'Сообщение',
+    this.children.addUserToChatModal = new addUserToChatModal({
+      isOpen: false,
     });
 
-    this.children.submitMessageButton = new Button({
+    this.children.removeUserToChatModal = new removeUserToChatModal({
+      isOpen: false,
+    });
+
+    this.children.buttonOpenModalAddChat = new Button({
+      className: 'button-add-chat-modal',
       square: true,
-      icon: icons.arrowBtn,
+      icon: icons.plus,
+      events: {
+        click: () => {
+          (this.children.addChatModal as addChatModal).setProps({
+            isOpen: true,
+          });
+        },
+      },
     });
   }
+
+  sendMessage(e: Event) {
+    e.preventDefault();
+
+    const target = e.target as HTMLElement;
+    const input = target.querySelector('.chat__footer input') as HTMLInputElement | null; // Получаем элемент HTMLInputElement или null
+
+    if (input) {
+      const value = input.value;
+
+      if (0 < value.length) {
+        ChatController.ws.send(
+          JSON.stringify({
+            content: value,
+            type: 'message',
+          }),
+        );
+
+        input.value = '';
+      }
+    }
+  }
+
+
+  
 
   render() {
     return template;

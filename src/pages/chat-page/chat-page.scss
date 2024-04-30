@@ -19,6 +19,7 @@
   &__body {
     flex-grow: 1;
     padding: 2rem;
+    overflow-y: scroll;
   }
 
   &__footer {
@@ -122,5 +123,15 @@
 
       @include mixins.font(1rem);
     }
+  }
+}
+
+.button-add-chat-modal {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+
+  img {
+    @include mixins.size(2rem);
   }
 }

@@ -5,8 +5,6 @@ const getFormData = (form: HTMLFormElement) => {
   formData.forEach((value, key) => {
     data[key] = value as string;
   });
-
-  console.log(data)
 };
 
 export default getFormData;

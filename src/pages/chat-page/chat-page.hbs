@@ -2,31 +2,27 @@
   <div class="chat-page__sidebar">
     <div class="chat-page__header">
       {{{ profileLink }}}
-      {{{ searchInput }}}
     </div>
     <div class="chat-list chat-page__list">
       {{{ chatItems }}}
     </div>
+    {{{ buttonOpenModalAddChat }}}
   </div>
   <div class="chat">
     <header class="chat__header">
       {{{ chatItemHeader }}}
-      {{{ chatUserSettingButton }}}
     </header>
     <div class="chat__body">
-      <div class="chat__message">
-        Yo
-      </div>
-       <div class="chat__message chat__message--right">
-        Yo
-      </div>
+      {{{ messages }}}
     </div>
     <footer class="chat__footer">
-      <form>
-        {{{ clipButton }}}
-        {{{ inputMessage }}}
-        {{{ submitMessageButton }}}
-      </form>
+      {{{ messageForm }}}
     </footer>
   </div>
+
+  {{{ addChatModal }}}
+
+  {{{ addUserToChatModal }}}
+
+  {{{ removeUserToChatModal }}}
 </section>
