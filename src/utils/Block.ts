@@ -154,9 +154,7 @@ export default class Block {
       return;
     }
 
-
     Object.assign(this.props, nextProps);
-
   }
 
   get element(): HTMLElement | null {
@@ -168,7 +166,7 @@ export default class Block {
     const _tmpId = Math.floor(100000 + Math.random() * 900000);
 
     this._removeEvents();
-    
+
     Object.entries(this.children).forEach(([key, child]) => {
       if (child instanceof Block) {
         propsAndStubs[key] = `<div data-id="${child._id}"></div>`;

@@ -30,7 +30,7 @@ interface ChatsInterface {
   avatar?: string;
   created_by?: number;
   unread_count?: number;
-  last_message?: interfaceMessage
+  last_message?: interfaceMessage;
 }
 
 interface ChatUser {
@@ -47,8 +47,6 @@ interface storeInterface {
   currentChatUsers?: ChatUser[];
 }
 
-
-
 class Store extends EventBus {
   private state: storeInterface = {
     user: {},
@@ -56,7 +54,7 @@ class Store extends EventBus {
     token: '',
     currentChatId: '',
     currentChatUsers: [],
-    messages: {}
+    messages: {},
   };
 
   public getState() {

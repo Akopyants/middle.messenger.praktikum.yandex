@@ -3,7 +3,7 @@ import Button from '../button';
 import Title from '../title';
 import template from './removeUserToChatModal.hbs?raw';
 import './removeUserToChatModal.scss';
-import store, {StoreEvents} from '../../utils/store';
+import store, { StoreEvents } from '../../utils/store';
 import RemoveUser from '../remove-user';
 import { ChatController } from '../../controllers/chatsControllers';
 
@@ -21,7 +21,6 @@ export default class RemoveUserToChatModal extends Block {
       text: 'Удалить пользователя',
     });
 
-
     store.on(StoreEvents.Updated, () => {
       const users = store.getState().currentChatUsers;
       const userId = store.getState().user.id;
@@ -29,7 +28,7 @@ export default class RemoveUserToChatModal extends Block {
 
       this.lists.removeUsersList = users?.map((item) => {
         if (userId !== item.id) {
-          const {login, id} = item;
+          const { login, id } = item;
 
           return new RemoveUser({
             login,
@@ -39,13 +38,13 @@ export default class RemoveUserToChatModal extends Block {
                 if (id && chatId) {
                   ChatController.deleteUsersFromChat(id, +chatId);
                 }
-              }
-            }
-          })
+              },
+            },
+          });
         }
-        
-        return ''
-      })
+
+        return '';
+      });
     });
 
     this.children.closeModal = new Button({

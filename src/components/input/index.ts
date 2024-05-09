@@ -31,7 +31,7 @@ export default class Input extends Block {
           if (this.props.validate) {
             const errorMessage = validateInput(e.target as HTMLInputElement);
             const target = e.target as HTMLInputElement;
-  
+
             this.setProps({
               value: target.value,
               valid: !errorMessage,

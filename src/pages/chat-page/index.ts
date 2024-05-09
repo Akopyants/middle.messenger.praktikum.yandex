@@ -184,9 +184,6 @@ export default class ChatPage extends Block {
     }
   }
 
-
-  
-
   render() {
     return template;
   }

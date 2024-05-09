@@ -74,7 +74,6 @@
   }
 }
 
-
 .button-add-user {
   @include mixins.size(3rem);
 
@@ -93,7 +92,7 @@
   right: 1rem;
   width: 2rem;
   height: 2rem;
-  transition: .3s;
+  transition: 0.3s;
 
   img {
     pointer-events: none;

@@ -17,7 +17,7 @@ export default class ChangeSettings extends Block {
     super();
 
     this.children.userSettingsAvatar = new userSettingsAvatar({
-      name: store.getState().user.login  || 'Введите имя',
+      name: store.getState().user.login || 'Введите имя',
       icon: icons.avatarPreview,
       avatar: store.getState().user.avatar,
       events: {

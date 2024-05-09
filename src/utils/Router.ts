@@ -51,7 +51,6 @@ class Route {
 }
 
 export default class Router {
-  
   public routes: Route[] = [];
   public history: History | undefined;
   private _currentRoute: Route | null = null;
@@ -61,7 +60,6 @@ export default class Router {
   constructor(rootQuery: string) {
     this._rootQuery = rootQuery;
     this.history = window.history;
-
   }
 
   static getInstance(rootQuery: string): Router {
@@ -76,7 +74,7 @@ export default class Router {
 
     this.routes.push(route);
 
-    console.log(this.routes)
+    console.log(this.routes);
 
     return this;
   }

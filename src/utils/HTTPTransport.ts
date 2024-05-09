@@ -53,14 +53,14 @@ class HTTPTransport {
           try {
             const response = JSON.parse(xhr.responseText);
             const reason = response.reason || '';
-  
+
             if (reason === 'User already in system') {
               router.go('/messenger');
               return;
             }
             reject(xhr);
           } catch (error) {
-            console.log(error)
+            console.log(error);
           }
         }
       };
@@ -73,10 +73,10 @@ class HTTPTransport {
       if (method === 'GET' || !data) {
         xhr.send();
       } else if (data?.file instanceof FormData) {
-          if (data.file) {
-            xhr.send(data.file);
-            return;
-          }
+        if (data.file) {
+          xhr.send(data.file);
+          return;
+        }
       } else {
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify(data));

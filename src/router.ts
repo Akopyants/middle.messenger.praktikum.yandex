@@ -1,5 +1,5 @@
-import Router from "./utils/Router";
+import Router from './utils/Router';
 
-const router = new Router("#app");
+const router = new Router('#app');
 
-export default router
+export default router;

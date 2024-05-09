@@ -18,19 +18,17 @@ describe('Block', () => {
     BlockTest = TestBlock;
   });
 
-  
-
   it('Проверяем текст внутри элемента', () => {
     const component = new BlockTest({});
     const element = component.getContent();
-  
+
     expect(element?.textContent).to.equal('test');
   });
 
   it('Проверяем корректный ли тег используется', () => {
     const component = new BlockTest({});
     const element = component.getContent();
-  
+
     expect(element?.tagName).to.equal('DIV');
   });
 
