@@ -57,7 +57,6 @@ class ChatsApi extends BaseAPI {
       avatar: FormData.get('avatar'),
     };
 
-    console.log(data);
     return fetch.put('avatar', {
       data: {
         data,

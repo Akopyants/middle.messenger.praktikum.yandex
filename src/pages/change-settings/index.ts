@@ -32,7 +32,6 @@ export default class ChangeSettings extends Block {
 
               if (input.files && input.files.length > 0) {
                 formData.append('avatar', input.files[0]);
-                console.log(input.files[0]);
                 SettingsControllers.changeAvatar(formData);
               }
             });

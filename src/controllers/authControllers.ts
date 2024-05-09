@@ -49,7 +49,6 @@ class AuthController {
     try {
       const res = await authApi.getUserData();
 
-      console.log(res.status)
       if (res.status === 200) {
         try {
           store.set('user', JSON.parse(res.response));

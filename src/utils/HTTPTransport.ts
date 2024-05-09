@@ -58,8 +58,6 @@ class HTTPTransport {
               router.go('/messenger');
               return;
             }
-  
-            console.log(reason);
             reject(xhr);
           } catch (error) {
             console.log(error)

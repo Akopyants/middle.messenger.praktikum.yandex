@@ -27,7 +27,6 @@ export default class RemoveUserToChatModal extends Block {
       const userId = store.getState().user.id;
       const chatId = store.getState().currentChatId;
 
-      console.log(store)
       this.lists.removeUsersList = users?.map((item) => {
         if (userId !== item.id) {
           const {login, id} = item;

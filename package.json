@@ -15,33 +15,53 @@
     "fix:css": "stylelint \"**/*.{css,scss,sass}\" --fix",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,scss,json,html,md, hbs}\"",
     "eslint": "eslint src --ext ts",
-    "eslintFix": "eslint src --fix"
+    "eslintFix": "eslint src --fix",
+    "test": "mocha --require mocha-setup.js",
+    "pre-commit": "npm run eslint && npm run fix:css && npm run format"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.16",
     "@types/handlebars": "^4.1.0",
+    "@types/mocha": "^10.0.6",
+    "@types/sinon": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
+    "axios": "^1.6.8",
+    "chai": "^5.1.1",
     "eslint": "^8.57.0",
     "eslint-config-airbnb-typescript": "^18.0.0",
+    "husky": "^9.0.11",
+    "mocha": "^10.4.0",
     "prettier": "^3.2.5",
     "sass": "^1.71.1",
-    "stylelint": "^13.13.1",
-    "stylelint-config-idiomatic-order": "^8.1.0",
+    "sinon": "^17.0.2",
+    "stylelint": "^16.5.0",
+    "stylelint-config-idiomatic-order": "^10.0.0",
     "stylelint-config-prettier": "^9.0.3",
-    "stylelint-config-standard": "^22.0.0",
-    "stylelint-order": "^4.1.0",
-    "stylelint-scss": "^3.20.1",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-order": "^6.0.4",
+    "stylelint-scss": "^6.3.0",
     "stylelint-webpack-plugin": "^3.0.1",
     "typescript": "^5.4.3",
-    "vite": "^5.1.4"
+    "vite": "^5.1.4",
+    "xhr2": "^0.2.1",
+    "xhr2-cookies": "^1.1.0"
   },
   "dependencies": {
     "@types/uuid": "^9.0.8",
     "express": "^4.18.3",
     "handlebars": "^4.7.8",
+    "jsdom": "^24.0.0",
+    "nock": "^13.5.4",
+    "postcss": "^8.4.38",
     "scss": "^0.2.4",
     "ts-node": "^10.9.2",
     "uuid": "^9.0.1",
     "vite-plugin-checker": "^0.6.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run pre-commit"
+    }
   }
 }
