@@ -4,11 +4,11 @@
 .modal {
   position: fixed;
   z-index: 3000;
-  inset: 0;
   display: none;
+  overflow: hidden auto;
   align-items: center;
   justify-content: center;
-  overflow: hidden auto;
+  inset: 0;
   will-change: opacity;
 
   &--open {
