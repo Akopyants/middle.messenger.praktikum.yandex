@@ -37,7 +37,7 @@
     "sinon": "^17.0.2",
     "stylelint": "^16.5.0",
     "stylelint-config-idiomatic-order": "^10.0.0",
-    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard": "^36.0.0",
     "stylelint-order": "^6.0.4",
     "stylelint-scss": "^6.3.0",
