@@ -6,6 +6,8 @@
 
 <code>npm run start</code> - запуск проекта
 
+<code>npm run test</code> - запуск тестов
+
 # Что было сделано
 
     - внедрил ts
