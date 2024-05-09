@@ -21,6 +21,7 @@
     "pre-commit": "npm run eslint && npm run fix:css && npm run format"
   },
   "devDependencies": {
+    "@types/handlebars": "^4.1.0",
     "@babel/core": "^7.14.0",
     "@babel/register": "^7.13.16",
     "@parcel/transformer-pug": "^2.0.0-rc.0",
@@ -29,6 +30,7 @@
     "@types/chai": "^4.2.17",
     "@types/mocha": "^8.2.2",
     "@types/pug": "^2.0.4",
+    "@types/sinon": "^17.0.3",
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.21.0",
     "@typescript-eslint/parser": "^4.21.0",
@@ -66,10 +68,11 @@
     "@svgr/parcel-plugin-svgr": "^5.5.0",
     "clsx": "^1.1.1",
     "dayjs": "^1.10.6",
+    "express": "^4.17.1",
     "md5": "^2.3.0",
     "normalize.css": "^8.0.1",
     "uuid": "^8.3.2",
-    "express": "^4.17.1"
+    "vite-plugin-checker": "^0.6.4"
   },
   "husky": {
     "hooks": {
