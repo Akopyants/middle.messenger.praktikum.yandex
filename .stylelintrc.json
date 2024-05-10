@@ -1,7 +1,7 @@
 {
   "extends": ["stylelint-config-standard", "stylelint-config-prettier", "stylelint-config-idiomatic-order"],
 
-  "plugins": ["stylelint-order", "stylelint-scss", "stylelint-prettier"],
+  "plugins": ["stylelint-order", "stylelint-scss"],
 
   "rules": {
     "at-rule-no-unknown": [
