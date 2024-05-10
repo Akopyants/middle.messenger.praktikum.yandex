@@ -11,7 +11,7 @@
     "build": "vite build",
     "start": "npm run build && node server.js",
     "preview": "vite preview",
-    "stylelint": "stylelint \"**/*.{scss,sass}\"",
+    "stylelint": "npx stylelint \"**/*.{css,scss}\"",
     "fix:css": "stylelint \"**/*.{scss,sass}\" --fix",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,scss,json,html,md, hbs}\"",
     "eslint": "eslint src --ext ts",
