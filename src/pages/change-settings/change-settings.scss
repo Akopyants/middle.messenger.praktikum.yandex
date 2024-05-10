@@ -43,8 +43,10 @@
     margin-top: 6rem;
   }
 
-  .input__error {
-    right: 0;
-    left: initial;
+  .input {
+    &__error {
+      right: 0;
+      left: initial;
+    }
   }
 }

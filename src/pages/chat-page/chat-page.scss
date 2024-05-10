@@ -60,8 +60,10 @@
     border-radius: 5px;
     font-size: 1.4rem;
 
-    & + .chat__message {
-      margin-top: 1rem;
+    & + .chat {
+      &__message  {
+        margin-top: 1rem;
+      }
     }
 
     &--right {
