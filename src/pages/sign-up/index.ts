@@ -6,7 +6,7 @@ import template from './sign-up.hbs?raw';
 import './sign-up.scss';
 import Title from '../../components/title';
 import findEmptyField from '../../utils/findEmptyField';
-import AuthController  from '../../controllers/authControllers';
+import AuthController from '../../controllers/authControllers';
 
 export default class SignUp extends Block {
   constructor() {
@@ -16,14 +16,14 @@ export default class SignUp extends Block {
       text: 'Регистрация',
       level: 3,
     });
-    
+
     const SignUpInputListProps = [
       { name: 'email', type: 'email', placeholder: 'Почта', value: 'Test@m.ru' },
       { name: 'login', type: 'text', placeholder: 'Логин', value: 'TestAkopyants' },
       { name: 'first_name', type: 'text', placeholder: 'Имя', value: 'Sergey' },
       { name: 'second_name', type: 'text', placeholder: 'Фамилия', value: 'Akopyants' },
       { name: 'phone', type: 'tel', placeholder: 'Телефон', value: '89521231212' },
-      { name: 'password', type: 'password', placeholder: 'Пароль',  value: 'TestTest123'},
+      { name: 'password', type: 'password', placeholder: 'Пароль', value: 'TestTest123' },
     ];
 
     this.lists.SignUpInputList = SignUpInputListProps.map((inputProps) => {
@@ -40,7 +40,7 @@ export default class SignUp extends Block {
       text: 'Зарегистрироваться',
       page: 'choose-chat',
       events: {
-        click: (e: Event) => {          
+        click: (e: Event) => {
           this.submitForm(e);
         },
       },
@@ -62,8 +62,8 @@ export default class SignUp extends Block {
       findEmptyField(form);
     }
 
-    const formData = new FormData(form)
-    AuthController.registration(formData)
+    const formData = new FormData(form);
+    AuthController.registration(formData);
   }
 
   render() {

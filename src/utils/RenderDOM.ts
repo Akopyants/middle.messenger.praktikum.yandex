@@ -6,7 +6,7 @@ function RenderDOM(query: string, block: Block) {
     root.innerHTML = '';
     root.append(block.getContent()!);
   }
-  
+
   block.dispatchComponentDidMount();
   return root;
 }

@@ -15,7 +15,6 @@ export default class RemoveUser extends Block {
     super({ ...props });
   }
 
-
   render() {
     return template;
   }

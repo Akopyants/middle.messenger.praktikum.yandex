@@ -5,10 +5,10 @@ import template from './form.hbs?raw';
 import './form.scss';
 
 interface InterfaceFrom {
-  inputType: string,
-  inputValue?: string,
-  inputPlaceholder?: string,
-  buttonText?: string,
+  inputType: string;
+  inputValue?: string;
+  inputPlaceholder?: string;
+  buttonText?: string;
   events?: {
     submit?: (e: Event) => void;
   };
@@ -20,7 +20,6 @@ export default class ModalForm extends Block {
       ...props,
     });
 
-
     this.children.addChatInput = new Input({
       rowClassName: '',
       name: 'chatName',
@@ -29,7 +28,6 @@ export default class ModalForm extends Block {
       value: props.inputValue,
       placeholder: props.inputPlaceholder,
     });
-
 
     this.children.addChatButton = new Button({
       text: props.buttonText,

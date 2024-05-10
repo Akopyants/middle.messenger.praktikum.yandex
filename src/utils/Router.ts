@@ -44,17 +44,22 @@ class Route {
       RenderDOM(this._props.rootQuery, this._block);
     }
   }
+
+  getPath() {
+    return this._pathname;
+  }
 }
 
 export default class Router {
-  private routes: Route[] = [];
-  private history: History = window.history;
+  public routes: Route[] = [];
+  public history: History | undefined;
   private _currentRoute: Route | null = null;
   private _rootQuery: string;
   private static __instance: Router | null = null;
 
   constructor(rootQuery: string) {
     this._rootQuery = rootQuery;
+    this.history = window.history;
   }
 
   static getInstance(rootQuery: string): Router {
@@ -68,6 +73,8 @@ export default class Router {
     const route = new Route(pathname, block, { rootQuery: this._rootQuery });
 
     this.routes.push(route);
+
+    console.log(this.routes);
 
     return this;
   }
@@ -95,19 +102,23 @@ export default class Router {
   }
 
   go(pathname: string) {
-    this.history.pushState({}, '', pathname);
+    this.history?.pushState({}, '', pathname);
     this._onRoute(pathname);
   }
 
   back() {
-    this.history.back();
+    this.history?.back();
   }
 
   forward() {
-    this.history.forward();
+    this.history?.forward();
   }
 
   getRoute(pathname: string) {
     return this.routes.find((route) => route.match(pathname));
+  }
+
+  getCurrentRoute() {
+    return this._currentRoute;
   }
 }

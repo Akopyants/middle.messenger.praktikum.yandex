@@ -17,7 +17,7 @@ const icons: Icons = {
   arrowBtn,
   avatarPreview,
   plus,
-  minus
+  minus,
 };
 
 export default icons;

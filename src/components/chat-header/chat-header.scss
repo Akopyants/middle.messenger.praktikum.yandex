@@ -1,10 +1,12 @@
 @use '@/assets/variables' as vars;
 @use '@styles/mixins' as mixins;
 
-.chat-item__buttons {
-  display: flex;
-  margin-left: auto;
-  gap: 10px;
+.chat-item {
+  &__buttons {
+    display: flex;
+    margin-left: auto;
+    gap: 10px;
+  }
 }
 
 .button-add-user {

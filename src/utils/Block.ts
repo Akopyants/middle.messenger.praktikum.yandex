@@ -143,7 +143,6 @@ export default class Block {
     const { attr = {} } = this.props as { attr?: Record<string, unknown> };
 
     Object.entries(attr).forEach(([key, value]) => {
-      console.log(attr);
       if (typeof value === 'string') {
         this._element?.setAttribute(key, value);
       }
@@ -155,9 +154,7 @@ export default class Block {
       return;
     }
 
-
     Object.assign(this.props, nextProps);
-
   }
 
   get element(): HTMLElement | null {
@@ -169,7 +166,7 @@ export default class Block {
     const _tmpId = Math.floor(100000 + Math.random() * 900000);
 
     this._removeEvents();
-    
+
     Object.entries(this.children).forEach(([key, child]) => {
       if (child instanceof Block) {
         propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
@@ -256,8 +253,9 @@ export default class Block {
 
   show(): void {
     const content = this.getContent();
+
     if (content) {
-      content.style.display = 'Block';
+      content.style.display = 'block';
     }
   }
 

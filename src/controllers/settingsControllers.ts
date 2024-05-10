@@ -1,23 +1,22 @@
 import { profileApi } from '../api/profileDataApi';
 import store from '../utils/store';
 
-
 export class SettingsControllers {
   static async changeSettings(data: FormData) {
     try {
       const response = await profileApi.changeSettings(data);
       const user = response.response;
-      
+
       try {
-        store.set('user', JSON.parse(user))
+        store.set('user', JSON.parse(user));
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
 
-      alert('Данные сохранены')
+      alert('Данные сохранены');
     } catch (err) {
-      alert(err)
-      console.log(err)
+      alert(err);
+      console.log(err);
     }
   }
 
@@ -25,10 +24,9 @@ export class SettingsControllers {
     try {
       await profileApi.changePassword(data);
 
-      alert('Пароль успешно изменено')
-  
+      alert('Пароль успешно изменено');
     } catch (err) {
-      alert(err)
+      alert(err);
     }
   }
 
@@ -37,12 +35,12 @@ export class SettingsControllers {
       const response = await profileApi.changeAvatar(data);
       try {
         const responseText = JSON.parse(response.responseText);
-        store.set('user.avatar', responseText.avatar)
+        store.set('user.avatar', responseText.avatar);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     } catch (err) {
-      alert(err)
+      alert(err);
     }
   }
 }

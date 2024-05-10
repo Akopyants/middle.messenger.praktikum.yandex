@@ -17,20 +17,20 @@ export default class Profile extends Block {
     super();
 
     this.children.userSettingsAvatar = new userSettingsAvatar({
-      name: store.getState().user.login  || 'Введите имя',
+      name: store.getState().user.login || 'Введите имя',
       avatar: store.getState().user.avatar,
       icon: icons.avatarPreview,
     });
 
     const createUserSettingsItemList = () => {
-      const user = store.getState().user
+      const user = store.getState().user;
 
       Object.entries(user).forEach((element) => {
         if (profileUserData.hasOwnProperty(element[0])) {
           profileUserData[element[0]].value = element[1];
         }
       });
-  
+
       this.lists.userSettingsItemList = Object.values(profileUserData).map((item) => {
         return new userSettingsItem({
           label: item.label,
@@ -41,9 +41,9 @@ export default class Profile extends Block {
           disabled: true,
         });
       });
-    }
+    };
 
-    createUserSettingsItemList()
+    createUserSettingsItemList();
 
     const linksProps = [
       { text: 'Изменить данные', page: '/settings' },
@@ -75,8 +75,8 @@ export default class Profile extends Block {
       events: {
         click: () => {
           router.back();
-        }
-      }
+        },
+      },
     });
 
     store.on(StoreEvents.Updated, () => {

@@ -17,7 +17,7 @@ export default class ChangeSettings extends Block {
     super();
 
     this.children.userSettingsAvatar = new userSettingsAvatar({
-      name: store.getState().user.login  || 'Введите имя',
+      name: store.getState().user.login || 'Введите имя',
       icon: icons.avatarPreview,
       avatar: store.getState().user.avatar,
       events: {
@@ -32,7 +32,6 @@ export default class ChangeSettings extends Block {
 
               if (input.files && input.files.length > 0) {
                 formData.append('avatar', input.files[0]);
-                console.log(input.files[0]);
                 SettingsControllers.changeAvatar(formData);
               }
             });

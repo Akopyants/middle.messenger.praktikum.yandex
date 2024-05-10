@@ -58,8 +58,6 @@ export default class AddChatModal extends Block {
         isOpen: false,
       });
     }
-
-
   }
 
   render() {

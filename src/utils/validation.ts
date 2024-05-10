@@ -32,7 +32,7 @@ const validationRules: ValidationRules = {
     maxLength: 40,
   },
   chatName: {
-    minLength: 3
+    minLength: 3,
   },
   disallowedPattern: /^\d+$/,
   allowedPattern: /^[a-zA-Z\d_-]+$/,
@@ -114,12 +114,12 @@ const validationPhone = (value: string): string => {
   return '';
 };
 
-const validationChatName = (value: string) :string => {
+const validationChatName = (value: string): string => {
   if (value.length < validationRules.chatName.minLength) {
     return `Название чата должно состоять миниммум из ${validationRules.chatName.minLength}`;
   }
-  return ''
-}
+  return '';
+};
 
 const validateInput = (target: HTMLInputElement): string => {
   const value = target.value;
@@ -129,7 +129,13 @@ const validateInput = (target: HTMLInputElement): string => {
     return validateLogin(value);
   }
 
-  if (name === 'password' || name === 'oldPassword' || name === 'newPassword' || name === 'newPasswordRepeat' || name === 'confirm_password') {
+  if (
+    name === 'password' ||
+    name === 'oldPassword' ||
+    name === 'newPassword' ||
+    name === 'newPasswordRepeat' ||
+    name === 'confirm_password'
+  ) {
     return validatePassword(value);
   }
 

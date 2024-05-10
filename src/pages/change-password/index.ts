@@ -50,8 +50,8 @@ export default class СhangePassword extends Block {
       events: {
         click: () => {
           router.back();
-        }
-      }
+        },
+      },
     });
   }
 
