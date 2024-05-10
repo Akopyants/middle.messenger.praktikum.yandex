@@ -11,8 +11,8 @@
 
     position: relative;
     overflow: hidden;
-    background-color: vars.$gray-light;
     border-radius: 50%;
+    background-color: vars.$gray-light;
     object-fit: contain;
 
     input {
