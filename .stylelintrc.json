@@ -1,6 +1,33 @@
 {
-  "extends": "stylelint-config-standard",
+  "extends": ["stylelint-config-standard", "stylelint-config-prettier", "stylelint-config-idiomatic-order"],
+
+  "plugins": ["stylelint-order", "stylelint-scss"],
+
   "rules": {
-    "selector-class-pattern": "^[a-z][a-zA-Z0-9]*$"
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "use",
+          "forward",
+          "import",
+          "mixin",
+          "include",
+          "function",
+          "extend",
+          "error",
+          "warn",
+          "debug",
+          "at-root",
+          "if",
+          "else",
+          "each",
+          "for",
+          "while",
+          "return"
+        ]
+      }
+    ],
+    "no-descending-specificity": null
   }
 }

@@ -6,9 +6,9 @@
   @include mixins.size(100%, 4.2rem);
 
   border: 1px solid vars.$gray;
-  border-radius: 5px;
   background-color: vars.$bgColorBase;
   background-color: vars.$gray;
+  border-radius: 5px;
   color: #fff;
   cursor: pointer;
   text-align: center;
