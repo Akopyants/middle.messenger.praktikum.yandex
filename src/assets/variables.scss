@@ -1,24 +1,26 @@
-// $mainFont: 'Roboto', sans-serif;$mainFont
-// $fontWeightLight: 400 !default;$fontWeightLight
-// $fontWeightBase: 500 !default;$fontWeightBase
-// $fontWeightMedium: 600 !default;$fontWeightMedium
-// $fontWeightSolid: 700 !default;$fontWeightSolid
-// //
-// // COLORS
-// //
-// $text-bgcolor: #fff;COLORS$text-bgcolor
-// $gray: #1d1d1f;$gray
-// $gray-light: #e5e5e5;$gray-light
-// $colorBase: #1d1d1f !default;$colorBase
-// $bgColorBase: #fff !default;$bgColorBase
-// $colorWhite: #fff !default;$colorWhite
-// $transitionDurationSlow: 0.3s !default;$transitionDurationSlow
-// $bgColorInput: #f5f5f5 !default;$bgColorInput
-// $dialog-bgcolor: #{$text-bgcolor};
+$mainFont: 'Roboto', sans-serif;
 
-// //
-// // TRANSITIONS
-// //
-// $transitionDurationFast: 0.1s !default;TRANSITIONS$transitionDurationFast
-// $transitionDurationBase: 0.2s !default;$transitionDurationBase
-// $colorPlaceholder: #b5b5b5 !default;$colorPlaceholder
+$fontWeightLight: 400 !default;
+$fontWeightBase: 500 !default;
+$fontWeightMedium: 600 !default;
+$fontWeightSolid: 700 !default;
+
+//
+// COLORS
+//
+$text-bgcolor: #fff;
+$gray: #1d1d1f;
+$gray-light: #e5e5e5;
+$colorBase: #1d1d1f !default;
+$bgColorBase: #fff !default;
+$colorWhite: #fff !default;
+$transitionDurationSlow: 0.3s !default;
+$bgColorInput: #f5f5f5 !default;
+$dialog-bgcolor: #{$text-bgcolor};
+
+//
+// TRANSITIONS
+//
+$transitionDurationFast: 0.1s !default;
+$transitionDurationBase: 0.2s !default;
+$colorPlaceholder: #b5b5b5 !default;
