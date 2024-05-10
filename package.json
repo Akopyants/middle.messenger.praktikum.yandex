@@ -35,7 +35,7 @@
     "mocha": "^10.4.0",
     "prettier": "^3.2.5",
     "sass": "^1.71.1",
-    "stylelint": "^16.5.0",
+    "stylelint": "^16.3.1",
     "stylelint-config-idiomatic-order": "^10.0.0",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard": "^36.0.0",
