@@ -16,7 +16,7 @@ export class ChatController {
         this.getChats();
       }
     } catch (err) {
-      console.log(title);
+      console.log(err);
     }
   }
 
@@ -47,8 +47,8 @@ export class ChatController {
       } catch (error) {
         console.log(error);
       }
-    } catch {
-      console.log('test');
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -75,8 +75,8 @@ export class ChatController {
       } catch (error) {
         console.log(error);
       }
-    } catch {
-      console.log('test');
+    } catch (error) {
+      console.log(error);
     }
   }
 

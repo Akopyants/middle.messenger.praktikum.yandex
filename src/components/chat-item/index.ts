@@ -53,8 +53,8 @@ export default class ChatItem extends Block {
           const chatId = chatItem?.dataset.id || '';
 
           ChatController.delete(+chatId);
-        }
-      }
+        },
+      },
     });
   }
 

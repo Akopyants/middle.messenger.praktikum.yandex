@@ -59,7 +59,6 @@ export default class LoginPage extends Block {
       className: 'sign-in-form__link',
       page: '/sign-up',
     });
-    
   }
 
   submitForm(e: Event) {

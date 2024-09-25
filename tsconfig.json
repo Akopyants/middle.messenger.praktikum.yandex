@@ -18,5 +18,6 @@
     "strictNullChecks": true,
     "skipLibCheck": true
   },
-  "include": ["src", "global.d.ts"]
+  "exclude": ["node_modules"],
+  "include": ["src/**/*.ts", "global.d.ts"]
 }

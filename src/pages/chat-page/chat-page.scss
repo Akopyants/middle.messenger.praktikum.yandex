@@ -56,12 +56,14 @@
   &__message {
     width: fit-content;
     padding: 10px;
-    background: #e5e5e5;
     border-radius: 5px;
+    background: #e5e5e5;
     font-size: 1.4rem;
 
-    & + .chat__message {
-      margin-top: 1rem;
+    & + .chat {
+      &__message {
+        margin-top: 1rem;
+      }
     }
 
     &--right {
